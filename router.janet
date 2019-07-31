@@ -1,5 +1,7 @@
 (import clojure :as c)
 
+(use clojure)
+
 # Try out a PEG for matching a URL perhaps...
 # https://janet-lang.org/docs/peg.html
 (def peg-uri

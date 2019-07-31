@@ -20,8 +20,13 @@
 
 (defn get-in
   "Get a nested property path from a map."
-  [m ks]
-  (reduce get m ks))
+  [m ks & def]
+  (try
+   (reduce get m ks)
+   ((error e) (or (first def) nil))))
+
+(get-in {} [:a :b] 9)
+(get-in {:a {:b 3} } [:a :b] 10)
 
 (defn get-some
   "Like get-in, but just go as far as possible in the path."
@@ -29,7 +34,7 @@
   (let [maybe (get-in m ks)]
     (if maybe
         maybe
-        (get-in m (reverse (rest (reverse ks)))))))
+      (get-in m (reverse (rest (reverse ks)))))))
 
 (defn make-sleepy-fiber [n]
   (fiber/new (fn [] (os/sleep n) n)))
