@@ -36,14 +36,13 @@
         maybe
       (get-in m (reverse (rest (reverse ks)))))))
 
-(defn make-sleepy-fiber [n]
-  (fiber/new (fn [] (os/sleep n) n)))
+(defn comp
+  "The built-in comp only accepts unary args for f(g(x)), we want g to be any arity.
 
-(defn test-fiber []
-  (let [fibers (map make-sleepy-fiber (range 5))]
-    # Fibers would all be resolving their sleeps concurrently
-    # So that the overall call time here would be 5 or so seconds, not 15 seconds.
-    (os/sleep 2.0)
-    (map fiber/status fibers)))
-
-# (test-fiber)
+Returns f(g(x1,...))."
+  [& fs]
+  (fn [& r]
+    (let [fns (array ;fs)
+          g (array/pop fns)
+          init (apply g r)]
+      (reduce (fn [h f] (f h)) init fns))))
