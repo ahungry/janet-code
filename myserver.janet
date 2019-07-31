@@ -14,13 +14,17 @@
 (defn myserver
   "A simple HTTP server"
   [req]
-  # (print (kvs req))
-  # (-> (keys req) print)
-  (map print (keys req))
-  (print (get req :uri))
-  {:status 200
-           :headers {"Content-Type" "application/json"}
-   :body (json/encode (router/dispatch req))})
+  (pp req)
+  (let [res (router/dispatch req)]
+    (print "Res was: ")
+    (pp res)
+    # (print (kvs req))
+    # (-> (keys req) print)
+    (map print (keys req))
+    (print (get req :uri))
+    {:status 200
+             :headers {"Content-Type" "application/json"}
+             :body (json/encode res)}))
 
 # json/encode does not work recursively - need to solve.
 

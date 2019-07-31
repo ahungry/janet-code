@@ -49,7 +49,12 @@
       {:uri "/version"
        :f (fn [request] {:version "0.0.1"})}
       {:uri "/hello/:name/:age"
-            :f (fn [request] request)}
+       :f (fn [request] {:message (c/str "Greetings "
+                                         (c/get-in request [:slugs :name] )
+                                         " - You are "
+                                         (c/get-in request [:slugs :age] )
+                                         " years old!"
+                                         )})}
       {:uri "/:" :f (fn [req] {:error "resource not found."})}
       ])
 
@@ -74,7 +79,7 @@
 
 # (apply-matching-route routes {:uri "/version"})
 
-(apply-matching-route routes {:uri "/hello/matt/36"})
+(apply-matching-route routes {:foo "bar" :uri "/hello/matt/36"})
 
 (defn dispatch [req]
   (or (apply-matching-route routes req)
