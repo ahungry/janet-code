@@ -22,8 +22,8 @@
   "Get a nested property path from a map."
   [m ks & def]
   (try
-   (reduce get m ks)
-   ((error e) (or (first def) nil))))
+    (reduce get m ks)
+    ((error e) (or (first def) nil))))
 
 (get-in {} [:a :b] 9)
 (get-in {:a {:b 3} } [:a :b] 10)
@@ -33,7 +33,7 @@
   [m ks]
   (let [maybe (get-in m ks)]
     (if maybe
-        maybe
+      maybe
       (get-in m (reverse (rest (reverse ks)))))))
 
 (defn comp

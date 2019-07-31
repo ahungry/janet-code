@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-c -Wall -std=gnu99
 LFLAGS=-lm -ldl
 
-all: janet_modules deps
+all: janet_modules deps build
 
 rebuild:
 	-rm -f build/main
