@@ -11,7 +11,7 @@ rebuild:
 
 # Try out an amalgamated build in one step (we probably don't want to build o file each time)
 build/main: build/janet.o build/main.o
-	$(CC) $(LFLAGS) build/main.o build/janet.o -o build/main
+	$(CC) build/main.o build/janet.o -o build/main $(LFLAGS)
 
 build/main.o:
 	$(CC) $(CFLAGS) main.c -o build/main.o
