@@ -2,6 +2,25 @@
 (use build/futures)
 (use clojure)
 
+(var x 9)
+
+(def fut1 (future (fn []
+                    x)))
+
+(realize fut1)
+
+(defn test-future-forking []
+  (var y 1)
+  (let [fut1 (future (fn [] (set y 5) y))
+        rel1 (do (os/sleep 0.2) (realize fut1))]
+    {:y y :rel1 rel1}))
+
+# Evals to: {:rel1 5 :y 1}
+(test-future-forking)
+# This means any side-effects/state alters in the future are not in the present.
+# This also means you cannot push from within to the outer in any way other than return
+# values/computations, but you never have to worry about acquiring a lock on things you change..
+
 (defn times-3 [n] (* 3 n))
 
 (defn add-1 [n] (+ 1 n))

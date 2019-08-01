@@ -71,6 +71,7 @@ static Janet future (int32_t argc, const Janet *argv) {
   // return *future_out; // janet_wrap_nil ();
 }
 
+// TODO: When we realize, we should spin here until it is not pending.
 static Janet realize (int32_t argc, const Janet *argv) {
   janet_fixarity (argc, 1);
   int x = janet_getinteger (argv, 0);
