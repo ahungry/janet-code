@@ -3,11 +3,59 @@
 (import build/udp :as udp)
 (use clojure)
 
-(var input-keys (buffer/new 1))
+(var input-buf (buffer/new 1))
+(var cx 0)
+(var cy 0)
+
+
+(defn add-color
+  "Add a terminal color to the buffer."
+  [b]
+  (buffer/push-byte b 0x1b)
+  (buffer/push-string b "[36m ")
+  b)
+
+(defn cursor-goto []
+  )
+
+(def input-map
+  {"\xEB" :ARROW_DOWN
+     "\xEA" :ARROW_UP
+     "\xE8" :ARROW_LEFT
+     "\xE7" :ARROW_RIGHT
+  })
+
+(defn self-insert [s]
+  (buffer/push-string input-buf s))
+
+(defn move-cursor []
+  (let [buf (buffer/new 1)]
+    (buffer/push-byte buf 0x1b)
+    (buffer/format buf "[%s;%sH" (string cy) (string cx))))
+
+(defn move-up [_] (set cy (dec cy)))
+(defn move-down [_] (set cy (inc cy)))
+(defn move-left [_] (set cx (dec cx)))
+(defn move-right [_] (set cx (inc cx)))
+
+(defn key-to-action [s]
+  (let [kw (or (get input-map s) s)]
+    (case kw
+      :ARROW_DOWN move-down
+      :ARROW_UP move-up
+      :ARROW_LEFT move-left
+      :ARROW_RIGHT move-right
+      self-insert)))
+
+(key-to-action "\xB8")
 
 (defn handler [s]
-  (let [out (buffer/push-string input-keys s)]
-    (string out)))
+  (do
+    (let [f (key-to-action s)]
+      (f s) # Each key press should have an action
+      (pp input-buf)
+      (buffer input-buf (move-cursor))
+      )))
 
 # If we need to have shared memory/state, we probably need to keep track
 # by using the disk, otherwise we will be effectively blocked / have to kill process
@@ -30,7 +78,7 @@ Remove file /tmp/janet.listen to break out of the listen loop."
     (let [port 12346
           f (partial udp/send-string "127.0.0.1" 12345)]
       (while (keep-listening?)
-        (-> (udp/listen 12346) handler f)))))
+        (-> (udp/listen 12346) handler string f)))))
 
 (defn listen-on-udp-bg []
   (future (fn [] (listen-on-udp))))
@@ -50,4 +98,4 @@ Remove file /tmp/janet.listen to break out of the listen loop."
     #(buffer/push-string b s)
     (udp/send-string "127.0.0.1" 12345 (string b))))
 
-(test-send "haha greetings!")
+(test-send "Color test sent from udp-listener.janet")
