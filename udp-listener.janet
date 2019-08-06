@@ -7,7 +7,6 @@
 (var cx 0)
 (var cy 0)
 
-
 (defn add-color
   "Add a terminal color to the buffer."
   [b]
