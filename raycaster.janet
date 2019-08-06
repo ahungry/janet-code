@@ -42,13 +42,14 @@
     @[0 0 0 0 0 0 0 0 0 0]
    ])
 
-(def player @{:x 9 :y 9 :rot 0})
+(def player @{:x 9 :y 9 :direction 0})
 
 (defn set-x [n] (put player :x n))
 (defn set-y [n] (put player :y n))
-(defn set-rot [n] (put player :rot n))
+(defn set-rot [n] (put player :direction n))
 
-(defn make-no-wall [] :NO-WALL)
+(defn make-no-wall []
+  @{:length2 10000})
 
 (defn get-step-dx [run x]
   (if (> run 0)
@@ -100,12 +101,13 @@
   (let [sin (math/sin angle)
         cos (math/cos angle)]
     (fn [origin]
-      (let [step-x (make-step sin cos (get origin :x) (get origin :y))
-            step-y (make-step cos sin (get origin :y) (get origin :x))
+      (let [step-x (make-step sin cos (get origin :x) (get origin :y) false)
+            step-y (make-step cos sin (get origin :y) (get origin :x) true)
             next-step (if (< (get step-x :length2)
                              (get step-y :length2))
                         ((rc-inspect point angle range) step-x 1 0 (get origin :distance) (get step-x :y))
-                        ((rc-inspect point angle range) step-y 0 1 (get origin :distance) (get step-y :x)))]
+                        ((rc-inspect point angle range) step-y 0 1 (get origin :distance) (get step-y :x)))
+           ]
         (if (> (get next-step :distance) range)
           @[origin]
           @[origin ;((ray point angle range) next-step)])
@@ -118,6 +120,9 @@
             :height 0
             :distance 0})))
 
+
+(defn get-atx [ix x] (- (/ ix x) 0.5))
+
 (defn make-xy-array
   "Take an x and y dimension and produce an array to fill out.
 This would be derived based on global state computed from which way
@@ -126,24 +131,24 @@ the user is looking and what things they are intersecting."
   (do
     (var ret (array/new x))
     (for ix 0 x
-      (let [atx (- (/ ix x) 0.5)
-            focal-length 0.8
-            angle (math/atan2 atx focal-length)]
-      (pp (raycast
-           player
-           (+ (get player :direction) angle)
-           8 # Just some random hardcoded value for range
-           )))
-      (put ret ix
-           (make-array-of-height
-            # The height of the ray being cast I guess...
-            8
-            y)))
+      (let [atx (get-atx ix x)
+                focal-length 0.8
+                angle (math/atan2 atx focal-length)
+                casted-ray (raycast player (+ (get player :direction) angle) 8)
+                ]
+        (put ret ix
+             (make-array-of-height
+              # The height of the ray being cast I guess...
+              (get casted-ray :height)
+              y))))
     ret))
 
-(def arr (make-xy-array 5 10))
+(make-xy-array 10 10 )
 
-(-> arr 0 2)
+(make-array-of-height 4 10)
+
+# (def arr (make-xy-array 5 10))
+# (-> arr 0 2)
 
 # Each x column would be a render slice
 (defn render []
