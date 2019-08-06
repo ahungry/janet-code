@@ -31,10 +31,10 @@
     (buffer/push-byte buf 0x1b)
     (buffer/format buf "[%s;%sH" (string (inc cy)) (string (inc cx)))))
 
-(defn move-up [_] (set cy (dec cy)))
-(defn move-down [_] (set cy (inc cy)))
-(defn move-left [_] (set cx (dec cx)))
-(defn move-right [_] (set cx (inc cx)))
+(defn move-up [_] (when (> cy 0) (set cy (dec cy))))
+(defn move-down [_] (when (< cy 40) (set cy (inc cy))))
+(defn move-left [_] (when (> cx 0) (set cx (dec cx))))
+(defn move-right [_] (when (< cx 40) (set cx (inc cx))))
 
 (defn key-to-action [s]
   (let [kw (or (get input-map s) s)]
