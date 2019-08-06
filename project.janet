@@ -21,6 +21,11 @@
   :embedded @["bench_lib.janet"]
   :source @["bench.c"])
 
+(declare-native
+  :name "udp"
+  #:embedded @["bench_lib.janet"]
+  :source @["udp.c"])
+
 (phony "update-mymod" []
       (os/shell "curl https://raw.githubusercontent.com/cesanta/mongoose/master/mongoose.c > mongoose.c")
       (os/shell "curl https://raw.githubusercontent.com/cesanta/mongoose/master/mongoose.h > mongoose.h"))

@@ -20,7 +20,7 @@ build/janet.o:
 	$(CC) $(CFLAGS) amalg/janet.c -o build/janet.o
 
 # Build our own native modules based on project.janet declaration
-build:
+build: *.c
 	jpm build
 
 docker-build:
