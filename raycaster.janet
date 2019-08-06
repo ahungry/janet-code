@@ -77,25 +77,25 @@
             (< y 0)
             (> y (dec dungeon-size)))
       -1
-      (get dungeon (+ x (* y dungeon-size)))
+      (get (get dungeon x) y)
       )))
 
 (defn rc-inspect [point angle range]
   (let [sin (math/sin angle)
-        cos (math/cos angle)]
+            cos (math/cos angle)]
     (fn [step shift-x shift-y distance offset]
-      (let [dx (if (< cos 0) shift-x 0)
-            dy (if (< sin 0) shift-y 0)]
-        (put step :height (get-xy (- (get step :x) dx)
-                                  (- (get step :y) dy)))
-        (put step :distance (+ distance (math/sqrt (get step :length2))))
-        (if shift-x
-          (put step :shading (if (< cos 0) 2 0))
-          (put step :shading (if (< sin 0) 2 1))
-          )
-        (put step :offset (- offset (math/floor offset)))
-        step
-        ))))
+        (let [dx (if (< cos 0) shift-x 0)
+                 dy (if (< sin 0) shift-y 0)]
+          (put step :height (get-xy (- (get step :x) dx)
+                                    (- (get step :y) dy)))
+          (put step :distance (+ distance (math/sqrt (get step :length2))))
+          (if shift-x
+              (put step :shading (if (< cos 0) 2 0))
+            (put step :shading (if (< sin 0) 2 1))
+            )
+          (put step :offset (- offset (math/floor offset)))
+          step
+          ))))
 
 (defn ray [point angle range]
   (let [sin (math/sin angle)
@@ -121,6 +121,12 @@
             :distance 0})))
 
 
+(def atx (get-atx 0 10))
+
+(def angle (math/atan2 atx 0.8))
+
+(raycast player )
+
 (defn get-atx [ix x] (- (/ ix x) 0.5))
 
 (defn make-xy-array
@@ -134,12 +140,14 @@ the user is looking and what things they are intersecting."
       (let [atx (get-atx ix x)
                 focal-length 0.8
                 angle (math/atan2 atx focal-length)
-                casted-ray (raycast player (+ (get player :direction) angle) 8)
+                casted-ray (raycast player (+ (get player :direction) angle) 1)
                 ]
+        (pp casted-ray)
         (put ret ix
              (make-array-of-height
+              4
               # The height of the ray being cast I guess...
-              (get casted-ray :height)
+              #(get casted-ray :height)
               y))))
     ret))
 
