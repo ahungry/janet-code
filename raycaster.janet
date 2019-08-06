@@ -82,20 +82,20 @@
 
 (defn rc-inspect [point angle range]
   (let [sin (math/sin angle)
-            cos (math/cos angle)]
+        cos (math/cos angle)]
     (fn [step shift-x shift-y distance offset]
-        (let [dx (if (< cos 0) shift-x 0)
-                 dy (if (< sin 0) shift-y 0)]
-          (put step :height (get-xy (- (get step :x) dx)
-                                    (- (get step :y) dy)))
-          (put step :distance (+ distance (math/sqrt (get step :length2))))
-          (if shift-x
-              (put step :shading (if (< cos 0) 2 0))
-            (put step :shading (if (< sin 0) 2 1))
-            )
-          (put step :offset (- offset (math/floor offset)))
-          step
-          ))))
+      (let [dx (if (< cos 0) shift-x 0)
+            dy (if (< sin 0) shift-y 0)]
+        (put step :height (get-xy (- (get step :x) dx)
+                                  (- (get step :y) dy)))
+        (put step :distance (+ distance (math/sqrt (get step :length2))))
+        (if shift-x
+          (put step :shading (if (< cos 0) 2 0))
+          (put step :shading (if (< sin 0) 2 1))
+          )
+        (put step :offset (- offset (math/floor offset)))
+        step
+        ))))
 
 (defn ray [point angle range]
   (let [sin (math/sin angle)
@@ -131,6 +131,33 @@
 
 (defn get-atx [ix x] (- (/ ix x) 0.5))
 
+(def this->height 40)
+
+(defn project [height angle distance]
+  (let [z (* distance (math/cos angle))
+          wall-height (* this->height (/ height z))
+          ]
+    wall-height))
+
+(defn draw-column [column ray angle]
+  (do
+      (var hit -1)
+      # Iterate until we set hit to some hit slice/ray.
+      (while (and (< (set hit (inc hit)) (length ray))
+                  (<= (get (get ray hit) :height) 0)))
+
+    (let [maybe-ray (get ray hit)]
+      (if maybe-ray
+          (let [wall (project (get maybe-ray :height)
+                              angle
+                              (get maybe-ray :distance))]
+            wall)
+        ))
+    )
+  )
+
+# Equivalent of drawColumns here:
+# https://github.com/hunterloftis/playfuljs-demos/blob/gh-pages/raycaster/index.html #L184
 (defn make-xy-array
   "Take an x and y dimension and produce an array to fill out.
 This would be derived based on global state computed from which way
@@ -140,10 +167,12 @@ the user is looking and what things they are intersecting."
     (var ret (array/new x))
     (for ix 0 x
       (let [atx (get-atx ix x)
-                focal-length 0.8
-                angle (math/atan2 atx focal-length)
-                casted-ray (raycast player (+ (get player :direction) angle) 1)
-                ]
+            focal-length 0.8
+            angle (math/atan2 atx focal-length)
+            this->range x
+            casted-ray (raycast player (+ (get player :direction) angle) this->range)
+           ]
+        (draw-column ix casted-ray angle)
         (pp casted-ray)
         (put ret ix
              (make-array-of-height
