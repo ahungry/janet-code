@@ -12,6 +12,14 @@
 
 #define MAXBUF 1024 * 1024
 
+struct world
+{
+  unsigned char udp_listen_received[MAXBUF];
+  int udp_listen_received_len;
+};
+
+struct world world;
+
 void
 die (const char *s)
 {
@@ -80,9 +88,6 @@ receive_udp (int sd)
 
   len = sizeof (remote);
 
-  // TODO: Maybe we put the listening in the lisp and not here?
-  /* while (1) */
-  /*   { */
   char bufin[MAXBUF];
   int n; // Rec bytes
 
@@ -94,9 +99,11 @@ receive_udp (int sd)
     }
   else
     {
+      memcpy (world.udp_listen_received, bufin, n);
+      world.udp_listen_received_len = n;
+      world.udp_listen_received[n + 1] = '\0';
       printf ("We received some bytes: %s of len: %d\n", bufin, n);
     }
-  // }
 }
 
 // Listen for inbound - how could we do something useful with it though...
@@ -166,7 +173,10 @@ j_listen (int32_t argc, const Janet *argv)
 
   close (fd);
 
-  return janet_wrap_boolean (1);
+  const uint8_t *s = janet_string (world.udp_listen_received,
+                                   world.udp_listen_received_len);
+
+  return janet_wrap_string (s);
 }
 
 static const JanetReg
