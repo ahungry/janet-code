@@ -29,3 +29,20 @@ with the processed result."
 
 (defn listen-on-udp-bg []
   (future (fn [] (listen-on-udp))))
+
+(defn add-color
+  "Add a terminal color to the buffer."
+  [b]
+  (buffer/push-byte b 0x1b)
+  (buffer/push-string b "[36m ")
+  b)
+
+(defn test-send [s]
+  (let [b (buffer/new 1)]
+    (-> b add-color (buffer/push-string s))
+    #(put b 0 0x1b)
+    #(buffer/push-string b "[34m ")
+    #(buffer/push-string b s)
+    (udp/send-string "127.0.0.1" 12345 (string b))))
+
+(test-send "haha greetings!")
