@@ -35,7 +35,7 @@ get_socket_fd (struct addrinfo** return_res, char *hostname, int port)
   char portname[10];
   snprintf (portname, sizeof (portname), "%d", port);
 
-  printf ("About to send to: %s:%s (%d)\n", hostname, portname, port);
+  // printf ("About to send to: %s:%s (%d)\n", hostname, portname, port);
 
   struct addrinfo hints;
   memset (&hints, 0, sizeof (hints));
@@ -69,7 +69,7 @@ send_udp (int fd, struct addrinfo* res, char *s)
   buf = malloc (slen);
   memcpy (buf, s, slen);
 
-  printf ("About to send: %s at %d bytes\n", buf, slen);
+  // printf ("About to send: %s at %d bytes\n", buf, slen);
 
   if (sendto (fd, buf, slen, 0,
               res->ai_addr, res->ai_addrlen) == -1)
@@ -102,7 +102,7 @@ receive_udp (int sd)
       memcpy (world.udp_listen_received, bufin, n);
       world.udp_listen_received_len = n;
       world.udp_listen_received[n + 1] = '\0';
-      printf ("We received some bytes: %s of len: %d\n", bufin, n);
+      // printf ("We received some bytes: %s of len: %d\n", bufin, n);
     }
 }
 
