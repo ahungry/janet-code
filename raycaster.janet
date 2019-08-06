@@ -42,7 +42,7 @@
     @[0 0 0 0 0 0 0 0 0 0]
    ])
 
-(def player @{:x 9 :y 9 :direction 0})
+(def player @{:x 3 :y 3 :direction 0})
 
 (defn set-x [n] (put player :x n))
 (defn set-y [n] (put player :y n))
@@ -77,7 +77,7 @@
             (< y 0)
             (> y (dec dungeon-size)))
       -1
-      (get (get dungeon x) y)
+      (get (get dungeon xf) yf)
       )))
 
 (defn rc-inspect [point angle range]
@@ -121,11 +121,13 @@
             :distance 0})))
 
 
-(def atx (get-atx 0 10))
+(def atx (get-atx 2 2))
 
 (def angle (math/atan2 atx 0.8))
 
-(raycast player )
+(identity player)
+
+(raycast player angle 10)
 
 (defn get-atx [ix x] (- (/ ix x) 0.5))
 
