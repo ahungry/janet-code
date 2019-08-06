@@ -15,14 +15,12 @@
   (buffer/push-string b "[36m ")
   b)
 
-(defn cursor-goto []
-  )
-
 (def input-map
   {"\xEB" :ARROW_DOWN
      "\xEA" :ARROW_UP
      "\xE8" :ARROW_LEFT
-     "\xE7" :ARROW_RIGHT
+     "\xE9" :ARROW_RIGHT
+     "\r" :CARRIAGE_RETURN
   })
 
 (defn self-insert [s]
@@ -31,7 +29,7 @@
 (defn move-cursor []
   (let [buf (buffer/new 1)]
     (buffer/push-byte buf 0x1b)
-    (buffer/format buf "[%s;%sH" (string cy) (string cx))))
+    (buffer/format buf "[%s;%sH" (string (inc cy)) (string (inc cx)))))
 
 (defn move-up [_] (set cy (dec cy)))
 (defn move-down [_] (set cy (inc cy)))
@@ -45,6 +43,7 @@
       :ARROW_UP move-up
       :ARROW_LEFT move-left
       :ARROW_RIGHT move-right
+      :CARRIAGE_RETURN (fn [_] (self-insert "\n"))
       self-insert)))
 
 (key-to-action "\xB8")
@@ -53,6 +52,7 @@
   (do
     (let [f (key-to-action s)]
       (f s) # Each key press should have an action
+      (pp s)
       (pp input-buf)
       (buffer input-buf (move-cursor))
       )))
