@@ -29,13 +29,104 @@
 
 (make-array-of-height 14 20)
 
+(def dungeon
+  @[
+    @[0 0 0 0 0 0 0 0 0 0]
+    @[0 1 1 1 0 0 0 0 0 0]
+    @[0 1 1 1 0 0 0 0 0 0]
+    @[0 0 0 0 0 0 0 0 0 0]
+    @[0 0 0 0 0 0 0 0 0 0]
+    @[0 0 0 0 0 0 0 0 0 0]
+    @[0 0 0 0 0 0 0 0 0 0]
+    @[0 0 0 0 0 0 0 0 0 0]
+    @[0 0 0 0 0 0 0 0 0 0]
+   ])
+
+(def player @{:x 9 :y 9 :rot 0})
+
+(defn set-x [n] (put player :x n))
+(defn set-y [n] (put player :y n))
+(defn set-rot [n] (put player :rot n))
+
+(defn make-no-wall [] :NO-WALL)
+
+(defn get-step-dx [run x]
+  (if (> run 0)
+    (math/floor (+ x 1))
+    (math/ceil (- (- x 1) x))))
+
+(defn get-step-dy [rise run dx] (* dx (/ rise run)))
+
+(defn make-step [rise run x y inverted]
+  (if (= 0 run) (make-no-wall)
+      (let [dx (get-step-dx run x)
+            dy (get-step-dy rise run dx)]
+        @{:x (if inverted (+ y dy) (+ x dx))
+          :y (if inverted (+ x dx) (+ y dy))
+          :length2 (+ (* dx dx) (* dy dy))})
+      ))
+
+(def dungeon-size 10)
+
+(defn get-xy [x y]
+  (let [xf (math/floor x)
+        yf (math/floor y)]
+    (if (or (< x 0)
+            (> x (dec dungeon-size))
+            (< y 0)
+            (> y (dec dungeon-size)))
+      -1
+      (get dungeon (+ x (* y dungeon-size)))
+      )))
+
+(defn rc-inspect [point angle range]
+  (let [sin (math/sin angle)
+        cos (math/cos angle)]
+    (fn [step shift-x shift-y distance offset]
+      (let [dx (if (< cos 0) shift-x 0)
+            dy (if (< sin 0) shift-y 0)]
+        (put step :height (get-xy (- (get step :x) dx)
+                                  (- (get step :y) dy)))
+        (put step :distance (+ distance (math/sqrt (get step :length2))))
+        (if shift-x
+          (put step :shading (if (< cos 0) 2 0))
+          (put step :shading (if (< sin 0) 2 1))
+          )
+        (put step :offset (- offset (math/floor offset)))
+        step
+        ))))
+
+(defn ray [point angle range]
+  (let [sin (math/sin angle)
+        cos (math/cos angle)]
+    (fn [origin]
+      (let [step-x (make-step sin cos (get origin :x) (get origin :y))
+            step-y (make-step cos sin (get origin :y) (get origin :x))
+            next-step (if (< (get step-x :length2)
+                             (get step-y :length2))
+                        ((rc-inspect point angle range) step-x 1 0 (get origin :distance) (get step-x :y))
+                        ((rc-inspect point angle range) step-y 0 1 (get origin :distance) (get step-y :x)))]
+        (if (> (get next-step :distance) range)
+          @[origin]
+          @[origin ;((ray point angle range) next-step)])
+        ))))
+
+(defn raycast [point angle range]
+  (let [fray (ray point angle range)]
+    (fray @{:x (get point :x)
+            :y (get point :y)
+            :height 0
+            :distance 0})))
+
 (defn make-xy-array
-  "Take an x and y dimension and produce an array to fill out."
+  "Take an x and y dimension and produce an array to fill out.
+This would be derived based on global state computed from which way
+the user is looking and what things they are intersecting."
   [x y]
   (do
     (var ret (array/new x))
     (for ix 0 x
-      (put ret ix (make-array-of-height 5 y)))
+      (put ret ix (make-array-of-height 8 y)))
     ret))
 
 (def arr (make-xy-array 5 10))
