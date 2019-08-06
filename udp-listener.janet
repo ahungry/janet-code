@@ -3,10 +3,11 @@
 (import build/udp :as udp)
 (use clojure)
 
+(var input-keys (buffer/new 1))
+
 (defn handler [s]
-  (let [out (str "We got an s: " s)]
-    (print out)
-    out))
+  (let [out (buffer/push-string input-keys s)]
+    (string out)))
 
 # If we need to have shared memory/state, we probably need to keep track
 # by using the disk, otherwise we will be effectively blocked / have to kill process
@@ -16,9 +17,13 @@
     (= "t" (-> (slurp "/tmp/janet.listen") string))
     ((error e) false)))
 
+(keep-listening?)
+
 (defn listen-on-udp
   "Listen on a port (12346) for inbound traffic, process it and respond on 12345
-with the processed result."
+with the processed result.
+
+Remove file /tmp/janet.listen to break out of the listen loop."
   []
   (do
     (spit "/tmp/janet.listen" "t")
