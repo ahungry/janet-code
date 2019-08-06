@@ -16,11 +16,11 @@
   b)
 
 (def input-map
-  {"\xEB" :ARROW_DOWN
+  {"\xEB"   :ARROW_DOWN
      "\xEA" :ARROW_UP
      "\xE8" :ARROW_LEFT
      "\xE9" :ARROW_RIGHT
-     "\r" :CARRIAGE_RETURN
+     "\r"   :CARRIAGE_RETURN
   })
 
 (defn self-insert [s]
