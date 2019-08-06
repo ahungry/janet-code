@@ -126,7 +126,19 @@ the user is looking and what things they are intersecting."
   (do
     (var ret (array/new x))
     (for ix 0 x
-      (put ret ix (make-array-of-height 8 y)))
+      (let [atx (- (/ ix x) 0.5)
+            focal-length 0.8
+            angle (math/atan2 atx focal-length)]
+      (pp (raycast
+           player
+           (+ (get player :direction) angle)
+           8 # Just some random hardcoded value for range
+           )))
+      (put ret ix
+           (make-array-of-height
+            # The height of the ray being cast I guess...
+            8
+            y)))
     ret))
 
 (def arr (make-xy-array 5 10))
