@@ -32,7 +32,18 @@
 (var w (get screen-resolution :x))
 (var h (get screen-resolution :y))
 
+(var move-speed 3)
 (var rot-speed 3)
+
+(defn move-up [& _]
+  (set pos-x (+ pos-x (* dir-x move-speed)))
+  (set pos-y (+ pos-y (* dir-x move-speed)))
+  )
+
+(defn move-down [& _]
+  (set pos-x (- pos-x (* dir-x move-speed)))
+  (set pos-y (- pos-y (* dir-x move-speed)))
+  )
 
 (defn rotate-left [& _]
   (var old-dir-x dir-x)
@@ -74,8 +85,8 @@
       (var ray-dir-x (+ dir-x (* plane-x camera-x)))
       (var ray-dir-y (+ dir-y (* plane-y camera-x)))
       # Which box we're in
-      (var map-x pos-x)
-      (var map-y pos-y)
+      (var map-x (math/floor pos-x))
+      (var map-y (math/floor pos-y))
       # Length of ray from current position to next x or y-side
       (var side-dist-x nil)
       (var side-dist-y nil)
@@ -88,6 +99,8 @@
       (var step-y 0)
       (var hit 0)
       (var side nil)         # Was NS or EW wall?
+
+      (print "dbg1")
 
       (if (< ray-dir-x 0)
         (do
@@ -105,8 +118,14 @@
           (set step-y 1)
           (set side-dist-y (* (+ map-y (- 1.0 pos-y)) delta-dist-y))))
 
+      (print "dbg2")
+
       # Perform DDA
-      (while (= hit 0)
+      (var while-iter 0)
+      (var while-max 100)
+
+      (while (and (= hit 0) (< while-iter while-max))
+        (set while-iter (inc while-iter))
         (if (< side-dist-x side-dist-y)
           (do
             (set side-dist-x (+ side-dist-x delta-dist-x))
@@ -117,17 +136,24 @@
             (set map-y (+ map-y step-y))
             (set side 1))
           )
+
+        (print "dbg3")
+
         # Check if ray has hit a wall
-        (when (> (get (get world-map map-x) map-y) 0)
+        (when (> (or (get (or (get world-map map-x) @[]) map-y) 0) 0)
           (set hit 1)
           )
         )
+
+      (print "dbg4")
 
       # Calculate distance on projected camera direction (Euclidean distance gives fisheye effect)
       (if (= side 0)
         (set perp-wall-dist (/ (+ (- map-x pos-x) (/ (- 1 step-x) 2)) ray-dir-x))
         (set perp-wall-dist (/ (+ (- map-y pos-y) (/ (- 1 step-y) 2)) ray-dir-y))
         )
+
+      (print "Right before LH")
 
       (var line-height (/ h perp-wall-dist))
       (array/push ret line-height)
@@ -162,7 +188,12 @@
 
 (defn make-array-of-height
   "Produce an array of height (draw a Y-slice)."
-  [n x]
+  [height max-height]
+  (var n (min height max-height))
+  (var x max-height)
+  (pp "maoh had input as:")
+  (pp n)
+  (pp x)
   (var ret (array/new x))
   (for i 0 x (put ret i 0))
   (let [pad (pad-array n x)]

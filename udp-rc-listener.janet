@@ -39,8 +39,8 @@
 (defn key-to-action [s]
   (let [kw (or (get input-map s) s)]
     (case kw
-      :ARROW_DOWN move-down
-      :ARROW_UP move-up
+      :ARROW_DOWN ray/move-down
+      :ARROW_UP ray/move-up
       :ARROW_LEFT ray/rotate-left
       :ARROW_RIGHT ray/rotate-right
       :CARRIAGE_RETURN (fn [_] (self-insert "\n"))
