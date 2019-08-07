@@ -60,12 +60,12 @@
 
 (defn move-up [& _]
   (set pos-x (+ pos-x (* dir-x move-speed)))
-  (set pos-y (+ pos-y (* dir-x move-speed)))
+  (set pos-y (+ pos-y (* dir-y move-speed)))
   )
 
 (defn move-down [& _]
   (set pos-x (- pos-x (* dir-x move-speed)))
-  (set pos-y (- pos-y (* dir-x move-speed)))
+  (set pos-y (- pos-y (* dir-y move-speed)))
   )
 
 (defn rotate-left [& _]
