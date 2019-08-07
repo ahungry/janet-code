@@ -34,7 +34,7 @@
 (var w 79)
 
 (defn iterate-x-slices []
-  (for i 0 w
+  (for x 0 w
     (do
       (var camera-x (- (* 2 (/ x w)) 1))
       (var ray-dir-x (+ dir-x (* plane-x camera-x)))
@@ -71,6 +71,22 @@
           (set step-y 1)
           (set side-dist-y (* (+ map-y (- 1.0 pos-y)) delta-dist-y))))
 
-
+      # Perform DDA
+      (while (= hit 0)
+        (if (< side-dist-x side-dist-y)
+          (do
+            (set side-dist-x (+ side-dist-x delta-dist-x))
+            (set map-x (+ map-x step-x))
+            (set side 0))
+          (do
+            (set side-dist-y (+ side-dist-y delta-dist-y))
+            (set map-y (+ map-y step-y))
+            (set side 1))
+          )
+        # Check if ray has hit a wall
+        (when (> (get (get world-map map-x) map-y) 0)
+          (set hit 1)
+          )
+        )
 
       )))
