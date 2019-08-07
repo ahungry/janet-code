@@ -1,19 +1,42 @@
 (use clojure)
 # https://lodev.org/cgtutor/raycasting.html
 
-(def screen-resolution {:x 100 :y 40})
+(def screen-resolution {:x 90 :y 60})
 
 (def world-map
   @[
-    @[1 1 1 1 1 1 1 1 1 1]
-    @[1 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 1]
-    @[1 1 1 1 1 1 1 1 1 1]
+    @[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+    @[1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
+    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    @[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
    ])
 
 # Player location
@@ -32,8 +55,8 @@
 (var w (get screen-resolution :x))
 (var h (get screen-resolution :y))
 
-(var move-speed 3)
-(var rot-speed 3)
+(var move-speed 0.2)
+(var rot-speed 0.2)
 
 (defn move-up [& _]
   (set pos-x (+ pos-x (* dir-x move-speed)))
@@ -100,8 +123,6 @@
       (var hit 0)
       (var side nil)         # Was NS or EW wall?
 
-      (print "dbg1")
-
       (if (< ray-dir-x 0)
         (do
           (set step-x -1)
@@ -117,8 +138,6 @@
         (do
           (set step-y 1)
           (set side-dist-y (* (+ map-y (- 1.0 pos-y)) delta-dist-y))))
-
-      (print "dbg2")
 
       # Perform DDA
       (var while-iter 0)
@@ -137,23 +156,17 @@
             (set side 1))
           )
 
-        (print "dbg3")
-
         # Check if ray has hit a wall
         (when (> (or (get (or (get world-map map-x) @[]) map-y) 0) 0)
           (set hit 1)
           )
         )
 
-      (print "dbg4")
-
       # Calculate distance on projected camera direction (Euclidean distance gives fisheye effect)
       (if (= side 0)
         (set perp-wall-dist (/ (+ (- map-x pos-x) (/ (- 1 step-x) 2)) ray-dir-x))
         (set perp-wall-dist (/ (+ (- map-y pos-y) (/ (- 1 step-y) 2)) ray-dir-y))
         )
-
-      (print "Right before LH")
 
       (var line-height (/ h perp-wall-dist))
       (array/push ret line-height)
@@ -191,9 +204,6 @@
   [height max-height]
   (var n (min height max-height))
   (var x max-height)
-  (pp "maoh had input as:")
-  (pp n)
-  (pp x)
   (var ret (array/new x))
   (for i 0 x (put ret i 0))
   (let [pad (pad-array n x)]

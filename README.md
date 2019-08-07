@@ -4,6 +4,16 @@ Tinkering with Janet language - what things could I do with it...hmm...
 
 See https://janet-lang.org for a cool language.
 
+# Fun tinkerings
+
+A 3d ray caster in Ascii:
+
+https://asciinema.org/a/U7sxySb1GCTrN8iOAyFxMJPVv
+
+See code in raycaster2.janet and udp-rc-listener.janet
+
+The terminal portion is at https://github.com/ahungry/rawterm
+
 # Custom modules
 Well, it turns out I was able to do some neat things.
 
@@ -52,3 +62,7 @@ This is a module for Clojure like futures.
 # Will resolve in 4 seconds, not in 10. :)
 (test-realize-all)
 ```
+
+## UDP
+
+Some udp stuff to come soon
