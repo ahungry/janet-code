@@ -1,3 +1,4 @@
+(use clojure)
 # https://lodev.org/cgtutor/raycasting.html
 
 (def map-width 24)
@@ -36,7 +37,7 @@
 
 (var rot-speed 3)
 
-(defn rotate-left []
+(defn rotate-left [& _]
   (var old-dir-x dir-x)
   (set dir-x (- (* dir-x (math/cos (* 1 rot-speed)))
                 (* dir-y (math/sin (* 1 rot-speed)))))
@@ -52,7 +53,7 @@
    :plane-x plane-x
    :plane-y plane-y})
 
-(defn rotate-right []
+(defn rotate-right [& _]
   (var old-dir-x dir-x)
   (set dir-x (- (* dir-x (math/cos (* -1 rot-speed)))
                 (* dir-y (math/sin (* -1 rot-speed)))))
@@ -202,4 +203,4 @@ wall-heights should be an array of equal length to x."
     (rotate-right)
     (print (render))))
 
-(test)
+#(test)
