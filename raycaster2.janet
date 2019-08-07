@@ -36,6 +36,22 @@
 
 (var rot-speed 3)
 
+(defn rotate-left []
+  (var old-dir-x dir-x)
+  (set dir-x (- (* dir-x (math/cos (* 1 rot-speed)))
+                (* dir-y (math/sin (* 1 rot-speed)))))
+  (set dir-y (+ (* old-dir-x (math/sin (* 1 rot-speed)))
+                (* dir-y (math/cos (* 1 rot-speed)))))
+  (var old-plane-x plane-x)
+  (set plane-x (- (* plane-x (math/cos (* 1 rot-speed)))
+                  (* plane-y (math/sin (* 1 rot-speed)))))
+  (set plane-y (+ (* old-plane-x (math/sin (* 1 rot-speed)))
+                  (* plane-y (math/cos (* 1 rot-speed)))))
+  {:dir-x dir-x
+   :dir-y dir-y
+   :plane-x plane-x
+   :plane-y plane-y})
+
 (defn rotate-right []
   (var old-dir-x dir-x)
   (set dir-x (- (* dir-x (math/cos (* -1 rot-speed)))
