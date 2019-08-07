@@ -124,17 +124,18 @@
 
 (defn project [height angle distance]
   (let [z (* distance (math/cos angle))
-          wall-height (* this->height (/ height z))
-          ]
+        wall-height (* this->height (/ height z))
+       ]
     wall-height))
 
-(defn draw-column [column ray angle]
+(defn draw-column
+  "Given the column, ray, and angle, compute the wall height we wish to draw."
+  [column ray angle]
   (do
       (var hit -1)
       # Iterate until we set hit to some hit slice/ray.
       (while (and (< (set hit (inc hit)) (length ray))
-                  (<= (get (get ray hit) :height) 0)))
-
+                  (<= (get (get ray hit) :height) 0)) nil)
     (let [maybe-ray (get ray hit)]
       (if maybe-ray
           (let [wall (project (get maybe-ray :height)
@@ -158,10 +159,12 @@ the user is looking and what things they are intersecting."
       (let [atx (get-atx ix x)
             focal-length 0.8
             angle (math/atan2 atx focal-length)
-            this->range x
+            this->range 20
             casted-ray (raycast player (+ (get player :direction) angle) this->range)
            ]
-        (draw-column ix casted-ray angle)
+        (print "The wall height should be: ")
+        #(pp angle)
+        (pp (draw-column ix casted-ray angle))
         (pp casted-ray)
         (put ret ix
              (make-array-of-height
@@ -169,24 +172,28 @@ the user is looking and what things they are intersecting."
               # The height of the ray being cast I guess...
               #(get casted-ray :height)
               y))))
-    ret))
+    # ret
+    nil
+    ))
 
 # (def arr (make-xy-array 5 10))
 # (-> arr 0 2)
+
+(make-xy-array 10 10)
 
 # Each x column would be a render slice
 (defn render []
   (var slices (make-xy-array 79 20))
   (var view "")
   (for y 0 20
-    (set view (str view "\n"))
-    (for x 0 79
-      (let [point (-> slices x y)]
-        (set view (str view (get-char point)))
-        )
-      #(print (str (string x) ", "(string y)))
-      )
-    )
+       (set view (str view "\n"))
+       (for x 0 79
+            (let [point (-> slices x y)]
+              (set view (str view (get-char point)))
+              )
+            #(print (str (string x) ", "(string y)))
+            )
+       )
   view)
 
 (-> (render) print)
