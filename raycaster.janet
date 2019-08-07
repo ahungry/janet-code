@@ -27,8 +27,6 @@
   ret
   )
 
-(make-array-of-height 14 20)
-
 (def dungeon
   @[
     @[0 0 0 0 0 0 0 0 0 0]
@@ -120,15 +118,6 @@
             :height 0
             :distance 0})))
 
-
-(def atx (get-atx 2 2))
-
-(def angle (math/atan2 atx 0.8))
-
-(identity player)
-
-(raycast player angle 10)
-
 (defn get-atx [ix x] (- (/ ix x) 0.5))
 
 (def this->height 40)
@@ -181,10 +170,6 @@ the user is looking and what things they are intersecting."
               #(get casted-ray :height)
               y))))
     ret))
-
-(make-xy-array 10 10 )
-
-(make-array-of-height 4 10)
 
 # (def arr (make-xy-array 5 10))
 # (-> arr 0 2)
