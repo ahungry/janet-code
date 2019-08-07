@@ -31,13 +31,14 @@
 (def screen-resolution {:x 79 :y 20})
 
 # the width
-(var w 79)
+(var w (get screen-resolution :x))
+(var h (get screen-resolution :y))
 
 (defn iterate-x-slices []
   (for x 0 w
     (do
-      (var camera-x (- (* 2 (/ x w)) 1))
-      (var ray-dir-x (+ dir-x (* plane-x camera-x)))
+        (var camera-x (- (* 2 (/ x w)) 1))
+        (var ray-dir-x (+ dir-x (* plane-x camera-x)))
       (var ray-dir-y (+ dir-y (* plane-y camera-x)))
       # Which box we're in
       (var map-x pos-x)
@@ -56,31 +57,31 @@
       (var side nil)            # Was NS or EW wall?
 
       (if (< ray-dir-x 0)
+          (do
+              (set step-x -1)
+              (set side-dist-x (* (- pos-x map-x) delta-dist-x)))
         (do
-          (set step-x -1)
-          (set side-dist-x (* (- pos-x map-x) delta-dist-x)))
-        (do
-          (set step-x 1)
-          (set side-dist-x (* (+ map-x (- 1.0 pos-x)) delta-dist-x))))
+            (set step-x 1)
+            (set side-dist-x (* (+ map-x (- 1.0 pos-x)) delta-dist-x))))
 
       (if (< ray-dir-y 0)
+          (do
+              (set step-y -1)
+              (set side-dist-y (* (- pos-y map-y) delta-dist-y)))
         (do
-          (set step-y -1)
-          (set side-dist-y (* (- pos-y map-y) delta-dist-y)))
-        (do
-          (set step-y 1)
-          (set side-dist-y (* (+ map-y (- 1.0 pos-y)) delta-dist-y))))
+            (set step-y 1)
+            (set side-dist-y (* (+ map-y (- 1.0 pos-y)) delta-dist-y))))
 
       # Perform DDA
       (while (= hit 0)
         (if (< side-dist-x side-dist-y)
+            (do
+                (set side-dist-x (+ side-dist-x delta-dist-x))
+                (set map-x (+ map-x step-x))
+              (set side 0))
           (do
-            (set side-dist-x (+ side-dist-x delta-dist-x))
-            (set map-x (+ map-x step-x))
-            (set side 0))
-          (do
-            (set side-dist-y (+ side-dist-y delta-dist-y))
-            (set map-y (+ map-y step-y))
+              (set side-dist-y (+ side-dist-y delta-dist-y))
+              (set map-y (+ map-y step-y))
             (set side 1))
           )
         # Check if ray has hit a wall
@@ -89,4 +90,12 @@
           )
         )
 
+      # Calculate distance on projected camera direction (Euclidean distance gives fisheye effect)
+      (if (= side 0)
+          (set perp-wall-dist (/ (+ (- map-x pos-x) (/ (- 1 step-x) 2)) ray-dir-x))
+        (set perp-wall-dist (/ (+ (- map-y pos-y) (/ (- 1 step-y) 2)) ray-dir-y))
+        )
+
+      (var line-height (/ h perp-wall-dist))
+      (print line-height)
       )))
