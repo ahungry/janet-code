@@ -175,6 +175,10 @@ the user is looking and what things they are intersecting."
     ret
     ))
 
+(def player @{:x 3 :y 3 :direction 0})
+
+(make-xy-array 79 20)
+
 (make-array-of-height 3 20)
 
 # (make-xy-array 40 40)
