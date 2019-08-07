@@ -1,8 +1,7 @@
 (use clojure)
 # https://lodev.org/cgtutor/raycasting.html
 
-(def map-width 24)
-(def map-height 24)
+(def screen-resolution {:x 100 :y 40})
 
 (def world-map
   @[
@@ -28,8 +27,6 @@
 # Camera plane (perpendicular like a T to the player dir, where this is the top of T)
 (var plane-x 0)
 (var plane-y 0.66) # Smaller, so smaller FOV like a FPS (more zoomed out)
-
-(def screen-resolution {:x 140 :y 48})
 
 # the width
 (var w (get screen-resolution :x))
@@ -144,9 +141,18 @@
 
 # My stuff for rendering in Ascii
 
-(defn get-char [texture]
+(defn get-char [texture height]
   (case texture
-    1 "M"
+    1 (cond (> height 20) "M"
+            (> height 18) "#"
+            (> height 16) "#"
+            (> height 14) "="
+            (> height 12) "-"
+            (> height 10) "\""
+            (> height 8) "'"
+            (> height 6) "^"
+            (> height 4) "`"
+            "-")
     " "))
 
 (defn pad-array
@@ -185,13 +191,14 @@ wall-heights should be an array of equal length to x."
 (get-slices)
 
 (defn render []
-  (var slices (get-slices))
+  (var slice-heights (iterate-x-slices))
+  (var slices (make-xy-array slice-heights h))
   (var view "")
   (for y 0 h
     (set view (str view "\n"))
     (for x 0 w
       (let [point (-> slices x y)]
-        (set view (str view (get-char point)))
+        (set view (str view (get-char point (x slice-heights))))
         )
       )
     )
