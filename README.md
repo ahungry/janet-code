@@ -14,6 +14,15 @@ See code in raycaster2.janet and udp-rc-listener.janet
 
 The terminal portion is at https://github.com/ahungry/rawterm
 
+If you want to try it out, run:
+
+```
+make docker-build-raycast
+make docker-run-raycast
+```
+
+and it will run in a small Alpine image everything you need.
+
 # Custom modules
 Well, it turns out I was able to do some neat things.
 

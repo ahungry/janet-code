@@ -5,6 +5,8 @@ FROM alpine:3.10.1 AS build
 RUN apk add --update git gcc make libc-dev
 WORKDIR /usr/src
 RUN git clone https://github.com/janet-lang/janet /usr/src/janet && cd /usr/src/janet && make && make install
+
+RUN echo Building fresh rawterm
 RUN git clone https://github.com/ahungry/rawterm /usr/src/rawterm && cd /usr/src/rawterm && make
 
 # Add the janet project dependencies here
