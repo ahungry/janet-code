@@ -175,6 +175,8 @@ the user is looking and what things they are intersecting."
     ret
     ))
 
+(make-array-of-height 3 20)
+
 # (make-xy-array 40 40)
 
 # Each x column would be a render slice
