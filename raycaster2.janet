@@ -4,17 +4,17 @@
 (def map-height 24)
 
 (def world-map
-     @[
-        @[1 1 1 1 1 1 1 1 1 1]
-        @[1 0 0 0 0 0 0 0 0 1]
-        @[1 0 0 0 0 0 0 0 0 1]
-        @[1 0 0 0 0 0 0 0 0 1]
-        @[1 0 0 0 0 0 0 0 0 1]
-        @[1 0 0 0 0 0 0 0 0 1]
-        @[1 0 0 0 0 0 0 0 0 1]
-        @[1 0 0 0 0 0 0 0 0 1]
-        @[1 1 1 1 1 1 1 1 1 1]
-        ])
+  @[
+    @[1 1 1 1 1 1 1 1 1 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 1 1 1 1 1 1 1 1 1]
+   ])
 
 # Player location
 (var pos-x 5)
@@ -53,7 +53,24 @@
       (var step-x 0)
       (var step-y 0)
       (var hit 0)
-      (var side nil) # Was NS or EW wall?
+      (var side nil)            # Was NS or EW wall?
+
+      (if (< ray-dir-x 0)
+        (do
+          (set step-x -1)
+          (set side-dist-x (* (- pos-x map-x) delta-dist-x)))
+        (do
+          (set step-x 1)
+          (set side-dist-x (* (+ map-x (- 1.0 pos-x)) delta-dist-x))))
+
+      (if (< ray-dir-y 0)
+        (do
+          (set step-y -1)
+          (set side-dist-y (* (- pos-y map-y) delta-dist-y)))
+        (do
+          (set step-y 1)
+          (set side-dist-y (* (+ map-y (- 1.0 pos-y)) delta-dist-y))))
 
 
-        )))
+
+      )))
