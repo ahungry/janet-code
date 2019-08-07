@@ -29,15 +29,15 @@
 
 (def dungeon
   @[
-    @[0 0 0 0 0 0 0 0 0 0]
-    @[0 1 1 1 0 0 0 0 0 0]
-    @[0 1 1 1 0 0 0 0 0 0]
-    @[0 0 0 0 0 0 0 0 0 0]
-    @[0 0 0 0 0 0 0 0 0 0]
-    @[0 0 0 0 0 0 0 0 0 0]
-    @[0 0 0 0 0 0 0 0 0 0]
-    @[0 0 0 0 0 0 0 0 0 0]
-    @[0 0 0 0 0 0 0 0 0 0]
+    @[1 1 1 1 1 1 1 1 1 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 0 0 0 0 0 0 0 0 1]
+    @[1 1 1 1 1 1 1 1 1 1]
    ])
 
 (def player @{:x 3 :y 3 :direction 0})
@@ -161,25 +161,21 @@ the user is looking and what things they are intersecting."
             angle (math/atan2 atx focal-length)
             this->range 20
             casted-ray (raycast player (+ (get player :direction) angle) this->range)
+            wall-height (draw-column ix casted-ray angle)
            ]
-        (print "The wall height should be: ")
-        #(pp angle)
-        (pp (draw-column ix casted-ray angle))
-        (pp casted-ray)
+        #(print "The wall height should be: ")
+        # (pp (draw-column ix casted-ray angle))
+        # (pp casted-ray)
         (put ret ix
              (make-array-of-height
-              4
+              (or wall-height 0)
               # The height of the ray being cast I guess...
               #(get casted-ray :height)
               y))))
-    # ret
-    nil
+    ret
     ))
 
-# (def arr (make-xy-array 5 10))
-# (-> arr 0 2)
-
-(make-xy-array 10 10)
+# (make-xy-array 40 40)
 
 # Each x column would be a render slice
 (defn render []
