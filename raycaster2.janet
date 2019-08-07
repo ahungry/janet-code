@@ -140,3 +140,43 @@
 (iterate-x-slices)
 
 (rotate-right)
+
+# My stuff for rendering in Ascii
+
+(defn get-char [texture]
+  (case texture
+    1 "M"
+    "."))
+
+(defn pad-array
+  "Ensures we focus in center of screen the slice of wall."
+  [n x]
+  (math/floor (/ (- x n) 2)))
+
+(defn make-array-of-height
+  "Produce an array of height (draw a Y-slice)."
+  [n x]
+  (var ret (array/new x))
+  (for i 0 x (put ret i 0))
+  (let [pad (pad-array n x)]
+    (for i pad (+ pad n) (put ret i 1))
+    )
+  ret
+  )
+
+(defn make-xy-array
+  "Take an x and y dimension and produce an array to fill out.
+This would be derived based on global state computed from which way
+the user is looking and what things they are intersecting.
+
+wall-heights should be an array of equal length to x."
+  [wall-heights y]
+  (map (fn [x] (make-array-of-height x y)) wall-heights))
+
+(iterate-x-slices)
+
+(defn get-slices []
+  (-> (iterate-x-slices)
+      (make-xy-array w)))
+
+(get-slices)
