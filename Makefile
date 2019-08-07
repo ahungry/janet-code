@@ -29,6 +29,12 @@ docker-build:
 docker-run:
 	docker run --rm -it --net=host --name=janet janet:latest
 
+docker-build-raycast:
+	docker build -f Dockerfile_raycast -t janet-raycast .
+
+docker-run-raycast:
+	docker run --rm -it --net=host --name=janet-raycast janet-raycast:latest
+
 clean:
 	-rm -fr deps
 	-rm -fr janet_modules

@@ -1,0 +1,28 @@
+# -*- mode: dockerfile -*-
+
+# Build the host Janet instance
+FROM alpine:3.10.1 AS build
+RUN apk add --update git gcc make libc-dev
+WORKDIR /usr/src
+RUN git clone https://github.com/janet-lang/janet /usr/src/janet && cd /usr/src/janet && make && make install
+RUN git clone https://github.com/ahungry/rawterm /usr/src/rawterm && cd /usr/src/rawterm && make
+
+# Add the janet project dependencies here
+WORKDIR /app
+#RUN mkdir -p /app/janet_modules
+#RUN jpm --modpath=./janet_modules install https://github.com/ahungry/sqlite3.git
+#RUN jpm --modpath=./janet_modules install https://github.com/ahungry/circlet.git
+#RUN jpm --modpath=./janet_modules install https://github.com/ahungry/json.git
+
+COPY . /app/
+RUN make build
+
+FROM alpine:3.10.1
+COPY --from=build /app/build /app/build
+COPY --from=build /usr/local/bin/janet /usr/local/bin/
+COPY --from=build /usr/src/rawterm/rawterm.bin /usr/local/bin/rawterm
+
+COPY . /app
+WORKDIR /app
+
+CMD /app/boot-raycast.sh
