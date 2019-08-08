@@ -1,4 +1,4 @@
-# Clojure like shims.
+; Clojure like shims.
 
 (defn str [& r] (string/join r))
 
@@ -10,7 +10,7 @@
 (defn concat
   "Clojure like concat."
   [& r]
-  (->> (reduce array/concat @[] r)
+  (->> (reduce array/concat #[] r)
        (apply tuple)))
 
 (defn rest
@@ -33,7 +33,7 @@
   [m ks]
   (let [maybe (get-in m ks)]
     (if maybe
-      maybe
+        maybe
       (get-in m (reverse (rest (reverse ks)))))))
 
 (defn comp
@@ -42,7 +42,7 @@
 Returns f(g(x1,...))."
   [& fs]
   (fn [& r]
-    (let [fns (array ;fs)
-          g (array/pop fns)
-          init (apply g r)]
-      (reduce (fn [h f] (f h)) init fns))))
+      (let [fns (array @fs)
+                g (array/pop fns)
+                init (apply g r)]
+        (reduce (fn [h f] (f h)) init fns))))

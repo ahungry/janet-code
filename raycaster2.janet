@@ -1,57 +1,57 @@
 (use clojure)
-# https://lodev.org/cgtutor/raycasting.html
+; https://lodev.org/cgtutor/raycasting.html
 
 (def screen-resolution {:x 90 :y 60})
 
 (def world-map
-  @[
-    @[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
-    @[1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
-    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
-    @[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+  #[
+    #[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
+    #[1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 1 1 1 1 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1]
+    #[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1]
+    #[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1]
    ])
 
-# Player location
+; Player location
 (var pos-x 5)
 (var pos-y 5)
 
-# Player direction (vector)
+; Player direction (vector)
 (var dir-x -1)
 (var dir-y 0)
 
-# Camera plane (perpendicular like a T to the player dir, where this is the top of T)
+; Camera plane (perpendicular like a T to the player dir, where this is the top of T)
 (var plane-x 0)
-(var plane-y 0.66) # Smaller, so smaller FOV like a FPS (more zoomed out)
+(var plane-y 0.66) ; Smaller, so smaller FOV like a FPS (more zoomed out)
 
-# the width
+; the width
 (var w (get screen-resolution :x))
 (var h (get screen-resolution :y))
 
@@ -101,27 +101,27 @@
    :plane-y plane-y})
 
 (defn iterate-x-slices []
-  (var ret @[])
+  (var ret #[])
   (for x 0 w
     (do
       (var camera-x (- (* 2 (/ x w)) 1))
       (var ray-dir-x (+ dir-x (* plane-x camera-x)))
       (var ray-dir-y (+ dir-y (* plane-y camera-x)))
-      # Which box we're in
+      ; Which box we're in
       (var map-x (math/floor pos-x))
       (var map-y (math/floor pos-y))
-      # Length of ray from current position to next x or y-side
+      ; Length of ray from current position to next x or y-side
       (var side-dist-x nil)
       (var side-dist-y nil)
-      # Length of ray from one x or y-side to next x or y-side
+      ; Length of ray from one x or y-side to next x or y-side
       (var delta-dist-x (math/abs (/ 1 ray-dir-x)))
       (var delta-dist-y (math/abs (/ 1 ray-dir-y)))
       (var perp-wall-dist nil)
-      # What direction to step in x or y-direction (either +1 or -1)
+      ; What direction to step in x or y-direction (either +1 or -1)
       (var step-x 0)
       (var step-y 0)
       (var hit 0)
-      (var side nil)         # Was NS or EW wall?
+      (var side nil)         ; Was NS or EW wall?
 
       (if (< ray-dir-x 0)
         (do
@@ -139,7 +139,7 @@
           (set step-y 1)
           (set side-dist-y (* (+ map-y (- 1.0 pos-y)) delta-dist-y))))
 
-      # Perform DDA
+      ; Perform DDA
       (var while-iter 0)
       (var while-max 100)
 
@@ -156,13 +156,13 @@
             (set side 1))
           )
 
-        # Check if ray has hit a wall
+        ; Check if ray has hit a wall
         (when (> (or (get (or (get world-map map-x) @[]) map-y) 0) 0)
           (set hit 1)
           )
         )
 
-      # Calculate distance on projected camera direction (Euclidean distance gives fisheye effect)
+      ; Calculate distance on projected camera direction (Euclidean distance gives fisheye effect)
       (if (= side 0)
         (set perp-wall-dist (/ (+ (- map-x pos-x) (/ (- 1 step-x) 2)) ray-dir-x))
         (set perp-wall-dist (/ (+ (- map-y pos-y) (/ (- 1 step-y) 2)) ray-dir-y))
@@ -178,7 +178,7 @@
 
 (rotate-right)
 
-# My stuff for rendering in Ascii
+; My stuff for rendering in Ascii
 
 (defn get-char [texture height]
   (case texture
@@ -251,4 +251,4 @@ wall-heights should be an array of equal length to x."
     (rotate-right)
     (print (render))))
 
-#(test)
+;(test)
