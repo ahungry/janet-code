@@ -79,10 +79,12 @@
                   (* plane-y (math/sin (* 1 rot-speed)))))
   (set plane-y (+ (* old-plane-x (math/sin (* 1 rot-speed)))
                   (* plane-y (math/cos (* 1 rot-speed)))))
-  {:dir-x dir-x
+  {
+   :dir-x dir-x
    :dir-y dir-y
    :plane-x plane-x
-   :plane-y plane-y})
+   :plane-y plane-y
+   })
 
 (defn rotate-right [& _]
   (var old-dir-x dir-x)
@@ -95,7 +97,8 @@
                   (* plane-y (math/sin (* -1 rot-speed)))))
   (set plane-y (+ (* old-plane-x (math/sin (* -1 rot-speed)))
                   (* plane-y (math/cos (* -1 rot-speed)))))
-  {:dir-x dir-x
+  {
+   :dir-x dir-x
    :dir-y dir-y
    :plane-x plane-x
    :plane-y plane-y})
