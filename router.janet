@@ -30,12 +30,15 @@
 (defn is-uri-match?
   "Map across URIs and compare each slug.  uri1 can include wildcards."
   [uri2 uri1]
-  (let [peg1 (peg/match peg-uri uri1)
-             peg2 (peg/match peg-uri uri2)
-             diff (map is-slug-match? peg1 peg2)]
-    (if (contains? nil diff)
-        nil
-      (filter (fn [x] (= :struct (type x))) diff))))
+  (when (and uri2 uri1)
+    (let [peg1 (peg/match peg-uri uri1)
+          peg2 (peg/match peg-uri uri2)
+          diff (if (and peg1 peg2)
+                   (map is-slug-match? peg1 peg2)
+                   @[nil])]
+      (if (contains? nil diff)
+          nil
+        (filter (fn [x] (= :struct (type x))) diff)))))
 
 # True matches
 (is-uri-match?  "/foo/bar" "/foo/bar")
@@ -49,14 +52,14 @@
 (def routes
      [
       {:uri "/version"
-       :f (fn [request] {:version "0.0.1"})}
+            :f (fn [request] {:version "0.0.1"})}
       {:uri "/hello/:name/:age"
-       :f (fn [request] {:message (c/str "Greetings "
-                                         (c/get-in request [:slugs :name] )
-                                         " - You are "
-                                         (c/get-in request [:slugs :age] )
-                                         " years old!"
-                                         )})}
+            :f (fn [request] {:message (c/str "Greetings "
+                                              (c/get-in request [:slugs :name] )
+                                              " - You are "
+                                              (c/get-in request [:slugs :age] )
+                                              " years old!"
+                                              )})}
       {:uri "/:" :f (fn [req] {:error "resource not found."})}
       ])
 
