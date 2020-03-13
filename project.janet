@@ -24,6 +24,8 @@
 (declare-native
   :name "udp"
   #:embedded @["bench_lib.janet"]
+  :cflags ["-std=gnu99" "-Wall" "-Wextra"]
+  :lflags ["-lm" "-ldl" "-lpthread"]
   :source @["udp.c"])
 
 (phony "update-mymod" []

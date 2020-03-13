@@ -48,8 +48,8 @@
 
 (print (bar/hello))
 
-(import fizz/buzz)
+(import ./fizz/buzz)
 
-(fizz/buzz/hello)
+(pp (buzz/hello))
 
 (circlet/server myserver 8000)

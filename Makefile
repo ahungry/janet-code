@@ -45,9 +45,9 @@ clean:
 # will pull circlet and deps from git and install it into the janet_modules tree.
 janet_modules:
 	-mkdir -p janet_modules
-	jpm --modpath=./janet_modules install https://github.com/ahungry/sqlite3.git
-	jpm --modpath=./janet_modules install https://github.com/ahungry/circlet.git
-	jpm --modpath=./janet_modules install https://github.com/ahungry/json.git
+	jpm --modpath=./janet_modules install https://github.com/janet-lang/sqlite3.git
+	jpm --modpath=./janet_modules install https://github.com/janet-lang/circlet.git
+	jpm --modpath=./janet_modules install https://github.com/janet-lang/json.git
 	# But, for some reason, we need the .so to bubble up to the top for usage.
 
 deps:
