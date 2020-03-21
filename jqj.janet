@@ -5,21 +5,12 @@
 # Run this with:
 #   time echo '{"person": {"user":"Matt", "pass": "fake"}}' | janet -s -q ./jqj.janet  person user
 
-(import deps/json :as json)
-(import clojure)
-
 (def x @{"user" "Matt" "pass" "fake"})
 
+(import deps/json :as json)
+
 (def json (-> (slurp "/dev/stdin") json/decode))
-(def query (-> (dyn :args)
-               clojure/rest
-               ))
+(def query (-> (dyn :args) (array/slice 1)))
+(def result (reduce get json query))
 
-(pp json)
-(pp query)
-
-(def result (clojure/get-in json query nil))
-#(def result (get json (first query)))
-#(def result (get json "user"))
-
-(pp result)
+(print (json/encode result))
