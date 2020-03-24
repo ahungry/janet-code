@@ -3,16 +3,14 @@
   [col]
   (array/slice col 1))
 
+(defn mapkeys
+  "Apply function F to each key/value tuple in map M."
+  [f m]
+  (map (fn [k] (f [k (get m k)])) (keys m)))
+
 (defn make-attributes [m]
   (->
-   (let [ks (keys m)]
-     (map (fn [k]
-            (let [v (get m k)
-                  sk (string k)
-                  sv (string v)
-                 ]
-              (string/format "%s=\"%s\"" sk sv)))
-          ks))
+   (mapkeys (fn [[k v]] (string/format "%s=\"%s\"" sk sv)) m)
    (string/join " ")))
 
 # (macex1 ~(html-helper identity))
