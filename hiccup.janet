@@ -10,7 +10,7 @@
 
 (defn make-attributes [m]
   (->
-   (mapkeys (fn [[k v]] (string/format "%s=\"%s\"" sk sv)) m)
+   (mapkeys (fn [[k v]] (string/format "%s=\"%s\"" (string k) (string v))) m)
    (string/join " ")))
 
 # (macex1 ~(html-helper identity))
