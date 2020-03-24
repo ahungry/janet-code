@@ -15,20 +15,21 @@
           ks))
    (string/join " ")))
 
-(defn html [xs]
-  # Need this to be internal or it can't reference html
-  (defn make-tag [x xs]
-    (let [s (string x)
-          [next] xs]
-      (if (struct? next)
-        (string/format "<%s %s>\n%s\n</%s>\n" s (html [next]) (html (rest xs)) s)
-          (string/format "<%s>\n%s\n</%s>\n" s (or (html xs) "") s))))
+(defmacro html-helper [f]
+  ~(string/format "%s%s" (,f el) (or (html (rest xs)) "")))
 
+(defn html [xs]
   (when (> (length xs) 0)
-    (let [el (first xs)]
+    (let [[el next] xs]
       (cond
+       (and (keyword? el)
+            (struct? next))
+       (string/format "<%s %s>\n%s\n</%s>\n" (string el)
+                      (html [next])
+                      (html (rest (rest xs))) (string el))
+
        (keyword? el)
-       (make-tag el (rest xs))
+       (string/format "<%s>\n%s\n</%s>\n" (string el) (or (html (rest xs)) "") (string el))
 
        (struct? el)
        (string/format "%s%s" (make-attributes el) (or (html (rest xs)) ""))
@@ -55,6 +56,6 @@
 
 (html
  [:p
-    [:b {:id "Bolded"} "Not bad..."]
+    [:b {:id "Bolded"} "Not bad..." "hah"]
   (footer "2020")
  ])
