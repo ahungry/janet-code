@@ -15,7 +15,10 @@
           ks))
    (string/join " ")))
 
-(defmacro html-helper [f]
+# (macex1 ~(html-helper identity))
+(defmacro html-helper
+  "Inline some statement we reuse a lot."
+    [f]
   ~(string/format "%s%s" (,f el) (or (html (rest xs)) "")))
 
 (defn html [xs]
@@ -32,13 +35,13 @@
        (string/format "<%s>\n%s\n</%s>\n" (string el) (or (html (rest xs)) "") (string el))
 
        (struct? el)
-       (string/format "%s%s" (make-attributes el) (or (html (rest xs)) ""))
+       (html-helper make-attributes)
 
        (tuple? el)
-       (string/format "%s%s" (html el) (or (html (rest xs)) ""))
+       (html-helper html)
 
        (string? el)
-       (string/format "%s%s" el (or (html (rest xs)) ""))
+       (html-helper identity)
 
        ""
        ))))
