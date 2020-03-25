@@ -28,6 +28,10 @@
   :lflags ["-lm" "-ldl" "-lpthread"]
   :source @["udp.c"])
 
+(declare-source
+ :name "test"
+ :source @["test.janet"])
+
 (phony "update-mymod" []
-      (os/shell "curl https://raw.githubusercontent.com/cesanta/mongoose/master/mongoose.c > mongoose.c")
-      (os/shell "curl https://raw.githubusercontent.com/cesanta/mongoose/master/mongoose.h > mongoose.h"))
+       (os/shell "curl https://raw.githubusercontent.com/cesanta/mongoose/master/mongoose.c > mongoose.c")
+       (os/shell "curl https://raw.githubusercontent.com/cesanta/mongoose/master/mongoose.h > mongoose.h"))
