@@ -1,6 +1,6 @@
 # Could use os/environ to pull out a setting for this?
 
-(var instant-mode true)
+(var instant-mode false)
 (var instant-cost 10)
 (var cost-max 0)
 (var total 0)
@@ -10,6 +10,12 @@
 (var tests @[])
 
 (def eval-apply (comp eval apply))
+
+(defn instant [n]
+  (set instant-cost n)
+  (set instant-mode true))
+
+(defn defer [] (set instant-mode false))
 
 (defn prin-now [s]
   (unless instant-mode
@@ -35,25 +41,25 @@
 
 # (map eval-apply (identity tests))
 
-(defmacro deftest
+(defn deftest
   [{:cost cost
     :what what} & rest]
   (def t
     (fn []
-      ~(if (>= cost-max (or ,cost 5))
+      (if (>= cost-max (or cost 5))
          (try
            (do
              (prin-now ".")
              (set total (inc total))
-             ,;rest)
+             (eval ;rest))
            ([err]
             (prin-now "f")
             (with-dyns
               [:out out-buf]
               (print (string/format
-                      "Failed <%s> of the form:" (or ,what "?")))
+                      "Failed <%s> of the form:" (or what "?")))
               (prin "   ")
-              (pp (quote ,rest))
+              (map pp rest)
               (print (string/format "due to error: %s\n" err))
               (set fail (inc fail)))
             ))
@@ -65,20 +71,13 @@
     (set tests @[]))
   )
 
-(deftest {:cost 1 :what "Basic sanity test"}
-  (os/sleep 0.1)
-  (assert (= 1 2 )))
+(defmacro test
+  [& rest]
+  ~(quote (do ,;rest)))
 
-(deftest {:cost 3 :what "Addition"}
-  (os/sleep 0.1)
-  (assert (= 3 (+ 1 3))))
+(defmacro eq [ex & rest]
+  ~(quote (assert (= ,ex ,;rest))))
 
-(deftest {:cost 9 :what "blub"}
-  (os/sleep 0.1)
-  (assert (= 3 2 )))
 
-(deftest {:cost 1 :what "finally work"}
-  (os/sleep 0.1)
-  (assert (= 2 2 )))
 
-(run 8)
+# (test-test)
