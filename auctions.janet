@@ -22,5 +22,5 @@
       (string/join "")))
 
 (t/deftest
- {:what "Stripping non-nums out works"}
- (t/eq "x12345" (strip-non-numbers "a b c123a b c45 e f g")))
+ {:what "Stripping non-nums out works" :cost 1}
+ (t/eq "12345" (strip-non-numbers "a b c123a b c45 e f g")))
