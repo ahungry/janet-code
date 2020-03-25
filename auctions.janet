@@ -9,3 +9,13 @@
 (sql/close db)
 
 (pp r)
+
+(def peg-remove-non-numbers
+  '{:num (capture :d)
+    :main (some (+ :num :D))})
+
+(defn strip-non-numbers [s]
+  (-> (peg/match peg-remove-non-numbers s)
+      (string/join "")))
+
+(strip-non-numbers "a b c123a b c45 e f g" )
