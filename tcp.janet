@@ -4,6 +4,6 @@
 
 (defn get-version [sock]
   (tcp/send-sock sock "GET /version HTTP/1.1\n\n\n")
-  (tcp/read-sock sock 1024))
+  (tcp/read-sock sock))
 
 (print (get-version sock))

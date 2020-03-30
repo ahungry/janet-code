@@ -72,12 +72,24 @@ send_tcp (int sock, char *buf)
 
 
 /**
- * Read some string from the destination socket.
+ * Read some string from the destination socket, stopping when data
+ * ends.
  */
 int
-read_tcp (int sock, char *buf, int size)
+read_tcp (int sock, char *buf)
 {
-  return read (sock, buf, size);
+  int n = 0;
+  int offset = 0;
+  char tmp[1024];
+
+  while ((n = read (sock, tmp, sizeof (buf) - 1)) > 0)
+    {
+      tmp[n] = 0;
+      memcpy (buf + offset, tmp, strlen (tmp));
+      offset += n;
+    }
+
+  return 0;
 }
 
 /**
@@ -116,16 +128,15 @@ send_sock (int32_t argc, const Janet *argv)
 static Janet
 read_sock (int32_t argc, const Janet *argv)
 {
-  janet_fixarity (argc, 2);
+  janet_fixarity (argc, 1);
 
   int sock = janet_getinteger (argv, 0);
-  int size = janet_getinteger (argv, 1);
-  unsigned char buf[size]; // TODO: Allow user to specify max read size.
+  unsigned char buf[1024];
 
   // TODO: Inspect return value and send something out if it fails.
-  read_tcp (sock, (char*) buf, size);
+  read_tcp (sock, (char*) buf);
 
-  const uint8_t *s = janet_string (buf, size);
+  const uint8_t *s = janet_string (buf, strlen ((char*) buf));
 
   return janet_wrap_string (s);
 }
