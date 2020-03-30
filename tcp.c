@@ -35,6 +35,14 @@ make_tcp_socket (int port, char *addr)
 {
   int sock = 0;
   struct sockaddr_in remote;
+  struct hostent *host;
+
+  if ((host = gethostbyname (addr)) == NULL)
+    {
+      printf ("Could not find host!\n");
+
+      return 0;
+    }
 
   sock = socket (AF_INET, SOCK_STREAM, 0);
 
@@ -47,7 +55,12 @@ make_tcp_socket (int port, char *addr)
 
   remote.sin_family = AF_INET;
   remote.sin_port = htons (port);
-  remote.sin_addr.s_addr = inet_addr (addr);
+
+  // This works fine for an IP but we need to do a host name.
+  // remote.sin_addr.s_addr = inet_addr (addr);
+
+  // https://stackoverflow.com/questions/52727565/client-in-c-use-gethostbyname-or-getaddrinfo
+  remote.sin_addr.s_addr = *(long *)(host->h_addr_list[0]);
 
   // https://stackoverflow.com/questions/2876024/linux-is-there-a-read-or-recv-from-socket-with-timeout
   // LINUX
