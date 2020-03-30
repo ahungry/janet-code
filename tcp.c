@@ -51,7 +51,7 @@ make_tcp_socket (int port, char *hostname)
   hints.ai_protocol = IPPROTO_TCP;
   hints.ai_flags = 0;
 
-  char sport[5];
+  char sport[6];
   sprintf (sport, "%d", port);
   int status = getaddrinfo (hostname, sport, &hints, &addrs);
 
@@ -80,21 +80,6 @@ make_tcp_socket (int port, char *hostname)
 
       return 0;
     }
-
-  // https://stackoverflow.com/questions/2876024/linux-is-there-a-read-or-recv-from-socket-with-timeout
-#ifdef _WIN32
-  // WINDOWS
-  // DWORD timeout = timeout_in_seconds * 1000;
-  DWORD timeout = 100;
-  setsockopt (socket, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof timeout);
-#else
-  // LINUX
-  struct timeval tv;
-  tv.tv_sec = 0;
-  // We need a way to dynamically set this after first received byte in read() call
-  tv.tv_usec = 5e5; // 500,000 would be half a second, as this is micro seconds
-  setsockopt (sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
-#endif
 
   return sock;
 }
@@ -128,12 +113,32 @@ read_tcp (int sock, char *buf)
   int offset = 0;
   int read_bytes = sizeof (buf) - 1;
   char tmp[1024];
+  int set_timer = 0;
 
   while ((n = read (sock, tmp, read_bytes)) > 0)
     {
       tmp[n] = 0;
       memcpy (buf + offset, tmp, strlen (tmp));
       offset += n;
+
+      if (set_timer == 0)
+        {
+  // https://stackoverflow.com/questions/2876024/linux-is-there-a-read-or-recv-from-socket-with-timeout
+#ifdef _WIN32
+  // WINDOWS
+  // DWORD timeout = timeout_in_seconds * 1000;
+  DWORD timeout = 100;
+  setsockopt (socket, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof timeout);
+#else
+  // LINUX
+  struct timeval tv;
+  tv.tv_sec = 0;
+  // We need a way to dynamically set this after first received byte in read() call
+  tv.tv_usec = 1; // 500,000 would be half a second, as this is micro seconds
+  setsockopt (sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
+#endif
+  set_timer = 1;
+        }
     }
 
   buf[offset] = 0;
