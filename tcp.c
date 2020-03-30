@@ -91,8 +91,8 @@ make_tcp_socket (int port, char *hostname)
   // LINUX
   struct timeval tv;
   tv.tv_sec = 0;
-  // I suppose we could wait for a tenth of a second.
-  tv.tv_usec = 1e5; // 500,000 would be half a second, as this is micro seconds
+  // We need a way to dynamically set this after first received byte in read() call
+  tv.tv_usec = 5e5; // 500,000 would be half a second, as this is micro seconds
   setsockopt (sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
 #endif
 
