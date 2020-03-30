@@ -31,20 +31,48 @@ die (const char *s)
  * Make a connected TCP socket.  Will return 0 on failure, else the sd.
  */
 int
-make_tcp_socket (int port, char *addr)
+make_tcp_socket (int port, char *hostname)
 {
-  int sock = 0;
-  struct sockaddr_in remote;
+  // https://stackoverflow.com/questions/52727565/client-in-c-use-gethostbyname-or-getaddrinfo
   struct hostent *host;
 
-  if ((host = gethostbyname (addr)) == NULL)
+  if ((host = gethostbyname (hostname)) == NULL)
     {
       printf ("Could not find host!\n");
 
       return 0;
     }
 
-  sock = socket (AF_INET, SOCK_STREAM, 0);
+  struct addrinfo hints = {};
+  struct addrinfo *addrs;
+
+  hints.ai_family = AF_INET; // AF_UNSPEC would work with more protocol such as ipv6
+  hints.ai_socktype = SOCK_STREAM;
+  hints.ai_protocol = IPPROTO_TCP;
+  hints.ai_flags = 0;
+
+  char sport[5];
+  sprintf (sport, "%d", port);
+  int status = getaddrinfo (hostname, sport, &hints, &addrs);
+
+  if (status != 0)
+    {
+      fprintf (stderr, "%s: %s\n", hostname, gai_strerror (status));
+    }
+
+  int sock = 0;
+
+  for (struct addrinfo *addr = addrs; addr != NULL; addr = addr->ai_next)
+    {
+      sock = socket (addrs->ai_family, addrs->ai_socktype, addrs->ai_protocol);
+
+      if (1 > sock) continue;
+      if (connect (sock, addr->ai_addr, addr->ai_addrlen) == 0) break;
+
+      close (sock);
+    }
+
+  freeaddrinfo (addrs);
 
   if (0 > sock)
     {
@@ -53,28 +81,20 @@ make_tcp_socket (int port, char *addr)
       return 0;
     }
 
-  remote.sin_family = AF_INET;
-  remote.sin_port = htons (port);
-
-  // This works fine for an IP but we need to do a host name.
-  // remote.sin_addr.s_addr = inet_addr (addr);
-
-  // https://stackoverflow.com/questions/52727565/client-in-c-use-gethostbyname-or-getaddrinfo
-  remote.sin_addr.s_addr = *(long *)(host->h_addr_list[0]);
-
   // https://stackoverflow.com/questions/2876024/linux-is-there-a-read-or-recv-from-socket-with-timeout
+#ifdef _WIN32
+  // WINDOWS
+  // DWORD timeout = timeout_in_seconds * 1000;
+  DWORD timeout = 100;
+  setsockopt (socket, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof timeout);
+#else
   // LINUX
   struct timeval tv;
   tv.tv_sec = 0;
-  tv.tv_usec = 100;
+  // I suppose we could wait for a tenth of a second.
+  tv.tv_usec = 1e5; // 500,000 would be half a second, as this is micro seconds
   setsockopt (sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
-
-  if (connect (sock, (struct sockaddr *) &remote, sizeof (remote)))
-    {
-      printf ("Could not connect to that host and port\n");
-
-      return 0;
-    }
+#endif
 
   return sock;
 }
