@@ -49,6 +49,13 @@ make_tcp_socket (int port, char *addr)
   remote.sin_port = htons (port);
   remote.sin_addr.s_addr = inet_addr (addr);
 
+  // https://stackoverflow.com/questions/2876024/linux-is-there-a-read-or-recv-from-socket-with-timeout
+  // LINUX
+  struct timeval tv;
+  tv.tv_sec = 0;
+  tv.tv_usec = 100;
+  setsockopt (sock, SOL_SOCKET, SO_RCVTIMEO, (const char*)&tv, sizeof tv);
+
   if (connect (sock, (struct sockaddr *) &remote, sizeof (remote)))
     {
       printf ("Could not connect to that host and port\n");
@@ -80,9 +87,10 @@ read_tcp (int sock, char *buf)
 {
   int n = 0;
   int offset = 0;
+  int read_bytes = sizeof (buf) - 1;
   char tmp[1024];
 
-  while ((n = read (sock, tmp, sizeof (buf) - 1)) > 0)
+  while ((n = read (sock, tmp, read_bytes)) > 0)
     {
       tmp[n] = 0;
       memcpy (buf + offset, tmp, strlen (tmp));
