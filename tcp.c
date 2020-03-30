@@ -136,6 +136,8 @@ read_tcp (int sock, char *buf)
       offset += n;
     }
 
+  buf[offset] = 0;
+
   return 0;
 }
 
