@@ -7,3 +7,5 @@
   (tcp/read-sock sock))
 
 (print (get-version sock))
+
+(tcp/unmake-sock sock)

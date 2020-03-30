@@ -66,6 +66,12 @@ make_tcp_socket (int port, char *addr)
   return sock;
 }
 
+int
+unmake_tcp_socket (int sock)
+{
+  return close (sock);
+}
+
 /**
  * Send some string to the destination socket.
  */
@@ -116,6 +122,20 @@ make_sock (int32_t argc, const Janet *argv)
 }
 
 /**
+ * Wrapper to handle making a TCP socket.
+ */
+static Janet
+unmake_sock (int32_t argc, const Janet *argv)
+{
+  janet_fixarity (argc, 1);
+
+  int sock = janet_getinteger (argv, 0);
+  int res = unmake_tcp_socket (sock);
+
+  return janet_wrap_integer (res);
+}
+
+/**
  * Wrapper to handle sending a string to a socket.
  */
 static Janet
@@ -152,6 +172,7 @@ read_sock (int32_t argc, const Janet *argv)
 static const JanetReg
 cfuns[] = {
   {"make-sock", make_sock, "(tcp/make-sock host port)\n\nCreate connection to host:port over TCP."},
+  {"unmake-sock", unmake_sock, "(tcp/unmake-sock sock)\n\nDelete connection to sock over TCP."},
   {"send-sock", send_sock, "(tcp/send-sock sock string)\n\nSend string to sock over TCP."},
   {"read-sock", read_sock, "(tcp/read-sock sock)\n\nRead for incoming TCP."},
   {NULL, NULL, NULL}
