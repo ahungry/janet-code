@@ -28,6 +28,13 @@
   :lflags ["-lm" "-ldl" "-lpthread"]
   :source @["udp.c"])
 
+(declare-native
+  :name "tcp"
+  #:embedded @["bench_lib.janet"]
+  :cflags ["-std=gnu99" "-Wall" "-Wextra"]
+  :lflags ["-lm" "-ldl" "-lpthread"]
+  :source @["tcp.c"])
+
 (declare-source
  :name "test"
  :source @["test.janet"])
