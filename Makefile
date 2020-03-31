@@ -56,3 +56,6 @@ deps:
 run:
 	#janet -m ./deps myserver.janet
 	janet myserver.janet
+
+cairo.bin: cairo.c
+	gcc -Wall $(shell pkg-config --libs cairo) -I/usr/include/cairo -o $@ $<

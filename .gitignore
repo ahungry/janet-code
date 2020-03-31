@@ -3,3 +3,5 @@ janet_modules/
 deps/
 build/
 amalg/
+
+*.bin
