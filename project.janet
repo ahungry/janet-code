@@ -35,6 +35,12 @@
   :lflags ["-lm" "-ldl" "-lpthread"]
   :source @["tcp.c"])
 
+(declare-native
+  :name "table"
+  :cflags ["-std=gnu99" "-Wall" "-Wextra"]
+  :lflags ["-lm" "-ldl" "-lpthread"]
+  :source @["table.c"])
+
 (declare-source
  :name "test"
  :source @["test.janet"])
