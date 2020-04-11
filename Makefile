@@ -1,3 +1,4 @@
+WINCC=x86_64-w64-mingw32-gcc
 CC=gcc
 CFLAGS=-c -Wall -std=gnu99
 LFLAGS=-lm -ldl
@@ -5,8 +6,12 @@ LFLAGS=-lm -ldl
 all: janet_modules deps build
 
 standalone.bin: standalone.c
-	$(CC) -g -std=c99 -Wall -Werror -fPIC \
-	janet.c $< -o $@ -lm -ldl -lrt -lpthread
+	$(CC) -g -std=c99 -Wall -Werror -fPIC -static \
+	amalg/janet.c $< -o $@ -lm -ldl -lrt -lpthread
+
+standalone.exe: standalone.c
+	$(WINCC) -g -std=c99 -fPIC -static \
+	amalg/janet.c $< -o $@ -lm
 
 rebuild:
 	-rm -f build/main

@@ -1,6 +1,6 @@
 #include <string.h>
 
-#include "janet.h"
+#include "amalg/janet.h"
 
 int
 main (int argc, char *argv[])
