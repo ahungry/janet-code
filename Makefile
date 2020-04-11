@@ -5,11 +5,13 @@ LFLAGS=-lm -ldl
 
 all: janet_modules deps build
 
-standalone.bin: amalg/janet.c standalone.c
-	$(CC) -g -std=c99 -Wall -Werror -fPIC -static $< -o $@ -lm -ldl -lrt -lpthread
+standalone.bin: standalone.c
+	$(CC) -g -std=c99 -Wall -Werror -fPIC -static \
+	amalg/janet.c $< -o $@ -lm -ldl -lrt -lpthread
 
-standalone.exe: amalg/janet.c standalone.c
-	$(WINCC) -g -std=c99 -fPIC -static $< -o $@ -lm
+standalone.exe: standalone.c
+	$(WINCC) -g -std=c99 -fPIC -static \
+	amalg/janet.c $< -o $@ -lm
 
 rebuild:
 	-rm -f build/main
