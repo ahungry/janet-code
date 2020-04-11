@@ -7,11 +7,11 @@ all: janet_modules deps build
 WINCC=x86_64-w64-mingw32-gcc
 
 standalone.bin: standalone.c
-	$(CC) -g -std=c99 -Wall -Werror -fPIC -I/usr/include/curl \
+	$(CC) -g -std=c99 -Wall -fPIC -I./amalg -I/usr/include/curl \
 	amalg/janet.c $< -o $@ -lm -ldl -lrt -lpthread -lcurl
 
 standalone.exe: standalone.c
-	$(WINCC) -g -std=c99 -fPIC -static -I/usr/x86_64-w64-mingw32/include/curl \
+	$(WINCC) -g -std=c99 -fPIC -static -I./amalg -I/usr/x86_64-w64-mingw32/include/curl \
 	amalg/janet.c $< -o $@ -lm -lcurl -DCURL_STATIC_LIB -lws2_32 -lwinmm
 
 rebuild:

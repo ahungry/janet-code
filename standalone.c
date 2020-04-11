@@ -1,28 +1,22 @@
+#include <janet.h>
 #include <string.h>
-
 #include <curl.h>
 
-#include "amalg/janet.h"
+#include "curl_wrap.c"
 
 int
 main (int argc, char *argv[])
 {
   JanetTable *env;
-  JanetTable *replacements;
 
   janet_init ();
+  env = janet_core_env (NULL);
+  janet_cfuns (env, "curl", cfuns);
 
-  replacements = janet_table (0);
-  env = janet_core_env (replacements);
+  const char *embed = "(import standalone :as s) (s/main)";
 
-  janet_table_put(env, janet_ckeywordv("executable"), janet_cstringv(argv[0]));
-
-  const char *embed = "(pp 32)";
-
-  janet_dostring (env, embed, "standalone.janet", NULL);
+  janet_dostring (env, embed, "main", NULL);
   janet_deinit();
-
-  printf ("%s\n", LIBCURL_VERSION);
 
   return 0;
 }
