@@ -4,6 +4,10 @@ LFLAGS=-lm -ldl
 
 all: janet_modules deps build
 
+standalone.bin: standalone.c
+	$(CC) -g -std=c99 -Wall -Werror -fPIC \
+	janet.c $< -o $@ -lm -ldl -lrt -lpthread
+
 rebuild:
 	-rm -f build/main
 	-rm -f build/main.o

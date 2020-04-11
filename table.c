@@ -1,4 +1,6 @@
 // FIXME: This needs a bit of fixing up, its not quite right.
+// https://janet-lang.org/capi/memory-model.html
+
 #include <janet.h>
 
 #include <stdio.h>
