@@ -19,12 +19,13 @@ standalone.exe: standalone.c
 
 dll:
 	mkdir dll
+	wget https://curl.haxx.se/windows/dl-7.69.1_1/curl-7.69.1_1-win64-mingw.zip -P dll/
 	wget https://curl.haxx.se/windows/dl-7.69.1_1/openssl-1.1.1f_1-win64-mingw.zip -P dll/
 	wget https://curl.haxx.se/windows/dl-7.69.1_1/brotli-1.0.7_1-win64-mingw.zip -P dll/
 	wget https://curl.haxx.se/windows/dl-7.69.1_1/nghttp2-1.40.0_1-win64-mingw.zip -P dll/
 
 unzip-dlls:
-	cd dll ; unzip *.zip
+	find dll -name *.zip -exec unzip {} \;
 
 window-deps: dll unzpi-dlls
 	find dll -name libcurl-x64.dll -exec cp {} ./ \;
