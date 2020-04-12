@@ -27,7 +27,7 @@ dll:
 unzip-dlls:
 	find dll -name *.zip -exec unzip {} \;
 
-window-deps: dll unzpi-dlls
+window-deps: dll unzip-dlls
 	find dll -name libcurl-x64.dll -exec cp {} ./ \;
 	find dll -name libcurl.a -exec cp {} ./ \;
 	find dll -name libcrypto-1_1-x64.dll -exec cp {} ./ \;
