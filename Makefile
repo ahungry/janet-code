@@ -25,7 +25,7 @@ dll:
 	wget https://curl.haxx.se/windows/dl-7.69.1_1/nghttp2-1.40.0_1-win64-mingw.zip -P dll/
 
 unzip-dlls:
-	cd dll && find . -name *.zip -exec unzip {} \;
+	cd dll && find . -name '*.zip' -exec unzip {} \;
 
 window-deps: dll unzip-dlls
 	find dll -name libcurl-x64.dll -exec cp {} ./ \;
