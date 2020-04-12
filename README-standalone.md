@@ -13,3 +13,7 @@ Server = https://martchus.no-ip.biz/repo/arch/$repo/os/$arch
 SigLevel = Optional TrustAll
 Server = https://ftp.f3l.de/~martchus/$repo/os/$arch
 Server = https://martchus.no-ip.biz/repo/arch/$repo/os/$arch
+
+## Curl libraries for windows
+
+https://curl.haxx.se/windows/

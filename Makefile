@@ -12,7 +12,23 @@ standalone.bin: standalone.c
 
 standalone.exe: standalone.c
 	$(WINCC) -g -std=c99 -fPIC -static -I./amalg -I/usr/x86_64-w64-mingw32/include/curl \
-	amalg/janet.c $< -o $@ -lm -lcurl -DCURL_STATIC_LIB -lws2_32 -lwinmm
+	amalg/janet.c $< -o $@ -lm libcurl.dll.a -DCURL_STATICLIB -lws2_32 -lwinmm
+
+
+#x86_64-w64-mingw32-gcc -g -std=c99 -I./amalg -I/usr/x86_64-w64-mingw32/include/curl amalg/janet.c standalone.c -o standalone.exe -DCURL_STATICLIB -static libcurl.dll.a -lwinmm -lm -lz -lws2_32
+
+dll:
+	mkdir dll
+
+fetch-window-deps: dll
+	wget https://curl.haxx.se/windows/dl-7.69.1_1/openssl-1.1.1f_1-win64-mingw.zip -P dll/
+	wget https://curl.haxx.se/windows/dl-7.69.1_1/brotli-1.0.7_1-win64-mingw.zip -P dll/
+	wget https://curl.haxx.se/windows/dl-7.69.1_1/nghttp2-1.40.0_1-win64-mingw.zip -P dll/
+	find dll -name libcurl-x64.dll -exec cp {} ./ \;
+	find dll -name libcurl.a -exec cp {} ./ \;
+	find dll -name libcrypto-1_1-x64.dll -exec cp {} ./ \;
+	find dll -name libcurl.dll.a -exec cp {} ./ \;
+	find dll -name libssl-1_1-x64.dll -exec cp {} ./ \;
 
 rebuild:
 	-rm -f build/main

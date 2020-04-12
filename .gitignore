@@ -6,3 +6,7 @@ amalg/
 
 *.bin
 *.exe
+
+/dll/
+*.dll
+*.a

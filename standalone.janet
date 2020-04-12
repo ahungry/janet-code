@@ -7,6 +7,12 @@
 
   (curl-easy-setopt-pointer c (const-CURLOPT-HTTPHEADER) chunk3)
 
+  # For the Windows stuff, doesn't seem to work well with crt bundle atm
+  # on a wine install at least..
+  (curl-easy-setopt c (const-CURLOPT-SSL-VERIFYHOST) 0)
+  (curl-easy-setopt c (const-CURLOPT-SSL-VERIFYPEER) 0)
+  ##
+
   # Use this url, as it does send a 302 from http to https
   (curl-easy-setopt-string c (const-CURLOPT-URL) "https://httpbin.org/post")
   (curl-easy-setopt c (const-CURLOPT-FOLLOWLOCATION) 1)
