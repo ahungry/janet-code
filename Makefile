@@ -34,6 +34,9 @@ window-deps: dll unzip-dlls
 	find dll -name libcurl.dll.a -exec cp {} ./ \;
 	find dll -name libssl-1_1-x64.dll -exec cp {} ./ \;
 
+gui.bin: gui.c
+	gcc `pkg-config --cflags gtk+-3.0` -o $@ $< `pkg-config --libs gtk+-3.0`
+
 rebuild:
 	-rm -f build/main
 	-rm -f build/main.o
