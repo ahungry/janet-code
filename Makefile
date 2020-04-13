@@ -1,10 +1,9 @@
 CC=gcc
+WINCC=x86_64-w64-mingw32-gcc
 CFLAGS=-c -Wall -std=gnu99
 LFLAGS=-lm -ldl
 
 all: janet_modules deps build
-
-WINCC=x86_64-w64-mingw32-gcc
 
 standalone.bin: standalone.c
 	$(CC) -g -std=c99 -Wall -fPIC -I./amalg -I/usr/include/curl \
@@ -36,6 +35,14 @@ window-deps: dll unzip-dlls
 
 gui.bin: gui.c
 	gcc `pkg-config --cflags gtk+-3.0` -o $@ $< `pkg-config --libs gtk+-3.0`
+
+# $(WINCC) `pkg-config --cflags gtk+-3.0` -o $@ $< `pkg-config --libs gtk+-3.0`
+
+gui.exe: gui.c
+	$(WINCC) -I/usr/x86_64-w64-mingw32/include/gtk-3.0 -I/usr/x86_64-w64-mingw32/include/pango-1.0 -I/usr/x86_64-w64-mingw32/include/glib-2.0 -I/usr/x86_64-w64-mingw32/lib/glib-2.0/include -I/usr/x86_64-w64-mingw32/lib/libffi-3.2.1/include -I/usr/x86_64-w64-mingw32/include/harfbuzz -I/usr/x86_64-w64-mingw32/include/fribidi -I/usr/x86_64-w64-mingw32/include/freetype2 -I/usr/x86_64-w64-mingw32/include/libpng16 -I/usr/x86_64-w64-mingw32/include/cairo -I/usr/x86_64-w64-mingw32/include/pixman-1 -I/usr/x86_64-w64-mingw32/include/gdk-pixbuf-2.0 -I/usr/x86_64-w64-mingw32/include/libmount -I/usr/x86_64-w64-mingw32/include/blkid -I/usr/x86_64-w64-mingw32/include/gio-unix-2.0 -I/usr/x86_64-w64-mingw32/include/atk-1.0 -I/usr/x86_64-w64-mingw32/include/at-spi2-atk/2.0 -I/usr/x86_64-w64-mingw32/include/dbus-1.0 -I/usr/x86_64-w64-mingw32/lib/dbus-1.0/include -I/usr/x86_64-w64-mingw32/include/at-spi-2.0 -pthread -o $@ $< `pkg-config --libs gtk+-3.0`
+
+window-gtk-deps:
+	cat gtk-dlls.txt | xargs -I{} find /usr/x86_64-w64-mingw32 -name {} -print | xargs -I{} cp {} ./
 
 rebuild:
 	-rm -f build/main
