@@ -1,5 +1,6 @@
 CC=gcc
 WINCC=x86_64-w64-mingw32-gcc
+WIN32CC=i686-w64-mingw32-gcc
 CFLAGS=-c -Wall -std=gnu99
 LFLAGS=-lm -ldl
 
@@ -13,6 +14,9 @@ standalone.exe: standalone.c
 	$(WINCC) -g -std=c99 -fPIC -static -I./amalg -I/usr/x86_64-w64-mingw32/include/curl \
 	amalg/janet.c $< -o $@ -lm libcurl.dll.a -DCURL_STATICLIB -lws2_32 -lwinmm
 
+standalone32.exe: standalone.c
+	$(WIN32CC) -g -std=c99 -fPIC -static -I./amalg -I/usr/i686-w64-mingw32/include/curl \
+	amalg/janet.c $< -o $@ -lm libcurl32.dll.a -DCURL_STATICLIB -lws2_32 -lwinmm
 
 #x86_64-w64-mingw32-gcc -g -std=c99 -I./amalg -I/usr/x86_64-w64-mingw32/include/curl amalg/janet.c standalone.c -o standalone.exe -DCURL_STATICLIB -static libcurl.dll.a -lwinmm -lm -lz -lws2_32
 
