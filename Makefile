@@ -26,7 +26,18 @@ iup.bin: iup.c
 
 iup.exe: iup.c
 	$(WINCC) -g -std=c99 -Wall -fPIC -I./amalg -I/usr/include/iup \
-	amalg/janet.c $< -o $@ -lm libiup.a libiupimglib.a
+	amalg/janet.c $< -o $@ -lm -pthread libiup.a libiupimglib.a
+
+iup-static.exe: iup.c
+	$(WINCC) -g -std=c99 -Wall -Wl,-Bstatic -I./amalg -I/usr/include/iup \
+	amalg/janet.c $< -o $@ -static -lm -L/usr/x86_64-w64-mingw32/lib \
+	-pthread -L. \
+	-l:libiup_scintilla.a -l:libfreetype6.a \
+	-l:libftgl.a -l:libiupcd.a -l:libiupcontrols.a -l:libiupgl.a -l:libiupglcontrols.a \
+	-l:libiupim.a -l:libiup_mglplot.a -l:libiupole.a -l:libiup_plot.a \
+	-l:libiuptuio.a -l:libz.a -l:libiup.a -l:libiupimglib.a \
+	-lmingw32 -lopengl32 -lpangowin32-1.0 -lgdi32 -lws2_32 -luuid -lcomctl32 -lole32  \
+	-lcomdlg32
 
 dll:
 	mkdir dll
