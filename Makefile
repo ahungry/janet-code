@@ -24,6 +24,10 @@ iup.bin: iup.c
 	$(CC) -g -std=c99 -Wall -fPIC -I./amalg -I/usr/include/iup \
 	amalg/janet.c $< -o $@ -lm -ldl -lrt -lpthread -liup -liupimglib
 
+iup.exe: iup.c
+	$(WINCC) -g -std=c99 -Wall -fPIC -I./amalg -I/usr/include/iup \
+	amalg/janet.c $< -o $@ -lm libiup.a libiupimglib.a
+
 dll:
 	mkdir dll
 	wget https://curl.haxx.se/windows/dl-7.69.1_1/curl-7.69.1_1-win64-mingw.zip -P dll/
