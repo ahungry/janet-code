@@ -20,6 +20,10 @@ standalone32.exe: standalone.c
 
 #x86_64-w64-mingw32-gcc -g -std=c99 -I./amalg -I/usr/x86_64-w64-mingw32/include/curl amalg/janet.c standalone.c -o standalone.exe -DCURL_STATICLIB -static libcurl.dll.a -lwinmm -lm -lz -lws2_32
 
+iup.bin: iup.c
+	$(CC) -g -std=c99 -Wall -fPIC -I./amalg -I/usr/include/iup \
+	amalg/janet.c $< -o $@ -lm -ldl -lrt -lpthread -liup -liupimglib
+
 dll:
 	mkdir dll
 	wget https://curl.haxx.se/windows/dl-7.69.1_1/curl-7.69.1_1-win64-mingw.zip -P dll/
