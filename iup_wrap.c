@@ -4200,6 +4200,18 @@ call_thunk_N (Ihandle* ih)
   return 0;
 }
 
+// TODO: Re-implement the thunk storage and calling with something like this.
+/* int * */
+/* janet_iup_universal_cb (IHandle *ih) */
+/* { */
+/*   JanetFunction *f = janet_unwrap_function(janet_table_get(janet_iup_cbs, */
+/*                                                            janet_wrap_pointer(ih))); */
+
+/*   janet_call(f, 0, NULL); */
+
+/*   return NULL; */
+/* } */
+
 static Janet
 IupSetThunkCallback_wrapped (int32_t argc, Janet *argv)
 {
