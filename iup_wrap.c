@@ -4215,15 +4215,16 @@ IupCallJanetThunk_wrapped (int32_t argc, Janet *argv)
   return out;
 }
 
-void *
-call_thunk_0 (char *s1, char *s2)
-{
-  printf ("call_thunk_0 with %s and %s\n", s1, s2);
-
-  JanetFunction *f = get_thunk_by_id (0);
-
-  janet_call (f, 0, NULL);
-}
+void call_thunk_0 () { janet_call (get_thunk_by_id (0), 0, NULL); }
+void call_thunk_1 () { janet_call (get_thunk_by_id (1), 0, NULL); }
+void call_thunk_2 () { janet_call (get_thunk_by_id (2), 0, NULL); }
+void call_thunk_3 () { janet_call (get_thunk_by_id (3), 0, NULL); }
+void call_thunk_4 () { janet_call (get_thunk_by_id (4), 0, NULL); }
+void call_thunk_5 () { janet_call (get_thunk_by_id (5), 0, NULL); }
+void call_thunk_6 () { janet_call (get_thunk_by_id (6), 0, NULL); }
+void call_thunk_7 () { janet_call (get_thunk_by_id (7), 0, NULL); }
+void call_thunk_8 () { janet_call (get_thunk_by_id (8), 0, NULL); }
+void call_thunk_9 () { janet_call (get_thunk_by_id (9), 0, NULL); }
 
 static Janet
 IupSetThunkCallback_wrapped (int32_t argc, Janet *argv)
@@ -4232,8 +4233,22 @@ IupSetThunkCallback_wrapped (int32_t argc, Janet *argv)
 
   Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
   char const * arg_1 = (char const *) janet_getstring (argv, 1);
-  // Icallback arg_2 = janet_getinteger (argv, 2);
-  Icallback arg_2 = (Icallback) call_thunk_0;
+  Icallback arg_2;
+  int thunk_n = janet_getinteger (argv, 2);
+
+  switch (thunk_n)
+    {
+    case 0: arg_2 = (Icallback) call_thunk_0; break;
+    case 1: arg_2 = (Icallback) call_thunk_1; break;
+    case 2: arg_2 = (Icallback) call_thunk_2; break;
+    case 3: arg_2 = (Icallback) call_thunk_3; break;
+    case 4: arg_2 = (Icallback) call_thunk_4; break;
+    case 5: arg_2 = (Icallback) call_thunk_5; break;
+    case 6: arg_2 = (Icallback) call_thunk_6; break;
+    case 7: arg_2 = (Icallback) call_thunk_7; break;
+    case 8: arg_2 = (Icallback) call_thunk_8; break;
+    case 9: arg_2 = (Icallback) call_thunk_9; break;
+    }
 
   Icallback result = IupSetCallback ((Ihandle *) arg_0, (char const *) arg_1, (Icallback) arg_2);
 

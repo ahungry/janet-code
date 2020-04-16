@@ -17,7 +17,7 @@
   #(def button-exit-cb 0)
   #(IupSetCallback button "ACTION" button-exit-cb)
 
-  (def thunk
+  (def thunk-recursive-popups
        (iup-make-janet-thunk
         (fn []
             (++ x)
@@ -26,18 +26,10 @@
           (show-popup)
              # (IupRedraw button 0)
           )))
-  # (def thunk2 (iup-make-janet-thunk button "ACTION" (fn [] (+ 13 1))))
-
-  (pp x)
-  (pp thunk)
-  # (pp thunk2)
-
-  # (pp (iup-call-janet-thunk thunk))
-  (pp x)
 
   (iup-set-thunk-callback
    button "ACTION"
-   (iup-make-janet-thunk (fn [] (++ x) (spit "iup-thunk.log" x))))
+   thunk-recursive-popups)
 
   # (pp (iup-call-janet-thunk thunk2))
   # (iup-make button "ACTION" button-exit-cb)
