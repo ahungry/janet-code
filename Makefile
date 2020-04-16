@@ -1,3 +1,4 @@
+# -*- mode: makefile-gmake-mode -*-
 CC=gcc
 WINCC=x86_64-w64-mingw32-gcc
 WIN32CC=i686-w64-mingw32-gcc
@@ -5,6 +6,17 @@ CFLAGS=-c -Wall -std=gnu99
 LFLAGS=-lm -ldl
 
 all: janet_modules deps build
+
+app.bin: app.c
+	$(CC) -g -std=c99 -Wall -fPIC -static -I./amalg \
+	-I/usr/include/iup \
+	-I/usr/include/curl \
+	amalg/janet.c $< -o $@ \
+	-DCURL_STATICLIB \
+	-Wl,-Bstatic \
+	-L/home/mcarter/software/iup/iup/lib/Linux55_64 \
+	-L/usr/lib \
+	-lm -ldl -lrt -lpthread -liup -liupimglib -lcurl
 
 standalone.bin: standalone.c
 	$(CC) -g -std=c99 -Wall -fPIC -I./amalg -I/usr/include/curl \
