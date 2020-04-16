@@ -37,6 +37,13 @@
       # (IupRedraw button 1)
       ))
 
+  (def timer (IupTimer))
+  (IupSetAttribute timer "TIME" "1000")
+  (iup-set-thunk-callback timer "ACTION_CB" (fn [] (++ x)
+      (IupSetAttribute button "TITLE" (string/format "Button clicked %d times" x))
+                                                ))
+  (IupSetAttribute timer "RUN" "yes")
+
   (iup-set-thunk-callback
    button "ACTION"
    thunk-recursive-popups)
