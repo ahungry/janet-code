@@ -12,16 +12,25 @@
 
   # TODO: Would need some way to inject a janet callback via
   # a custom function that inline eval some janet code most likely...
-  (def button-exit-cb 0)
-  (IupSetCallback button "ACTION" button-exit-cb)
+  #(def button-exit-cb 0)
+  #(IupSetCallback button "ACTION" button-exit-cb)
 
-  (def thunk (iup-make-janet-thunk button "ACTION" (fn [] (+ 1 1))))
-  (def thunk2 (iup-make-janet-thunk button "ACTION" (fn [] (+ 13 1))))
+  (var x 5)
+  (def thunk (iup-make-janet-thunk (fn []
+                                     (++ x)
+                                     x)))
+  # (def thunk2 (iup-make-janet-thunk button "ACTION" (fn [] (+ 13 1))))
 
+  (pp x)
   (pp thunk)
-  (pp thunk2)
+  # (pp thunk2)
+
   (pp (iup-call-janet-thunk thunk))
-  (pp (iup-call-janet-thunk thunk2))
+  (pp x)
+
+  (iup-set-thunk-callback button "ACTION" (iup-make-janet-thunk (fn [] (++ x) (pp x))))
+
+  # (pp (iup-call-janet-thunk thunk2))
   # (iup-make button "ACTION" button-exit-cb)
 
   (IupShowXY dialog (const-IUP-CENTER) (const-IUP-CENTER))

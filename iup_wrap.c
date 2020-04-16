@@ -4195,12 +4195,9 @@ get_thunk_by_id (int idx)
 static Janet
 IupMakeJanetThunk_wrapped (int32_t argc, Janet *argv)
 {
-  janet_fixarity (argc, 3);
+  janet_fixarity (argc, 1);
 
-  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
-  char const * arg_1 = (char const *) janet_getstring (argv, 1);
-  JanetFunction *f = janet_getfunction (argv, 2);
-
+  JanetFunction *f = janet_getfunction (argv, 0);
   int idx = push_thunk (f);
 
   return janet_wrap_integer (idx);
@@ -4217,6 +4214,31 @@ IupCallJanetThunk_wrapped (int32_t argc, Janet *argv)
 
   return out;
 }
+
+void *
+call_thunk_0 (char *s)
+{
+  printf ("call_thunk_0 with %s\n", s);
+
+  JanetFunction *f = get_thunk_by_id (0);
+
+  janet_call (f, 0, NULL);
+}
+
+static Janet
+IupSetThunkCallback_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 3);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  char const * arg_1 = (char const *) janet_getstring (argv, 1);
+  // Icallback arg_2 = janet_getinteger (argv, 2);
+  Icallback arg_2 = (Icallback) call_thunk_0;
+
+  Icallback result = IupSetCallback ((Ihandle *) arg_0, (char const *) arg_1, (Icallback) arg_2);
+
+  return janet_wrap_integer (result);
+}
 // END Non-Swig hand generation stuff
 
 static const JanetReg
@@ -4226,6 +4248,9 @@ cfuns[] = {
   },
   {
     "iup-call-janet-thunk", IupCallJanetThunk_wrapped, "Call Janet thunk stored for later."
+  },
+  {
+    "iup-set-thunk-callback", IupSetThunkCallback_wrapped, ""
   },
 
   {
