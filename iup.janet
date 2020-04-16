@@ -1,9 +1,11 @@
+# Hmm..why did it think this one was a string ?
+(var x 0)
+
 (defn show-popup []
   (def iup (IupOpen (int-ptr) (char-ptr)))
   (def label (IupLabel "Hello world from IUP."))
 
-  # Hmm..why did it think this one was a string ?
-  (def button (IupButton "OK" "NULL"))
+  (def button (IupButton (string/format "Button clicked %d times" x) "NULL"))
 
   (def vbox (IupVbox button (int-ptr)))
   (def dialog (IupDialog vbox))
@@ -15,31 +17,41 @@
   #(def button-exit-cb 0)
   #(IupSetCallback button "ACTION" button-exit-cb)
 
-  (var x 5)
-  (def thunk (iup-make-janet-thunk (fn []
-                                     (++ x)
-                                     x)))
+  (def thunk
+       (iup-make-janet-thunk
+        (fn []
+            (++ x)
+            (spit "iup-thunk.log" (string/format "%d\n" x) :a)
+          # Essentially keeps opening windows, sort of neat...
+          (show-popup)
+             # (IupRedraw button 0)
+          )))
   # (def thunk2 (iup-make-janet-thunk button "ACTION" (fn [] (+ 13 1))))
 
   (pp x)
   (pp thunk)
   # (pp thunk2)
 
-  (pp (iup-call-janet-thunk thunk))
+  # (pp (iup-call-janet-thunk thunk))
   (pp x)
 
-  (iup-set-thunk-callback button "ACTION" (iup-make-janet-thunk (fn [] (++ x) (pp x))))
+  (iup-set-thunk-callback
+   button "ACTION"
+   (iup-make-janet-thunk (fn [] (++ x) (spit "iup-thunk.log" x))))
 
   # (pp (iup-call-janet-thunk thunk2))
   # (iup-make button "ACTION" button-exit-cb)
 
   (IupShowXY dialog (const-IUP-CENTER) (const-IUP-CENTER))
 
-  (IupMainLoop)
+  # (IupMainLoop)
 
   #(IupMessage "Hello World 1" "Hello world from IUP.")
-  (IupClose))
+  # (IupClose)
+  )
 
 (defn main []
   (pp "Init")
-  (show-popup))
+  (show-popup)
+  (IupMainLoop)
+  (IupClose))

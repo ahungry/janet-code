@@ -4216,9 +4216,9 @@ IupCallJanetThunk_wrapped (int32_t argc, Janet *argv)
 }
 
 void *
-call_thunk_0 (char *s)
+call_thunk_0 (char *s1, char *s2)
 {
-  printf ("call_thunk_0 with %s\n", s);
+  printf ("call_thunk_0 with %s and %s\n", s1, s2);
 
   JanetFunction *f = get_thunk_by_id (0);
 
