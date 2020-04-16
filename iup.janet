@@ -43,7 +43,6 @@
 
   (iup-set-thunk-callback
    button2 "ACTION"
-   # (iup-make-janet-thunk)
    (fn [] (IupClose)))
 
   # (pp (iup-call-janet-thunk thunk2))
