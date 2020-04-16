@@ -7,6 +7,9 @@ LFLAGS=-lm -ldl
 
 all: janet_modules deps build
 
+build-curl:
+	./build-curl.sh
+
 app.bin: app.c
 	$(CC) -g -std=c99 -Wall -fPIC -static -I./amalg \
 	-I/usr/include/iup \
@@ -16,7 +19,8 @@ app.bin: app.c
 	-Wl,-Bstatic \
 	-L/home/mcarter/software/iup/iup/lib/Linux55_64 \
 	-L/usr/lib \
-	-lm -ldl -lrt -lpthread -liup -liupimglib -lcurl
+	-lm -ldl -lrt -lpthread -liup -liupimglib \
+	libcurl-nix-x86_64.a
 
 standalone.bin: standalone.c
 	$(CC) -g -std=c99 -Wall -fPIC -I./amalg -I/usr/include/curl \

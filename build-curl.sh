@@ -19,6 +19,6 @@ cd $version
 
 make -j4
 
-find -name libcurl.a -exec cp {} $top/libcurl-nix-x86_64.a \;
+find /tmp/curl -name libcurl.a -exec cp {} $top/libcurl-nix-x86_64.a \;
 
 cd $top
