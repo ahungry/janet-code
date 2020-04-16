@@ -152,7 +152,7 @@
   }
 
 static Janet
-const_IUP_NAME_wrapped (int32_t argc, const Janet *argv)
+const_IUP_NAME_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -163,7 +163,7 @@ const_IUP_NAME_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_DESCRIPTION_wrapped (int32_t argc, const Janet *argv)
+const_IUP_DESCRIPTION_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -174,7 +174,7 @@ const_IUP_DESCRIPTION_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_COPYRIGHT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_COPYRIGHT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -185,7 +185,7 @@ const_IUP_COPYRIGHT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_VERSION_wrapped (int32_t argc, const Janet *argv)
+const_IUP_VERSION_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -196,7 +196,7 @@ const_IUP_VERSION_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_VERSION_NUMBER_wrapped (int32_t argc, const Janet *argv)
+const_IUP_VERSION_NUMBER_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -207,7 +207,7 @@ const_IUP_VERSION_NUMBER_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_VERSION_DATE_wrapped (int32_t argc, const Janet *argv)
+const_IUP_VERSION_DATE_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -218,7 +218,7 @@ const_IUP_VERSION_DATE_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupOpen_wrapped (int32_t argc, const Janet *argv)
+IupOpen_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -231,7 +231,7 @@ IupOpen_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupClose_wrapped (int32_t argc, const Janet *argv)
+IupClose_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -242,7 +242,7 @@ IupClose_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupIsOpened_wrapped (int32_t argc, const Janet *argv)
+IupIsOpened_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -253,7 +253,7 @@ IupIsOpened_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupImageLibOpen_wrapped (int32_t argc, const Janet *argv)
+IupImageLibOpen_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -264,7 +264,7 @@ IupImageLibOpen_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMainLoop_wrapped (int32_t argc, const Janet *argv)
+IupMainLoop_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -275,7 +275,7 @@ IupMainLoop_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupLoopStep_wrapped (int32_t argc, const Janet *argv)
+IupLoopStep_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -286,7 +286,7 @@ IupLoopStep_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupLoopStepWait_wrapped (int32_t argc, const Janet *argv)
+IupLoopStepWait_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -297,7 +297,7 @@ IupLoopStepWait_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMainLoopLevel_wrapped (int32_t argc, const Janet *argv)
+IupMainLoopLevel_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -308,7 +308,7 @@ IupMainLoopLevel_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFlush_wrapped (int32_t argc, const Janet *argv)
+IupFlush_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -319,7 +319,7 @@ IupFlush_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupExitLoop_wrapped (int32_t argc, const Janet *argv)
+IupExitLoop_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -330,7 +330,7 @@ IupExitLoop_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupPostMessage_wrapped (int32_t argc, const Janet *argv)
+IupPostMessage_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -346,7 +346,7 @@ IupPostMessage_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupRecordInput_wrapped (int32_t argc, const Janet *argv)
+IupRecordInput_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -359,7 +359,7 @@ IupRecordInput_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupPlayInput_wrapped (int32_t argc, const Janet *argv)
+IupPlayInput_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -371,7 +371,7 @@ IupPlayInput_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupUpdate_wrapped (int32_t argc, const Janet *argv)
+IupUpdate_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -383,7 +383,7 @@ IupUpdate_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupUpdateChildren_wrapped (int32_t argc, const Janet *argv)
+IupUpdateChildren_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -395,7 +395,7 @@ IupUpdateChildren_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupRedraw_wrapped (int32_t argc, const Janet *argv)
+IupRedraw_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -408,7 +408,7 @@ IupRedraw_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupRefresh_wrapped (int32_t argc, const Janet *argv)
+IupRefresh_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -420,7 +420,7 @@ IupRefresh_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupRefreshChildren_wrapped (int32_t argc, const Janet *argv)
+IupRefreshChildren_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -432,7 +432,7 @@ IupRefreshChildren_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupExecute_wrapped (int32_t argc, const Janet *argv)
+IupExecute_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -445,7 +445,7 @@ IupExecute_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupExecuteWait_wrapped (int32_t argc, const Janet *argv)
+IupExecuteWait_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -458,7 +458,7 @@ IupExecuteWait_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupHelp_wrapped (int32_t argc, const Janet *argv)
+IupHelp_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -470,7 +470,7 @@ IupHelp_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupLog_wrapped (int32_t argc, const Janet *argv)
+IupLog_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -484,7 +484,7 @@ IupLog_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupLoad_wrapped (int32_t argc, const Janet *argv)
+IupLoad_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -496,7 +496,7 @@ IupLoad_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupLoadBuffer_wrapped (int32_t argc, const Janet *argv)
+IupLoadBuffer_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -508,7 +508,7 @@ IupLoadBuffer_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupVersion_wrapped (int32_t argc, const Janet *argv)
+IupVersion_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -519,7 +519,7 @@ IupVersion_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupVersionDate_wrapped (int32_t argc, const Janet *argv)
+IupVersionDate_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -530,7 +530,7 @@ IupVersionDate_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupVersionNumber_wrapped (int32_t argc, const Janet *argv)
+IupVersionNumber_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -541,7 +541,7 @@ IupVersionNumber_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupVersionShow_wrapped (int32_t argc, const Janet *argv)
+IupVersionShow_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -552,7 +552,7 @@ IupVersionShow_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetLanguage_wrapped (int32_t argc, const Janet *argv)
+IupSetLanguage_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -564,7 +564,7 @@ IupSetLanguage_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetLanguage_wrapped (int32_t argc, const Janet *argv)
+IupGetLanguage_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -575,7 +575,7 @@ IupGetLanguage_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetLanguageString_wrapped (int32_t argc, const Janet *argv)
+IupSetLanguageString_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -588,7 +588,7 @@ IupSetLanguageString_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupStoreLanguageString_wrapped (int32_t argc, const Janet *argv)
+IupStoreLanguageString_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -601,7 +601,7 @@ IupStoreLanguageString_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetLanguageString_wrapped (int32_t argc, const Janet *argv)
+IupGetLanguageString_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -613,7 +613,7 @@ IupGetLanguageString_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetLanguagePack_wrapped (int32_t argc, const Janet *argv)
+IupSetLanguagePack_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -625,7 +625,7 @@ IupSetLanguagePack_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupDestroy_wrapped (int32_t argc, const Janet *argv)
+IupDestroy_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -637,7 +637,7 @@ IupDestroy_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupDetach_wrapped (int32_t argc, const Janet *argv)
+IupDetach_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -649,7 +649,7 @@ IupDetach_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupAppend_wrapped (int32_t argc, const Janet *argv)
+IupAppend_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -662,7 +662,7 @@ IupAppend_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupInsert_wrapped (int32_t argc, const Janet *argv)
+IupInsert_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -676,7 +676,7 @@ IupInsert_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetChild_wrapped (int32_t argc, const Janet *argv)
+IupGetChild_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -689,7 +689,7 @@ IupGetChild_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetChildPos_wrapped (int32_t argc, const Janet *argv)
+IupGetChildPos_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -702,7 +702,7 @@ IupGetChildPos_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetChildCount_wrapped (int32_t argc, const Janet *argv)
+IupGetChildCount_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -714,7 +714,7 @@ IupGetChildCount_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetNextChild_wrapped (int32_t argc, const Janet *argv)
+IupGetNextChild_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -727,7 +727,7 @@ IupGetNextChild_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetBrother_wrapped (int32_t argc, const Janet *argv)
+IupGetBrother_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -739,7 +739,7 @@ IupGetBrother_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetParent_wrapped (int32_t argc, const Janet *argv)
+IupGetParent_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -751,7 +751,7 @@ IupGetParent_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetDialog_wrapped (int32_t argc, const Janet *argv)
+IupGetDialog_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -763,7 +763,7 @@ IupGetDialog_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetDialogChild_wrapped (int32_t argc, const Janet *argv)
+IupGetDialogChild_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -776,7 +776,7 @@ IupGetDialogChild_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupReparent_wrapped (int32_t argc, const Janet *argv)
+IupReparent_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -790,7 +790,7 @@ IupReparent_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupPopup_wrapped (int32_t argc, const Janet *argv)
+IupPopup_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -804,7 +804,7 @@ IupPopup_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupShow_wrapped (int32_t argc, const Janet *argv)
+IupShow_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -816,7 +816,7 @@ IupShow_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupShowXY_wrapped (int32_t argc, const Janet *argv)
+IupShowXY_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -830,7 +830,7 @@ IupShowXY_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupHide_wrapped (int32_t argc, const Janet *argv)
+IupHide_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -842,7 +842,7 @@ IupHide_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMap_wrapped (int32_t argc, const Janet *argv)
+IupMap_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -854,7 +854,7 @@ IupMap_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupUnmap_wrapped (int32_t argc, const Janet *argv)
+IupUnmap_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -866,7 +866,7 @@ IupUnmap_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupResetAttribute_wrapped (int32_t argc, const Janet *argv)
+IupResetAttribute_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -879,7 +879,7 @@ IupResetAttribute_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetAllAttributes_wrapped (int32_t argc, const Janet *argv)
+IupGetAllAttributes_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -893,7 +893,7 @@ IupGetAllAttributes_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupCopyAttributes_wrapped (int32_t argc, const Janet *argv)
+IupCopyAttributes_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -906,7 +906,7 @@ IupCopyAttributes_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetAtt_wrapped (int32_t argc, const Janet *argv)
+IupSetAtt_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -921,7 +921,7 @@ IupSetAtt_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetAttributes_wrapped (int32_t argc, const Janet *argv)
+IupSetAttributes_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -934,7 +934,7 @@ IupSetAttributes_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetAttributes_wrapped (int32_t argc, const Janet *argv)
+IupGetAttributes_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -946,7 +946,7 @@ IupGetAttributes_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetAttribute_wrapped (int32_t argc, const Janet *argv)
+IupSetAttribute_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -960,7 +960,7 @@ IupSetAttribute_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetStrAttribute_wrapped (int32_t argc, const Janet *argv)
+IupSetStrAttribute_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -974,7 +974,7 @@ IupSetStrAttribute_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetStrf_wrapped (int32_t argc, const Janet *argv)
+IupSetStrf_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -989,7 +989,7 @@ IupSetStrf_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetInt_wrapped (int32_t argc, const Janet *argv)
+IupSetInt_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1003,7 +1003,7 @@ IupSetInt_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetFloat_wrapped (int32_t argc, const Janet *argv)
+IupSetFloat_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1017,7 +1017,7 @@ IupSetFloat_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetDouble_wrapped (int32_t argc, const Janet *argv)
+IupSetDouble_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1031,7 +1031,7 @@ IupSetDouble_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetRGB_wrapped (int32_t argc, const Janet *argv)
+IupSetRGB_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -1047,7 +1047,7 @@ IupSetRGB_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetAttribute_wrapped (int32_t argc, const Janet *argv)
+IupGetAttribute_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1060,7 +1060,7 @@ IupGetAttribute_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetInt_wrapped (int32_t argc, const Janet *argv)
+IupGetInt_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1073,7 +1073,7 @@ IupGetInt_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetInt2_wrapped (int32_t argc, const Janet *argv)
+IupGetInt2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1086,7 +1086,7 @@ IupGetInt2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetIntInt_wrapped (int32_t argc, const Janet *argv)
+IupGetIntInt_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1101,7 +1101,7 @@ IupGetIntInt_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetFloat_wrapped (int32_t argc, const Janet *argv)
+IupGetFloat_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1114,7 +1114,7 @@ IupGetFloat_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetDouble_wrapped (int32_t argc, const Janet *argv)
+IupGetDouble_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1127,7 +1127,7 @@ IupGetDouble_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetRGB_wrapped (int32_t argc, const Janet *argv)
+IupGetRGB_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -1143,7 +1143,7 @@ IupGetRGB_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetAttributeId_wrapped (int32_t argc, const Janet *argv)
+IupSetAttributeId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1158,7 +1158,7 @@ IupSetAttributeId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetStrAttributeId_wrapped (int32_t argc, const Janet *argv)
+IupSetStrAttributeId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1173,7 +1173,7 @@ IupSetStrAttributeId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetStrfId_wrapped (int32_t argc, const Janet *argv)
+IupSetStrfId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -1189,7 +1189,7 @@ IupSetStrfId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetIntId_wrapped (int32_t argc, const Janet *argv)
+IupSetIntId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1204,7 +1204,7 @@ IupSetIntId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetFloatId_wrapped (int32_t argc, const Janet *argv)
+IupSetFloatId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1219,7 +1219,7 @@ IupSetFloatId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetDoubleId_wrapped (int32_t argc, const Janet *argv)
+IupSetDoubleId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1234,7 +1234,7 @@ IupSetDoubleId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetRGBId_wrapped (int32_t argc, const Janet *argv)
+IupSetRGBId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 6);
 
@@ -1251,7 +1251,7 @@ IupSetRGBId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetAttributeId_wrapped (int32_t argc, const Janet *argv)
+IupGetAttributeId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1265,7 +1265,7 @@ IupGetAttributeId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetIntId_wrapped (int32_t argc, const Janet *argv)
+IupGetIntId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1279,7 +1279,7 @@ IupGetIntId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetFloatId_wrapped (int32_t argc, const Janet *argv)
+IupGetFloatId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1293,7 +1293,7 @@ IupGetFloatId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetDoubleId_wrapped (int32_t argc, const Janet *argv)
+IupGetDoubleId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1307,7 +1307,7 @@ IupGetDoubleId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetRGBId_wrapped (int32_t argc, const Janet *argv)
+IupGetRGBId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 6);
 
@@ -1324,7 +1324,7 @@ IupGetRGBId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetAttributeId2_wrapped (int32_t argc, const Janet *argv)
+IupSetAttributeId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -1340,7 +1340,7 @@ IupSetAttributeId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetStrAttributeId2_wrapped (int32_t argc, const Janet *argv)
+IupSetStrAttributeId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -1356,7 +1356,7 @@ IupSetStrAttributeId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetStrfId2_wrapped (int32_t argc, const Janet *argv)
+IupSetStrfId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 6);
 
@@ -1373,7 +1373,7 @@ IupSetStrfId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetIntId2_wrapped (int32_t argc, const Janet *argv)
+IupSetIntId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -1389,7 +1389,7 @@ IupSetIntId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetFloatId2_wrapped (int32_t argc, const Janet *argv)
+IupSetFloatId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -1405,7 +1405,7 @@ IupSetFloatId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetDoubleId2_wrapped (int32_t argc, const Janet *argv)
+IupSetDoubleId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -1421,7 +1421,7 @@ IupSetDoubleId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetRGBId2_wrapped (int32_t argc, const Janet *argv)
+IupSetRGBId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 7);
 
@@ -1439,7 +1439,7 @@ IupSetRGBId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetAttributeId2_wrapped (int32_t argc, const Janet *argv)
+IupGetAttributeId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1454,7 +1454,7 @@ IupGetAttributeId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetIntId2_wrapped (int32_t argc, const Janet *argv)
+IupGetIntId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1469,7 +1469,7 @@ IupGetIntId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetFloatId2_wrapped (int32_t argc, const Janet *argv)
+IupGetFloatId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1484,7 +1484,7 @@ IupGetFloatId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetDoubleId2_wrapped (int32_t argc, const Janet *argv)
+IupGetDoubleId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1499,7 +1499,7 @@ IupGetDoubleId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetRGBId2_wrapped (int32_t argc, const Janet *argv)
+IupGetRGBId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 7);
 
@@ -1517,7 +1517,7 @@ IupGetRGBId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetGlobal_wrapped (int32_t argc, const Janet *argv)
+IupSetGlobal_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1530,7 +1530,7 @@ IupSetGlobal_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetStrGlobal_wrapped (int32_t argc, const Janet *argv)
+IupSetStrGlobal_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1543,7 +1543,7 @@ IupSetStrGlobal_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetGlobal_wrapped (int32_t argc, const Janet *argv)
+IupGetGlobal_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -1555,7 +1555,7 @@ IupGetGlobal_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetFocus_wrapped (int32_t argc, const Janet *argv)
+IupSetFocus_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -1567,7 +1567,7 @@ IupSetFocus_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetFocus_wrapped (int32_t argc, const Janet *argv)
+IupGetFocus_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -1578,7 +1578,7 @@ IupGetFocus_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupPreviousField_wrapped (int32_t argc, const Janet *argv)
+IupPreviousField_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -1590,7 +1590,7 @@ IupPreviousField_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupNextField_wrapped (int32_t argc, const Janet *argv)
+IupNextField_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -1602,7 +1602,7 @@ IupNextField_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetCallback_wrapped (int32_t argc, const Janet *argv)
+IupGetCallback_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1615,7 +1615,7 @@ IupGetCallback_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetCallback_wrapped (int32_t argc, const Janet *argv)
+IupSetCallback_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1629,7 +1629,7 @@ IupSetCallback_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetCallbacks_wrapped (int32_t argc, const Janet *argv)
+IupSetCallbacks_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1644,7 +1644,7 @@ IupSetCallbacks_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetFunction_wrapped (int32_t argc, const Janet *argv)
+IupGetFunction_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -1656,7 +1656,7 @@ IupGetFunction_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetFunction_wrapped (int32_t argc, const Janet *argv)
+IupSetFunction_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1669,7 +1669,7 @@ IupSetFunction_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetHandle_wrapped (int32_t argc, const Janet *argv)
+IupGetHandle_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -1681,7 +1681,7 @@ IupGetHandle_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetHandle_wrapped (int32_t argc, const Janet *argv)
+IupSetHandle_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1694,7 +1694,7 @@ IupSetHandle_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetAllNames_wrapped (int32_t argc, const Janet *argv)
+IupGetAllNames_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1707,7 +1707,7 @@ IupGetAllNames_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetAllDialogs_wrapped (int32_t argc, const Janet *argv)
+IupGetAllDialogs_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1720,7 +1720,7 @@ IupGetAllDialogs_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetName_wrapped (int32_t argc, const Janet *argv)
+IupGetName_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -1732,7 +1732,7 @@ IupGetName_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetAttributeHandle_wrapped (int32_t argc, const Janet *argv)
+IupSetAttributeHandle_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1746,7 +1746,7 @@ IupSetAttributeHandle_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetAttributeHandle_wrapped (int32_t argc, const Janet *argv)
+IupGetAttributeHandle_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1759,7 +1759,7 @@ IupGetAttributeHandle_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetAttributeHandleId_wrapped (int32_t argc, const Janet *argv)
+IupSetAttributeHandleId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1774,7 +1774,7 @@ IupSetAttributeHandleId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetAttributeHandleId_wrapped (int32_t argc, const Janet *argv)
+IupGetAttributeHandleId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1788,7 +1788,7 @@ IupGetAttributeHandleId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetAttributeHandleId2_wrapped (int32_t argc, const Janet *argv)
+IupSetAttributeHandleId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -1804,7 +1804,7 @@ IupSetAttributeHandleId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetAttributeHandleId2_wrapped (int32_t argc, const Janet *argv)
+IupGetAttributeHandleId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -1819,7 +1819,7 @@ IupGetAttributeHandleId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetClassName_wrapped (int32_t argc, const Janet *argv)
+IupGetClassName_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -1831,7 +1831,7 @@ IupGetClassName_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetClassType_wrapped (int32_t argc, const Janet *argv)
+IupGetClassType_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -1843,7 +1843,7 @@ IupGetClassType_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetAllClasses_wrapped (int32_t argc, const Janet *argv)
+IupGetAllClasses_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1856,7 +1856,7 @@ IupGetAllClasses_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetClassAttributes_wrapped (int32_t argc, const Janet *argv)
+IupGetClassAttributes_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1870,7 +1870,7 @@ IupGetClassAttributes_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetClassCallbacks_wrapped (int32_t argc, const Janet *argv)
+IupGetClassCallbacks_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1884,7 +1884,7 @@ IupGetClassCallbacks_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSaveClassAttributes_wrapped (int32_t argc, const Janet *argv)
+IupSaveClassAttributes_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -1896,7 +1896,7 @@ IupSaveClassAttributes_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupCopyClassAttributes_wrapped (int32_t argc, const Janet *argv)
+IupCopyClassAttributes_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1909,7 +1909,7 @@ IupCopyClassAttributes_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetClassDefaultAttribute_wrapped (int32_t argc, const Janet *argv)
+IupSetClassDefaultAttribute_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1923,7 +1923,7 @@ IupSetClassDefaultAttribute_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupClassMatch_wrapped (int32_t argc, const Janet *argv)
+IupClassMatch_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1936,7 +1936,7 @@ IupClassMatch_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupCreate_wrapped (int32_t argc, const Janet *argv)
+IupCreate_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -1948,7 +1948,7 @@ IupCreate_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupCreatev_wrapped (int32_t argc, const Janet *argv)
+IupCreatev_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -1961,7 +1961,7 @@ IupCreatev_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupCreatep_wrapped (int32_t argc, const Janet *argv)
+IupCreatep_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -1975,7 +1975,7 @@ IupCreatep_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFill_wrapped (int32_t argc, const Janet *argv)
+IupFill_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -1986,7 +1986,7 @@ IupFill_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSpace_wrapped (int32_t argc, const Janet *argv)
+IupSpace_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -1997,7 +1997,7 @@ IupSpace_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupRadio_wrapped (int32_t argc, const Janet *argv)
+IupRadio_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2009,7 +2009,7 @@ IupRadio_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupVbox_wrapped (int32_t argc, const Janet *argv)
+IupVbox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2022,7 +2022,7 @@ IupVbox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupVboxv_wrapped (int32_t argc, const Janet *argv)
+IupVboxv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2034,7 +2034,7 @@ IupVboxv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupZbox_wrapped (int32_t argc, const Janet *argv)
+IupZbox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2047,7 +2047,7 @@ IupZbox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupZboxv_wrapped (int32_t argc, const Janet *argv)
+IupZboxv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2059,7 +2059,7 @@ IupZboxv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupHbox_wrapped (int32_t argc, const Janet *argv)
+IupHbox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2072,7 +2072,7 @@ IupHbox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupHboxv_wrapped (int32_t argc, const Janet *argv)
+IupHboxv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2084,7 +2084,7 @@ IupHboxv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupNormalizer_wrapped (int32_t argc, const Janet *argv)
+IupNormalizer_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2097,7 +2097,7 @@ IupNormalizer_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupNormalizerv_wrapped (int32_t argc, const Janet *argv)
+IupNormalizerv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2109,7 +2109,7 @@ IupNormalizerv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupCbox_wrapped (int32_t argc, const Janet *argv)
+IupCbox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2122,7 +2122,7 @@ IupCbox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupCboxv_wrapped (int32_t argc, const Janet *argv)
+IupCboxv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2134,7 +2134,7 @@ IupCboxv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSbox_wrapped (int32_t argc, const Janet *argv)
+IupSbox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2146,7 +2146,7 @@ IupSbox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSplit_wrapped (int32_t argc, const Janet *argv)
+IupSplit_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2159,7 +2159,7 @@ IupSplit_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupScrollBox_wrapped (int32_t argc, const Janet *argv)
+IupScrollBox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2171,7 +2171,7 @@ IupScrollBox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFlatScrollBox_wrapped (int32_t argc, const Janet *argv)
+IupFlatScrollBox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2183,7 +2183,7 @@ IupFlatScrollBox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGridBox_wrapped (int32_t argc, const Janet *argv)
+IupGridBox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2196,7 +2196,7 @@ IupGridBox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGridBoxv_wrapped (int32_t argc, const Janet *argv)
+IupGridBoxv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2208,7 +2208,7 @@ IupGridBoxv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMultiBox_wrapped (int32_t argc, const Janet *argv)
+IupMultiBox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2221,7 +2221,7 @@ IupMultiBox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMultiBoxv_wrapped (int32_t argc, const Janet *argv)
+IupMultiBoxv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2233,7 +2233,7 @@ IupMultiBoxv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupExpander_wrapped (int32_t argc, const Janet *argv)
+IupExpander_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2245,7 +2245,7 @@ IupExpander_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupDetachBox_wrapped (int32_t argc, const Janet *argv)
+IupDetachBox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2257,7 +2257,7 @@ IupDetachBox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupBackgroundBox_wrapped (int32_t argc, const Janet *argv)
+IupBackgroundBox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2269,7 +2269,7 @@ IupBackgroundBox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFrame_wrapped (int32_t argc, const Janet *argv)
+IupFrame_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2281,7 +2281,7 @@ IupFrame_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFlatFrame_wrapped (int32_t argc, const Janet *argv)
+IupFlatFrame_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2293,7 +2293,7 @@ IupFlatFrame_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupImage_wrapped (int32_t argc, const Janet *argv)
+IupImage_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -2307,7 +2307,7 @@ IupImage_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupImageRGB_wrapped (int32_t argc, const Janet *argv)
+IupImageRGB_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -2321,7 +2321,7 @@ IupImageRGB_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupImageRGBA_wrapped (int32_t argc, const Janet *argv)
+IupImageRGBA_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -2335,7 +2335,7 @@ IupImageRGBA_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupItem_wrapped (int32_t argc, const Janet *argv)
+IupItem_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2348,7 +2348,7 @@ IupItem_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSubmenu_wrapped (int32_t argc, const Janet *argv)
+IupSubmenu_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2361,7 +2361,7 @@ IupSubmenu_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSeparator_wrapped (int32_t argc, const Janet *argv)
+IupSeparator_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2372,7 +2372,7 @@ IupSeparator_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMenu_wrapped (int32_t argc, const Janet *argv)
+IupMenu_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2385,7 +2385,7 @@ IupMenu_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMenuv_wrapped (int32_t argc, const Janet *argv)
+IupMenuv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2397,7 +2397,7 @@ IupMenuv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupButton_wrapped (int32_t argc, const Janet *argv)
+IupButton_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2410,7 +2410,7 @@ IupButton_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFlatButton_wrapped (int32_t argc, const Janet *argv)
+IupFlatButton_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2422,7 +2422,7 @@ IupFlatButton_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFlatToggle_wrapped (int32_t argc, const Janet *argv)
+IupFlatToggle_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2434,7 +2434,7 @@ IupFlatToggle_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupDropButton_wrapped (int32_t argc, const Janet *argv)
+IupDropButton_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2446,7 +2446,7 @@ IupDropButton_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFlatLabel_wrapped (int32_t argc, const Janet *argv)
+IupFlatLabel_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2458,7 +2458,7 @@ IupFlatLabel_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFlatSeparator_wrapped (int32_t argc, const Janet *argv)
+IupFlatSeparator_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2469,7 +2469,7 @@ IupFlatSeparator_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupCanvas_wrapped (int32_t argc, const Janet *argv)
+IupCanvas_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2481,7 +2481,7 @@ IupCanvas_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupDialog_wrapped (int32_t argc, const Janet *argv)
+IupDialog_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2493,7 +2493,7 @@ IupDialog_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupUser_wrapped (int32_t argc, const Janet *argv)
+IupUser_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2504,7 +2504,7 @@ IupUser_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupThread_wrapped (int32_t argc, const Janet *argv)
+IupThread_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2515,7 +2515,7 @@ IupThread_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupLabel_wrapped (int32_t argc, const Janet *argv)
+IupLabel_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2527,7 +2527,7 @@ IupLabel_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupList_wrapped (int32_t argc, const Janet *argv)
+IupList_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2539,7 +2539,7 @@ IupList_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFlatList_wrapped (int32_t argc, const Janet *argv)
+IupFlatList_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2550,7 +2550,7 @@ IupFlatList_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupText_wrapped (int32_t argc, const Janet *argv)
+IupText_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2562,7 +2562,7 @@ IupText_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMultiLine_wrapped (int32_t argc, const Janet *argv)
+IupMultiLine_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2574,7 +2574,7 @@ IupMultiLine_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupToggle_wrapped (int32_t argc, const Janet *argv)
+IupToggle_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2587,7 +2587,7 @@ IupToggle_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupTimer_wrapped (int32_t argc, const Janet *argv)
+IupTimer_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2598,7 +2598,7 @@ IupTimer_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupClipboard_wrapped (int32_t argc, const Janet *argv)
+IupClipboard_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2609,7 +2609,7 @@ IupClipboard_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupProgressBar_wrapped (int32_t argc, const Janet *argv)
+IupProgressBar_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2620,7 +2620,7 @@ IupProgressBar_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupVal_wrapped (int32_t argc, const Janet *argv)
+IupVal_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2632,7 +2632,7 @@ IupVal_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFlatVal_wrapped (int32_t argc, const Janet *argv)
+IupFlatVal_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2644,7 +2644,7 @@ IupFlatVal_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupTabs_wrapped (int32_t argc, const Janet *argv)
+IupTabs_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2657,7 +2657,7 @@ IupTabs_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupTabsv_wrapped (int32_t argc, const Janet *argv)
+IupTabsv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2669,7 +2669,7 @@ IupTabsv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFlatTabs_wrapped (int32_t argc, const Janet *argv)
+IupFlatTabs_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2682,7 +2682,7 @@ IupFlatTabs_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFlatTabsv_wrapped (int32_t argc, const Janet *argv)
+IupFlatTabsv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2694,7 +2694,7 @@ IupFlatTabsv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupTree_wrapped (int32_t argc, const Janet *argv)
+IupTree_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2705,7 +2705,7 @@ IupTree_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupLink_wrapped (int32_t argc, const Janet *argv)
+IupLink_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2718,7 +2718,7 @@ IupLink_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupAnimatedLabel_wrapped (int32_t argc, const Janet *argv)
+IupAnimatedLabel_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2730,7 +2730,7 @@ IupAnimatedLabel_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupDatePick_wrapped (int32_t argc, const Janet *argv)
+IupDatePick_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2741,7 +2741,7 @@ IupDatePick_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupCalendar_wrapped (int32_t argc, const Janet *argv)
+IupCalendar_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2752,7 +2752,7 @@ IupCalendar_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupColorbar_wrapped (int32_t argc, const Janet *argv)
+IupColorbar_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2763,7 +2763,7 @@ IupColorbar_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGauge_wrapped (int32_t argc, const Janet *argv)
+IupGauge_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2774,7 +2774,7 @@ IupGauge_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupDial_wrapped (int32_t argc, const Janet *argv)
+IupDial_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2786,7 +2786,7 @@ IupDial_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupColorBrowser_wrapped (int32_t argc, const Janet *argv)
+IupColorBrowser_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2797,7 +2797,7 @@ IupColorBrowser_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSpin_wrapped (int32_t argc, const Janet *argv)
+IupSpin_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -2808,7 +2808,7 @@ IupSpin_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSpinbox_wrapped (int32_t argc, const Janet *argv)
+IupSpinbox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2820,7 +2820,7 @@ IupSpinbox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupStringCompare_wrapped (int32_t argc, const Janet *argv)
+IupStringCompare_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -2835,7 +2835,7 @@ IupStringCompare_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSaveImageAsText_wrapped (int32_t argc, const Janet *argv)
+IupSaveImageAsText_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -2850,7 +2850,7 @@ IupSaveImageAsText_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupImageGetHandle_wrapped (int32_t argc, const Janet *argv)
+IupImageGetHandle_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -2862,7 +2862,7 @@ IupImageGetHandle_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupTextConvertLinColToPos_wrapped (int32_t argc, const Janet *argv)
+IupTextConvertLinColToPos_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -2877,7 +2877,7 @@ IupTextConvertLinColToPos_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupTextConvertPosToLinCol_wrapped (int32_t argc, const Janet *argv)
+IupTextConvertPosToLinCol_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -2892,7 +2892,7 @@ IupTextConvertPosToLinCol_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupConvertXYToPos_wrapped (int32_t argc, const Janet *argv)
+IupConvertXYToPos_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -2906,7 +2906,7 @@ IupConvertXYToPos_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupStoreGlobal_wrapped (int32_t argc, const Janet *argv)
+IupStoreGlobal_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -2919,7 +2919,7 @@ IupStoreGlobal_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupStoreAttribute_wrapped (int32_t argc, const Janet *argv)
+IupStoreAttribute_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -2933,7 +2933,7 @@ IupStoreAttribute_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetfAttribute_wrapped (int32_t argc, const Janet *argv)
+IupSetfAttribute_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -2948,7 +2948,7 @@ IupSetfAttribute_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupStoreAttributeId_wrapped (int32_t argc, const Janet *argv)
+IupStoreAttributeId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -2963,7 +2963,7 @@ IupStoreAttributeId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetfAttributeId_wrapped (int32_t argc, const Janet *argv)
+IupSetfAttributeId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -2979,7 +2979,7 @@ IupSetfAttributeId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupStoreAttributeId2_wrapped (int32_t argc, const Janet *argv)
+IupStoreAttributeId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -2995,7 +2995,7 @@ IupStoreAttributeId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupSetfAttributeId2_wrapped (int32_t argc, const Janet *argv)
+IupSetfAttributeId2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 6);
 
@@ -3012,7 +3012,7 @@ IupSetfAttributeId2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupTreeSetUserId_wrapped (int32_t argc, const Janet *argv)
+IupTreeSetUserId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -3026,7 +3026,7 @@ IupTreeSetUserId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupTreeGetUserId_wrapped (int32_t argc, const Janet *argv)
+IupTreeGetUserId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -3039,7 +3039,7 @@ IupTreeGetUserId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupTreeGetId_wrapped (int32_t argc, const Janet *argv)
+IupTreeGetId_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -3052,7 +3052,7 @@ IupTreeGetId_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupTreeSetAttributeHandle_wrapped (int32_t argc, const Janet *argv)
+IupTreeSetAttributeHandle_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -3067,7 +3067,7 @@ IupTreeSetAttributeHandle_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFileDlg_wrapped (int32_t argc, const Janet *argv)
+IupFileDlg_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3078,7 +3078,7 @@ IupFileDlg_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMessageDlg_wrapped (int32_t argc, const Janet *argv)
+IupMessageDlg_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3089,7 +3089,7 @@ IupMessageDlg_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupColorDlg_wrapped (int32_t argc, const Janet *argv)
+IupColorDlg_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3100,7 +3100,7 @@ IupColorDlg_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupFontDlg_wrapped (int32_t argc, const Janet *argv)
+IupFontDlg_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3111,7 +3111,7 @@ IupFontDlg_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupProgressDlg_wrapped (int32_t argc, const Janet *argv)
+IupProgressDlg_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3122,7 +3122,7 @@ IupProgressDlg_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetFile_wrapped (int32_t argc, const Janet *argv)
+IupGetFile_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -3134,7 +3134,7 @@ IupGetFile_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMessage_wrapped (int32_t argc, const Janet *argv)
+IupMessage_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -3147,7 +3147,7 @@ IupMessage_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMessagef_wrapped (int32_t argc, const Janet *argv)
+IupMessagef_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -3161,7 +3161,7 @@ IupMessagef_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMessageError_wrapped (int32_t argc, const Janet *argv)
+IupMessageError_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -3174,7 +3174,7 @@ IupMessageError_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupMessageAlarm_wrapped (int32_t argc, const Janet *argv)
+IupMessageAlarm_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 4);
 
@@ -3189,7 +3189,7 @@ IupMessageAlarm_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupAlarm_wrapped (int32_t argc, const Janet *argv)
+IupAlarm_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -3205,7 +3205,7 @@ IupAlarm_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupScanf_wrapped (int32_t argc, const Janet *argv)
+IupScanf_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -3218,7 +3218,7 @@ IupScanf_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupListDialog_wrapped (int32_t argc, const Janet *argv)
+IupListDialog_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 8);
 
@@ -3237,7 +3237,7 @@ IupListDialog_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetText_wrapped (int32_t argc, const Janet *argv)
+IupGetText_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 3);
 
@@ -3251,7 +3251,7 @@ IupGetText_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetColor_wrapped (int32_t argc, const Janet *argv)
+IupGetColor_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -3267,7 +3267,7 @@ IupGetColor_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetParam_wrapped (int32_t argc, const Janet *argv)
+IupGetParam_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 5);
 
@@ -3283,7 +3283,7 @@ IupGetParam_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGetParamv_wrapped (int32_t argc, const Janet *argv)
+IupGetParamv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 7);
 
@@ -3301,7 +3301,7 @@ IupGetParamv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupParam_wrapped (int32_t argc, const Janet *argv)
+IupParam_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -3313,7 +3313,7 @@ IupParam_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupParamBox_wrapped (int32_t argc, const Janet *argv)
+IupParamBox_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -3326,7 +3326,7 @@ IupParamBox_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupParamBoxv_wrapped (int32_t argc, const Janet *argv)
+IupParamBoxv_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -3338,7 +3338,7 @@ IupParamBoxv_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupLayoutDialog_wrapped (int32_t argc, const Janet *argv)
+IupLayoutDialog_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -3350,7 +3350,7 @@ IupLayoutDialog_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupElementPropertiesDialog_wrapped (int32_t argc, const Janet *argv)
+IupElementPropertiesDialog_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 2);
 
@@ -3363,7 +3363,7 @@ IupElementPropertiesDialog_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupGlobalsDialog_wrapped (int32_t argc, const Janet *argv)
+IupGlobalsDialog_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3374,7 +3374,7 @@ IupGlobalsDialog_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-IupClassInfoDialog_wrapped (int32_t argc, const Janet *argv)
+IupClassInfoDialog_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 1);
 
@@ -3386,7 +3386,7 @@ IupClassInfoDialog_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_ERROR_wrapped (int32_t argc, const Janet *argv)
+const_IUP_ERROR_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3397,7 +3397,7 @@ const_IUP_ERROR_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_NOERROR_wrapped (int32_t argc, const Janet *argv)
+const_IUP_NOERROR_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3408,7 +3408,7 @@ const_IUP_NOERROR_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_OPENED_wrapped (int32_t argc, const Janet *argv)
+const_IUP_OPENED_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3419,7 +3419,7 @@ const_IUP_OPENED_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_INVALID_wrapped (int32_t argc, const Janet *argv)
+const_IUP_INVALID_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3430,7 +3430,7 @@ const_IUP_INVALID_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_INVALID_ID_wrapped (int32_t argc, const Janet *argv)
+const_IUP_INVALID_ID_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3441,7 +3441,7 @@ const_IUP_INVALID_ID_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_IGNORE_wrapped (int32_t argc, const Janet *argv)
+const_IUP_IGNORE_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3452,7 +3452,7 @@ const_IUP_IGNORE_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_DEFAULT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_DEFAULT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3463,7 +3463,7 @@ const_IUP_DEFAULT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_CLOSE_wrapped (int32_t argc, const Janet *argv)
+const_IUP_CLOSE_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3474,7 +3474,7 @@ const_IUP_CLOSE_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_CONTINUE_wrapped (int32_t argc, const Janet *argv)
+const_IUP_CONTINUE_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3485,7 +3485,7 @@ const_IUP_CONTINUE_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_CENTER_wrapped (int32_t argc, const Janet *argv)
+const_IUP_CENTER_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3496,7 +3496,7 @@ const_IUP_CENTER_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_LEFT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_LEFT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3507,7 +3507,7 @@ const_IUP_LEFT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_RIGHT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_RIGHT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3518,7 +3518,7 @@ const_IUP_RIGHT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_MOUSEPOS_wrapped (int32_t argc, const Janet *argv)
+const_IUP_MOUSEPOS_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3529,7 +3529,7 @@ const_IUP_MOUSEPOS_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_CURRENT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_CURRENT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3540,7 +3540,7 @@ const_IUP_CURRENT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_CENTERPARENT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_CENTERPARENT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3551,7 +3551,7 @@ const_IUP_CENTERPARENT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_TOP_wrapped (int32_t argc, const Janet *argv)
+const_IUP_TOP_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3562,7 +3562,7 @@ const_IUP_TOP_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_BOTTOM_wrapped (int32_t argc, const Janet *argv)
+const_IUP_BOTTOM_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3573,7 +3573,7 @@ const_IUP_BOTTOM_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SHOW_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SHOW_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3584,7 +3584,7 @@ const_IUP_SHOW_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_RESTORE_wrapped (int32_t argc, const Janet *argv)
+const_IUP_RESTORE_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3595,7 +3595,7 @@ const_IUP_RESTORE_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_MINIMIZE_wrapped (int32_t argc, const Janet *argv)
+const_IUP_MINIMIZE_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3606,7 +3606,7 @@ const_IUP_MINIMIZE_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_MAXIMIZE_wrapped (int32_t argc, const Janet *argv)
+const_IUP_MAXIMIZE_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3617,7 +3617,7 @@ const_IUP_MAXIMIZE_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_HIDE_wrapped (int32_t argc, const Janet *argv)
+const_IUP_HIDE_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3628,7 +3628,7 @@ const_IUP_HIDE_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBUP_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBUP_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3639,7 +3639,7 @@ const_IUP_SBUP_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBDN_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBDN_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3650,7 +3650,7 @@ const_IUP_SBDN_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBPGUP_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBPGUP_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3661,7 +3661,7 @@ const_IUP_SBPGUP_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBPGDN_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBPGDN_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3672,7 +3672,7 @@ const_IUP_SBPGDN_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBPOSV_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBPOSV_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3683,7 +3683,7 @@ const_IUP_SBPOSV_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBDRAGV_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBDRAGV_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3694,7 +3694,7 @@ const_IUP_SBDRAGV_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBLEFT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBLEFT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3705,7 +3705,7 @@ const_IUP_SBLEFT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBRIGHT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBRIGHT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3716,7 +3716,7 @@ const_IUP_SBRIGHT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBPGLEFT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBPGLEFT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3727,7 +3727,7 @@ const_IUP_SBPGLEFT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBPGRIGHT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBPGRIGHT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3738,7 +3738,7 @@ const_IUP_SBPGRIGHT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBPOSH_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBPOSH_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3749,7 +3749,7 @@ const_IUP_SBPOSH_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SBDRAGH_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SBDRAGH_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3760,7 +3760,7 @@ const_IUP_SBDRAGH_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_BUTTON1_wrapped (int32_t argc, const Janet *argv)
+const_IUP_BUTTON1_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3771,7 +3771,7 @@ const_IUP_BUTTON1_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_BUTTON2_wrapped (int32_t argc, const Janet *argv)
+const_IUP_BUTTON2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3782,7 +3782,7 @@ const_IUP_BUTTON2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_BUTTON3_wrapped (int32_t argc, const Janet *argv)
+const_IUP_BUTTON3_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3793,7 +3793,7 @@ const_IUP_BUTTON3_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_BUTTON4_wrapped (int32_t argc, const Janet *argv)
+const_IUP_BUTTON4_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3804,7 +3804,7 @@ const_IUP_BUTTON4_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_BUTTON5_wrapped (int32_t argc, const Janet *argv)
+const_IUP_BUTTON5_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3815,7 +3815,7 @@ const_IUP_BUTTON5_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_MASK_FLOAT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_MASK_FLOAT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3826,7 +3826,7 @@ const_IUP_MASK_FLOAT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_MASK_UFLOAT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_MASK_UFLOAT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3837,7 +3837,7 @@ const_IUP_MASK_UFLOAT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_MASK_EFLOAT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_MASK_EFLOAT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3848,7 +3848,7 @@ const_IUP_MASK_EFLOAT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_MASK_UEFLOAT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_MASK_UEFLOAT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3859,7 +3859,7 @@ const_IUP_MASK_UEFLOAT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_MASK_FLOATCOMMA_wrapped (int32_t argc, const Janet *argv)
+const_IUP_MASK_FLOATCOMMA_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3870,7 +3870,7 @@ const_IUP_MASK_FLOATCOMMA_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_MASK_UFLOATCOMMA_wrapped (int32_t argc, const Janet *argv)
+const_IUP_MASK_UFLOATCOMMA_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3881,7 +3881,7 @@ const_IUP_MASK_UFLOATCOMMA_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_MASK_INT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_MASK_INT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3892,7 +3892,7 @@ const_IUP_MASK_INT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_MASK_UINT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_MASK_UINT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3903,7 +3903,7 @@ const_IUP_MASK_UINT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUPMASK_FLOAT_wrapped (int32_t argc, const Janet *argv)
+const_IUPMASK_FLOAT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3914,7 +3914,7 @@ const_IUPMASK_FLOAT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUPMASK_UFLOAT_wrapped (int32_t argc, const Janet *argv)
+const_IUPMASK_UFLOAT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3925,7 +3925,7 @@ const_IUPMASK_UFLOAT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUPMASK_EFLOAT_wrapped (int32_t argc, const Janet *argv)
+const_IUPMASK_EFLOAT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3936,7 +3936,7 @@ const_IUPMASK_EFLOAT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUPMASK_INT_wrapped (int32_t argc, const Janet *argv)
+const_IUPMASK_INT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3947,7 +3947,7 @@ const_IUPMASK_INT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUPMASK_UINT_wrapped (int32_t argc, const Janet *argv)
+const_IUPMASK_UINT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3958,7 +3958,7 @@ const_IUPMASK_UINT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_GETPARAM_BUTTON1_wrapped (int32_t argc, const Janet *argv)
+const_IUP_GETPARAM_BUTTON1_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3969,7 +3969,7 @@ const_IUP_GETPARAM_BUTTON1_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_GETPARAM_INIT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_GETPARAM_INIT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3980,7 +3980,7 @@ const_IUP_GETPARAM_INIT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_GETPARAM_BUTTON2_wrapped (int32_t argc, const Janet *argv)
+const_IUP_GETPARAM_BUTTON2_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -3991,7 +3991,7 @@ const_IUP_GETPARAM_BUTTON2_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_GETPARAM_BUTTON3_wrapped (int32_t argc, const Janet *argv)
+const_IUP_GETPARAM_BUTTON3_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -4002,7 +4002,7 @@ const_IUP_GETPARAM_BUTTON3_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_GETPARAM_CLOSE_wrapped (int32_t argc, const Janet *argv)
+const_IUP_GETPARAM_CLOSE_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -4013,7 +4013,7 @@ const_IUP_GETPARAM_CLOSE_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_GETPARAM_MAP_wrapped (int32_t argc, const Janet *argv)
+const_IUP_GETPARAM_MAP_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -4024,7 +4024,7 @@ const_IUP_GETPARAM_MAP_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_GETPARAM_OK_wrapped (int32_t argc, const Janet *argv)
+const_IUP_GETPARAM_OK_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -4035,7 +4035,7 @@ const_IUP_GETPARAM_OK_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_GETPARAM_CANCEL_wrapped (int32_t argc, const Janet *argv)
+const_IUP_GETPARAM_CANCEL_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -4046,7 +4046,7 @@ const_IUP_GETPARAM_CANCEL_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_GETPARAM_HELP_wrapped (int32_t argc, const Janet *argv)
+const_IUP_GETPARAM_HELP_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -4057,7 +4057,7 @@ const_IUP_GETPARAM_HELP_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_PRIMARY_wrapped (int32_t argc, const Janet *argv)
+const_IUP_PRIMARY_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -4068,7 +4068,7 @@ const_IUP_PRIMARY_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_SECONDARY_wrapped (int32_t argc, const Janet *argv)
+const_IUP_SECONDARY_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -4079,7 +4079,7 @@ const_IUP_SECONDARY_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_RECBINARY_wrapped (int32_t argc, const Janet *argv)
+const_IUP_RECBINARY_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -4090,7 +4090,7 @@ const_IUP_RECBINARY_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-const_IUP_RECTEXT_wrapped (int32_t argc, const Janet *argv)
+const_IUP_RECTEXT_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -4101,7 +4101,7 @@ const_IUP_RECTEXT_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-int_ptr_wrapped (int32_t argc, const Janet *argv)
+int_ptr_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 
@@ -4112,7 +4112,7 @@ int_ptr_wrapped (int32_t argc, const Janet *argv)
 }
 
 static Janet
-char_ptr_wrapped (int32_t argc, const Janet *argv)
+char_ptr_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
 

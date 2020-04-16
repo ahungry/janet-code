@@ -43,7 +43,7 @@ int idx = 0;
 node_t tmp_root_node = { -1, NULL, NULL };
 node_t *root_node = NULL;
 
-static Janet future (int32_t argc, const Janet *argv) {
+static Janet future (int32_t argc, Janet *argv) {
   janet_fixarity (argc, 1);
   JanetFunction *func1 = janet_getfunction (argv, 0);
 
@@ -72,7 +72,7 @@ static Janet future (int32_t argc, const Janet *argv) {
 }
 
 // TODO: When we realize, we should spin here until it is not pending.
-static Janet realize (int32_t argc, const Janet *argv) {
+static Janet realize (int32_t argc, Janet *argv) {
   janet_fixarity (argc, 1);
   int x = janet_getinteger (argv, 0);
   node_t *node_realized = get_by_id (x, &root_node);
