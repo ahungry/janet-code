@@ -6,8 +6,12 @@
   (def label (IupLabel "Hello world from IUP."))
 
   (def button (IupButton (string/format "Button clicked %d times" x) "NULL"))
+  (def button2 (IupButton "Close" "NULL"))
 
   (def vbox (IupVbox button (int-ptr)))
+
+  (IupAppend vbox button2)
+
   (def dialog (IupDialog vbox))
 
   (IupSetAttribute dialog "TITLE" "Hello World 2")
@@ -23,13 +27,22 @@
             (++ x)
             (spit "iup-thunk.log" (string/format "%d\n" x) :a)
           # Essentially keeps opening windows, sort of neat...
-          (show-popup)
-             # (IupRedraw button 0)
+            # (show-popup)
+          # (IupRedraw button 0)
+          # (IupAppend vbox button)
+          # (IupRedraw vbox 0)
+          # (show-popup)
+          (IupSetAttribute button "TITLE" (string/format "Button clicked %d times" x))
+          # (IupSetAttribute button "VISIBLE" "NO")
+          # (IupRedraw button 1)
           )))
 
   (iup-set-thunk-callback
    button "ACTION"
    thunk-recursive-popups)
+
+  (iup-set-thunk-callback
+   button2 "ACTION" (iup-make-janet-thunk (fn [] (IupClose))))
 
   # (pp (iup-call-janet-thunk thunk2))
   # (iup-make button "ACTION" button-exit-cb)
