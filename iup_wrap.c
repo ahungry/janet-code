@@ -4200,17 +4200,20 @@ call_thunk_N (Ihandle* ih)
   return 0;
 }
 
+JanetTable * janet_iup_cbs = NULL;
+
 // TODO: Re-implement the thunk storage and calling with something like this.
-/* int * */
-/* janet_iup_universal_cb (IHandle *ih) */
-/* { */
-/*   JanetFunction *f = janet_unwrap_function(janet_table_get(janet_iup_cbs, */
-/*                                                            janet_wrap_pointer(ih))); */
+static int
+janet_iup_universal_cb (Ihandle *ih)
+{
+  JanetFunction *f = janet_unwrap_function(janet_table_get(janet_iup_cbs,
+                                                           janet_wrap_pointer(ih)));
 
-/*   janet_call(f, 0, NULL); */
+  janet_call(f, 0, NULL);
 
-/*   return NULL; */
-/* } */
+  return NULL;
+}
+
 
 static Janet
 IupSetThunkCallback_wrapped (int32_t argc, Janet *argv)
@@ -4222,9 +4225,17 @@ IupSetThunkCallback_wrapped (int32_t argc, Janet *argv)
   Icallback arg_2;
 
   JanetFunction *f = janet_getfunction (argv, 2);
-  push_thunk (f, arg_0);
+  // push_thunk (f, arg_0);
 
-  arg_2 = (Icallback) call_thunk_N;
+  if (NULL == janet_iup_cbs)
+    {
+      janet_iup_cbs = janet_table (0);
+    }
+
+  janet_table_put(janet_iup_cbs, janet_wrap_pointer (arg_0), janet_wrap_function (f));
+
+  // arg_2 = (Icallback) call_thunk_N;
+  arg_2 = (Icallback) janet_iup_universal_cb;
 
   Icallback result = IupSetCallback ((Ihandle *) arg_0, (char const *) arg_1, (Icallback) arg_2);
 
