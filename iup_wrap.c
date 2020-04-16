@@ -4124,56 +4124,52 @@ char_ptr_wrapped (int32_t argc, Janet *argv)
 
 // BEGIN Non-Swig hand generation stuff
 typedef struct thunks {
-  int idx;
+  Ihandle *ih;
   JanetFunction *thunk;
   struct thunks *next;
 } thunks_t;
 
 thunks_t * root_thunks = NULL;
 
-int
-push_thunk (JanetFunction *f)
+void
+push_thunk (JanetFunction *f, Ihandle *ih)
 {
+  fprintf(stderr, "push_thunk was called...addy: %d\n", (int)ih);
+
   if (NULL == root_thunks)
     {
       root_thunks = malloc (sizeof (thunks_t));
-      thunks_t t = { 0, f, NULL };
+      thunks_t t = { ih, f, NULL };
       memcpy (root_thunks, &t, sizeof (thunks_t));
 
       return 0;
     }
 
   thunks_t * node = root_thunks;
-  int idx = 0;
 
   while (NULL != node->next)
     {
-      idx = node->idx;
       node = node->next;
     }
 
-  int nidx = idx + 1;
-  thunks_t next = { nidx, f, NULL };
+  thunks_t next = { ih, f, NULL };
 
   node->next = malloc (sizeof (thunks_t));
   memcpy (node->next, &next, sizeof (thunks_t));
-
-  fprintf(stderr, "push_thunk was called...");
-
-  return nidx;
 }
 
 JanetFunction *
-get_thunk_by_id (int idx)
+get_thunk_by_id (Ihandle *ih)
 {
-  fprintf(stderr, "get_thunk_by_id was called");
+  fprintf(stderr, "get_thunk_by_id was called on addy: %d\n", (int)ih);
 
   thunks_t * node = root_thunks;
 
   while (NULL != node->next)
     {
-      printf ("Looking at a node, idx is %d\n", idx);
-      if (node->idx == idx)
+      printf ("Looking at a node, ih is %d\n", (int)node->ih);
+
+      if ((int)node->ih == (int)ih)
         {
           break;
         }
@@ -4191,40 +4187,18 @@ get_thunk_by_id (int idx)
   return node->thunk;
 }
 
-// Create a new thunk - it will be called later...
-static Janet
-IupMakeJanetThunk_wrapped (int32_t argc, Janet *argv)
+static int
+call_thunk_N (Ihandle* ih)
 {
-  janet_fixarity (argc, 1);
+  int *ptr = &ih;
 
-  JanetFunction *f = janet_getfunction (argv, 0);
-  int idx = push_thunk (f);
+  printf ("Received Ihandle based call back, handler is: %d \n",
+          *ptr);
 
-  return janet_wrap_integer (idx);
+  janet_call (get_thunk_by_id (ih), 0, NULL);
+
+  return 0;
 }
-
-static Janet
-IupCallJanetThunk_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 1);
-
-  int idx = janet_getinteger (argv, 0);
-  JanetFunction *f = get_thunk_by_id (idx);
-  Janet out = janet_call (f, 0, NULL);
-
-  return out;
-}
-
-void call_thunk_0 () { janet_call (get_thunk_by_id (0), 0, NULL); }
-void call_thunk_1 () { janet_call (get_thunk_by_id (1), 0, NULL); }
-void call_thunk_2 () { janet_call (get_thunk_by_id (2), 0, NULL); }
-void call_thunk_3 () { janet_call (get_thunk_by_id (3), 0, NULL); }
-void call_thunk_4 () { janet_call (get_thunk_by_id (4), 0, NULL); }
-void call_thunk_5 () { janet_call (get_thunk_by_id (5), 0, NULL); }
-void call_thunk_6 () { janet_call (get_thunk_by_id (6), 0, NULL); }
-void call_thunk_7 () { janet_call (get_thunk_by_id (7), 0, NULL); }
-void call_thunk_8 () { janet_call (get_thunk_by_id (8), 0, NULL); }
-void call_thunk_9 () { janet_call (get_thunk_by_id (9), 0, NULL); }
 
 static Janet
 IupSetThunkCallback_wrapped (int32_t argc, Janet *argv)
@@ -4234,21 +4208,11 @@ IupSetThunkCallback_wrapped (int32_t argc, Janet *argv)
   Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
   char const * arg_1 = (char const *) janet_getstring (argv, 1);
   Icallback arg_2;
-  int thunk_n = janet_getinteger (argv, 2);
 
-  switch (thunk_n)
-    {
-    case 0: arg_2 = (Icallback) call_thunk_0; break;
-    case 1: arg_2 = (Icallback) call_thunk_1; break;
-    case 2: arg_2 = (Icallback) call_thunk_2; break;
-    case 3: arg_2 = (Icallback) call_thunk_3; break;
-    case 4: arg_2 = (Icallback) call_thunk_4; break;
-    case 5: arg_2 = (Icallback) call_thunk_5; break;
-    case 6: arg_2 = (Icallback) call_thunk_6; break;
-    case 7: arg_2 = (Icallback) call_thunk_7; break;
-    case 8: arg_2 = (Icallback) call_thunk_8; break;
-    case 9: arg_2 = (Icallback) call_thunk_9; break;
-    }
+  JanetFunction *f = janet_getfunction (argv, 2);
+  push_thunk (f, arg_0);
+
+  arg_2 = (Icallback) call_thunk_N;
 
   Icallback result = IupSetCallback ((Ihandle *) arg_0, (char const *) arg_1, (Icallback) arg_2);
 
@@ -4258,12 +4222,6 @@ IupSetThunkCallback_wrapped (int32_t argc, Janet *argv)
 
 static const JanetReg
 cfuns[] = {
-  {
-    "iup-make-janet-thunk", IupMakeJanetThunk_wrapped, "Store Janet thunk for later."
-  },
-  {
-    "iup-call-janet-thunk", IupCallJanetThunk_wrapped, "Call Janet thunk stored for later."
-  },
   {
     "iup-set-thunk-callback", IupSetThunkCallback_wrapped, ""
   },
