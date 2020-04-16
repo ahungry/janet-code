@@ -15,6 +15,15 @@
   (def button-exit-cb 0)
   (IupSetCallback button "ACTION" button-exit-cb)
 
+  (def thunk (iup-make-janet-thunk button "ACTION" (fn [] (+ 1 1))))
+  (def thunk2 (iup-make-janet-thunk button "ACTION" (fn [] (+ 13 1))))
+
+  (pp thunk)
+  (pp thunk2)
+  (pp (iup-call-janet-thunk thunk))
+  (pp (iup-call-janet-thunk thunk2))
+  # (iup-make button "ACTION" button-exit-cb)
+
   (IupShowXY dialog (const-IUP-CENTER) (const-IUP-CENTER))
 
   (IupMainLoop)

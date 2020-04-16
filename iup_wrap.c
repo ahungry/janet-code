@@ -4122,8 +4122,112 @@ char_ptr_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_pointer (result);
 }
 
+// BEGIN Non-Swig hand generation stuff
+typedef struct thunks {
+  int idx;
+  JanetFunction *thunk;
+  struct thunks *next;
+} thunks_t;
+
+thunks_t * root_thunks = NULL;
+
+int
+push_thunk (JanetFunction *f)
+{
+  if (NULL == root_thunks)
+    {
+      root_thunks = malloc (sizeof (thunks_t));
+      thunks_t t = { 0, f, NULL };
+      memcpy (root_thunks, &t, sizeof (thunks_t));
+
+      return 0;
+    }
+
+  thunks_t * node = root_thunks;
+  int idx = 0;
+
+  while (NULL != node->next)
+    {
+      idx = node->idx;
+      node = node->next;
+    }
+
+  int nidx = idx + 1;
+  thunks_t next = { nidx, f, NULL };
+
+  node->next = malloc (sizeof (thunks_t));
+  memcpy (node->next, &next, sizeof (thunks_t));
+
+  fprintf(stderr, "push_thunk was called...");
+
+  return nidx;
+}
+
+JanetFunction *
+get_thunk_by_id (int idx)
+{
+  fprintf(stderr, "get_thunk_by_id was called");
+
+  thunks_t * node = root_thunks;
+
+  while (NULL != node->next)
+    {
+      printf ("Looking at a node, idx is %d\n", idx);
+      if (node->idx == idx)
+        {
+          break;
+        }
+
+      node = node->next;
+    }
+
+  if (NULL == node || NULL == node->thunk)
+    {
+      fprintf(stderr, "CRAP");
+
+      return root_thunks->thunk;
+    }
+
+  return node->thunk;
+}
+
+// Create a new thunk - it will be called later...
+static Janet
+IupMakeJanetThunk_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 3);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  char const * arg_1 = (char const *) janet_getstring (argv, 1);
+  JanetFunction *f = janet_getfunction (argv, 2);
+
+  int idx = push_thunk (f);
+
+  return janet_wrap_integer (idx);
+}
+
+static Janet
+IupCallJanetThunk_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 1);
+
+  int idx = janet_getinteger (argv, 0);
+  JanetFunction *f = get_thunk_by_id (idx);
+  Janet out = janet_call (f, 0, NULL);
+
+  return out;
+}
+// END Non-Swig hand generation stuff
+
 static const JanetReg
 cfuns[] = {
+  {
+    "iup-make-janet-thunk", IupMakeJanetThunk_wrapped, "Store Janet thunk for later."
+  },
+  {
+    "iup-call-janet-thunk", IupCallJanetThunk_wrapped, "Call Janet thunk stored for later."
+  },
+
   {
     "const-IUP-NAME", const_IUP_NAME_wrapped, "Return the constant value."
   },{
