@@ -11,6 +11,14 @@ build-curl:
 	./build-curl.sh
 
 app.bin: app.c
+	$(CC) -g -std=c99 -Wall -fPIC -I./amalg \
+	-I/usr/include/iup \
+	-I/usr/include/curl \
+	amalg/janet.c $< -o $@ \
+	-pthread -lm -ldl -lrt -lpthread \
+	-lz -ldl -lcurl -liup -liupimglib
+
+app-static.bin: app.c
 	$(CC) -g -std=c99 -Wall -fPIC -static -I./amalg \
 	-I/usr/include/iup \
 	-I/usr/include/curl \
@@ -18,11 +26,14 @@ app.bin: app.c
 	-DCURL_STATICLIB \
 	-Wl,-Bstatic \
 	-L/usr/lib \
-	-lm -ldl -lrt -lpthread \
+	-pthread -lm -ldl -lrt \
 	iup-linux64/libiup.a \
 	iup-linux64/libiupimglib.a \
 	libcurl-nix-x86_64.a \
-	-lcrypto -lz -ldl -static-libgcc
+	openssl/libssl.a \
+	openssl/libcrypto.a \
+	libcares.a \
+	-lz -ldl -static-libgcc
 
 standalone.bin: standalone.c
 	$(CC) -g -std=c99 -Wall -fPIC -I./amalg -I/usr/include/curl \
