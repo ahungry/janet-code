@@ -22,18 +22,25 @@ app-static.bin: app.c
 	$(CC) -g -std=c99 -Wall -fPIC -static -I./amalg \
 	-I/usr/include/iup \
 	-I/usr/include/curl \
+	`pkg-config --cflags gtk+-3.0` \
 	amalg/janet.c $< -o $@ \
 	-DCURL_STATICLIB \
 	-Wl,-Bstatic \
 	-L/usr/lib \
-	-pthread -lm -ldl -lrt \
-	iup-linux64/libiup.a \
-	iup-linux64/libiupimglib.a \
+	-pthread -lrt \
+	iup-linux64/libiup.a  iup-linux64/libiupcd.a  iup-linux64/libiupcontrols.a  iup-linux64/libiupgl.a  iup-linux64/libiupglcontrols.a  iup-linux64/libiupim.a  iup-linux64/libiupimglib.a  iup-linux64/libiup_mglplot.a  iup-linux64/libiup_plot.a  iup-linux64/libiup_scintilla.a  iup-linux64/libiuptuio.a  iup-linux64/libiupweb.a \
 	libcurl-nix-x86_64.a \
 	openssl/libssl.a \
 	openssl/libcrypto.a \
 	libcares.a \
-	-lz -ldl -static-libgcc
+	-Wl,-Bdynamic \
+	`pkg-config --libs gtk+-3.0` \
+	-lX11 -lm -lz -ldl -static-libgcc
+
+patch-elf:
+	readelf -l app-static.bin | grep interpre
+	patchelf --set-interpreter /lib/ld-linux-x86-64.so.2 ./app-static.bin
+	readelf -l app-static.bin | grep interpre
 
 standalone.bin: standalone.c
 	$(CC) -g -std=c99 -Wall -fPIC -I./amalg -I/usr/include/curl \
