@@ -10,3 +10,5 @@ build/
 *.dll
 *.a
 *.log
+/tmp/
+/openssl/

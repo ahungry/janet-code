@@ -7,18 +7,19 @@ top=$(pwd)
 
 version=curl-7.69.1
 
-cd /tmp
-mkdir -p curl
-cd /tmp/curl
+mkdir -p tmp/curl
+cd tmp/curl
 wget https://curl.haxx.se/download/$version.tar.gz
 tar xzvf $version.tar.gz
 
 cd $version
 
-./configure --disable-shared --enable-static --prefix=/tmp/curl --disable-ldap --disable-sspi --without-librtmp --disable-ftp --disable-file --disable-dict --disable-telnet --disable-tftp --disable-rtsp --disable-pop3 --disable-imap --disable-smtp --disable-gopher --disable-smb --without-libidn --enable-ares
+./configure --disable-shared --enable-static --prefix=tmp/curl --disable-ldap --disable-sspi --without-librtmp --disable-ftp --disable-file --disable-dict --disable-telnet --disable-tftp --disable-rtsp --disable-pop3 --disable-imap --disable-smtp --disable-gopher --disable-smb --without-libidn --enable-ares
 
 make -j4
 
-find /tmp/curl -name libcurl.a -exec cp {} $top/libcurl-nix-x86_64.a \;
+cd $top
+
+find tmp/curl -name libcurl.a -exec cp {} $top/libcurl-nix-x86_64.a \;
 
 cd $top

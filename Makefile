@@ -17,10 +17,12 @@ app.bin: app.c
 	amalg/janet.c $< -o $@ \
 	-DCURL_STATICLIB \
 	-Wl,-Bstatic \
-	-L/home/mcarter/software/iup/iup/lib/Linux55_64 \
 	-L/usr/lib \
-	-lm -ldl -lrt -lpthread -liup -liupimglib \
-	libcurl-nix-x86_64.a
+	-lm -ldl -lrt -lpthread \
+	iup-linux64/libiup.a \
+	iup-linux64/libiupimglib.a \
+	libcurl-nix-x86_64.a \
+	-lcrypto -lz -ldl -static-libgcc
 
 standalone.bin: standalone.c
 	$(CC) -g -std=c99 -Wall -fPIC -I./amalg -I/usr/include/curl \
