@@ -18,6 +18,16 @@ app.bin: app.c
 	-pthread -lm -ldl -lrt -lpthread \
 	-lz -ldl -lcurl -liup -liupimglib
 
+# https://sourceforge.net/projects/iup/files/
+app-motif.bin: app.c
+	$(CC) -g -std=c99 -Wall -fPIC -I./amalg \
+	-I/usr/include/iup \
+	-I/usr/include/curl \
+	amalg/janet.c $< -o $@ \
+	-pthread -lrt \
+	-lcurl -lXm -lXmu -lXt -lX11 -liup -liupimglib -lm -lz -ldl
+
+# Eww https://mail.gnome.org/archives/gtk-list/2018-January/msg00006.html
 app-static.bin: app.c
 	$(CC) -g -std=c99 -Wall -fPIC -static -I./amalg \
 	-I/usr/include/iup \
