@@ -41,6 +41,11 @@
 
   (def item-open (IupItem "Open" "NULL"))
   (def item-save (IupItem "Save" "NULL"))
+  (iup-set-thunk-callback
+   item-save "ACTION"
+   (fn []
+       (spit "gui-test-save.txt" (IupGetAttributeAsString multitext "VALUE"))
+       (int-ptr)))
   (def item-exit (IupItem "Exit" "NULL"))
   (iup-set-thunk-callback item-exit "ACTION" (fn [] (const-IUP-CLOSE)))
   (def file-menu (IupMenu item-open (int-ptr)))
