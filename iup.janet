@@ -1,6 +1,16 @@
 # Hmm..why did it think this one was a string ?
 (var x 0)
 
+(defn kw->upper [k] (string/ascii-upper (string k)))
+
+(defn iup-attributes [ih m]
+  (map (fn [k]
+         (IupSetAttribute
+          ih
+          (kw->upper k)
+          (kw->upper (get m k))))
+       (keys m)))
+
 (defn show-popup []
   (def iup (IupOpen (int-ptr) (char-ptr)))
   (def label (IupLabel "Hello world from IUP."))
@@ -10,9 +20,36 @@
 
   (def vbox (IupVbox button (int-ptr)))
 
+  (def multitext (IupText "NULL"))
+
+  (IupAppend vbox label)
   (IupAppend vbox button2)
+  (IupAppend vbox multitext)
+
+  (iup-attributes
+   multitext
+   {
+    :multiline :yes
+    :expand :yes
+    })
+
+  (IupSetAttribute vbox "ALIGNMENT" "ACENTER")
+  (IupSetAttribute vbox "GAP" "10")
+  (IupSetAttribute vbox "MARGIN" "10x10")
 
   (def dialog (IupDialog vbox))
+
+  (def item-open (IupItem "Open" "NULL"))
+  (def item-save (IupItem "Save" "NULL"))
+  (def item-exit (IupItem "Exit" "NULL"))
+  (iup-set-thunk-callback item-exit "ACTION" (fn [] (const-IUP-CLOSE)))
+  (def file-menu (IupMenu item-open (int-ptr)))
+  (IupAppend file-menu item-save)
+  (IupAppend file-menu item-exit)
+  (def sub-menu (IupSubmenu "File" file-menu))
+  (def menu (IupMenu sub-menu (int-ptr)))
+
+  (IupSetAttributeHandle dialog "MENU" menu)
 
   (IupSetAttribute dialog "TITLE" "Hello World 2")
 
@@ -23,24 +60,24 @@
 
   (def thunk-recursive-popups
     # (iup-make-janet-thunk)
-    (fn []
-      (++ x)
-      (spit "iup-thunk.log" (string/format "%d\n" x) :a)
-      # Essentially keeps opening windows, sort of neat...
-      # (show-popup)
-      # (IupRedraw button 0)
-      # (IupAppend vbox button)
-      # (IupRedraw vbox 0)
-      # (show-popup)
-      (IupSetAttribute button "TITLE" (string/format "Button clicked %d times" x))
-      # (IupSetAttribute button "VISIBLE" "NO")
-      # (IupRedraw button 1)
-      ))
+       (fn []
+           (++ x)
+           (spit "iup-thunk.log" (string/format "%d\n" x) :a)
+         # Essentially keeps opening windows, sort of neat...
+         # (show-popup)
+         # (IupRedraw button 0)
+         # (IupAppend vbox button)
+         # (IupRedraw vbox 0)
+         # (show-popup)
+           (IupSetAttribute button "TITLE" (string/format "Button clicked %d times" x))
+         # (IupSetAttribute button "VISIBLE" "NO")
+         # (IupRedraw button 1)
+           ))
 
   (def timer (IupTimer))
   (IupSetAttribute timer "TIME" "1000")
   (iup-set-thunk-callback timer "ACTION_CB" (fn [] (++ x)
-      (IupSetAttribute button "TITLE" (string/format "Button clicked %d times" x))
+                                                (IupSetAttribute button "TITLE" (string/format "Button clicked %d times" x))
                                                 ))
   (IupSetAttribute timer "RUN" "yes")
 

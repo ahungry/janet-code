@@ -4206,12 +4206,12 @@ JanetTable * janet_iup_cbs = NULL;
 static int
 janet_iup_universal_cb (Ihandle *ih)
 {
-  JanetFunction *f = janet_unwrap_function(janet_table_get(janet_iup_cbs,
-                                                           janet_wrap_pointer(ih)));
+  JanetFunction *f = janet_unwrap_function (janet_table_get (janet_iup_cbs,
+                                                             janet_wrap_pointer (ih)));
 
-  janet_call(f, 0, NULL);
+  Janet res = janet_call (f, 0, NULL);
 
-  return NULL;
+  return (int) janet_unwrap_integer (res);
 }
 
 
