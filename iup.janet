@@ -92,7 +92,7 @@
 
   (iup-set-thunk-callback
    button2 "ACTION"
-   (fn [] (IupClose)))
+   (fn [] (const-IUP-CLOSE)))
 
   # (pp (iup-call-janet-thunk thunk2))
   # (iup-make button "ACTION" button-exit-cb)
