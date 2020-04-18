@@ -10,12 +10,17 @@ all: janet_modules deps build
 build-curl:
 	./build-curl.sh
 
+janet.exe:
+	$(WINCC) -g -std=c99 -Wall -I./amalg \
+	amalg/janet.c amalg/shell.c -o $@
+
 app-static.exe: app.c
-	$(WINCC) -g -std=c99 -Wall -Wl,-Bstatic -I./amalg -I/usr/include/iup \
+	$(WINCC) -g -std=c99 -Wall -I./amalg -I/usr/include/iup \
 	-I/usr/x86_64-w64-mingw32/include/curl \
 	amalg/janet.c $< -o $@ -static -lm -L/usr/x86_64-w64-mingw32/lib \
+	-DCURL_STATICLIB -lws2_32 -lwinmm \
+	libcurl.dll.a \
 	-pthread -L. \
-	libcurl.dll.a -DCURL_STATICLIB -lws2_32 -lwinmm \
 	-l:libiup_scintilla.a -l:libfreetype6.a \
 	-l:libftgl.a -l:libiupcd.a -l:libiupcontrols.a -l:libiupgl.a -l:libiupglcontrols.a \
 	-l:libiupim.a -l:libiup_mglplot.a -l:libiupole.a -l:libiup_plot.a \

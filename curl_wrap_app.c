@@ -14050,6 +14050,6 @@ curl_cfuns[] = {
   }
 };
 
-/* JANET_MODULE_ENTRY (JanetTable *env) { */
-/*   janet_cfuns (env, "curl", cfuns); */
-/* } */
+JANET_MODULE_ENTRY (JanetTable *env) {
+  janet_cfuns (env, "curl", curl_cfuns);
+}
