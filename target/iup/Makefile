@@ -1,6 +1,6 @@
 # -*- mode: makefile -*-
 
-# Smallest possible clean sample to build iup (Windows)
+# Smallest possible clean sample to build iup (install from AUR)
 
 CC=gcc
 

@@ -1,6 +1,6 @@
 # -*- mode: makefile -*-
 
-# Smallest possible clean sample to build curl (Windows)
+# Smallest possible clean sample to build curl (install from pacman)
 
 CC=gcc
 
