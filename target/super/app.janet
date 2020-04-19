@@ -3,10 +3,12 @@
 (import circlet_lib :as web)
 
 (defn handler [req]
+  (pp "Got a request..")
+  (pp req)
   {
    :status 200
    :headers {"Content-Type" "application/json"}
-   :body 42
+   :body "42"
    })
 
 (defn worker
@@ -18,8 +20,9 @@
   )
 
 (defn main [_]
-  (thread/new worker)
+  #(thread/new worker)
   # (thread/new (fn [p] (s/get-ip)))
   (s/get-ip)
   (gui/main)
+  #(web/server handler 8000)
   (pp "Hello"))
