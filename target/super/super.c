@@ -837,6 +837,7 @@ void janet_line_get(const char *p, JanetBuffer *buffer) {
 
 #include "iup_wrap.c"
 #include "curl_wrap_app.c"
+#include "circlet/circlet.c"
 
 int main(int argc, char **argv) {
     int i, status;
@@ -866,6 +867,7 @@ int main(int argc, char **argv) {
 
     janet_cfuns (env, "iup", cfuns);
     janet_cfuns (env, "curl", curl_cfuns);
+    janet_cfuns (env, "circlet", circlet_cfuns);
 
     /* Create args tuple */
     args = janet_array(argc);
