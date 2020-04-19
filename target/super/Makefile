@@ -39,10 +39,12 @@ super-repl.bin: super.c
 	$(JANET_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(IUP_CFLAGS) \
+	$(CIRCLET_CFLAGS) \
 	amalg/janet.c $< -o $@  \
 	$(JANET_LFLAGS) \
 	$(CURL_LFLAGS) \
 	$(IUP_LFLAGS) \
+	$(CIRCLET_LFLAGS) \
 	$(LFLAGS)
 
 .PHONY:

@@ -10,7 +10,7 @@
 (defn router
   "Creates a router middleware"
   [routes]
-  (fn [req] 
+  (fn [req]
     (def r (or
              (get routes (get req :uri))
              (get routes :default)))
@@ -33,10 +33,10 @@
     (print proto " " method " " status " " fulluri " elapsed " elapsed "ms")
     ret))
 
-(defn server 
+(defn server
   "Creates a simple http server"
   [handler port &opt ip-address]
-  (def mgr (manager))
+  (def mgr (circlet-manager))
   (def mw (middleware handler))
   (default ip-address "localhost")
   (def interface (if (peg/match "*" ip-address)
@@ -47,5 +47,5 @@
     (var req (yield nil))
     (while true
       (set req (yield (mw req)))))
-  (bind-http mgr interface evloop)
-  (while true (poll mgr 2000)))
+  (circlet-bind-http mgr interface evloop)
+  (while true (circlet-poll mgr 2000)))
