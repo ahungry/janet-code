@@ -5,10 +5,10 @@
 CC=x86_64-w64-mingw32-gcc
 
 CFLAGS=-Wall -std=c99 -fPIC
+LFLAGS=-lm -lwinmm -pthread
+
 CURL_CFLAGS=
 CURL_LFLAGS=-lcurl
-
-LFLAGS=-lm -lwinmm -pthread
 
 all: dlls curl.exe
 
