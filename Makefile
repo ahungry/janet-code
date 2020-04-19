@@ -1,4 +1,4 @@
-# -*- mode: makefile-gmake-mode -*-
+# -*- mode: makefile -*-
 CC=gcc
 WINCC=x86_64-w64-mingw32-gcc
 WIN32CC=i686-w64-mingw32-gcc

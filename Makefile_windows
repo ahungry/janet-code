@@ -1,0 +1,30 @@
+# -*- mode: makefile -*-
+
+# Intends to be an "all-in-one" for a Windows setup.
+#
+# So far includes:
+#   janet + shell
+#   curl
+#   iup (gui)
+
+CC=x86_64-w64-mingw32-gcc
+
+CFLAGS=-c -Wall -std=gnu99 -I./amalg
+LFLAGS=-lm -ldl
+
+all: janet.exe
+
+janet.exe: super-shell.c
+	$(CC) -g -std=c99 -Wall -I./amalg -I/usr/include/iup \
+	-I/usr/x86_64-w64-mingw32/include/curl \
+	amalg/janet.c $< -o $@ -static -lm -L/usr/x86_64-w64-mingw32/lib \
+	-Wl,-Bstatic \
+	-DCURL_STATICLIB -lws2_32 -lwinmm \
+	-l:libcurl.dll.a \
+	-pthread -L. \
+	-l:libiup_scintilla.a -l:libfreetype6.a \
+	-l:libftgl.a -l:libiupcd.a -l:libiupcontrols.a -l:libiupgl.a -l:libiupglcontrols.a \
+	-l:libiupim.a -l:libiup_mglplot.a -l:libiupole.a -l:libiup_plot.a \
+	-l:libiuptuio.a -l:libz.a -l:libiup.a -l:libiupimglib.a \
+	-lmingw32 -lopengl32 -lpangowin32-1.0 -lgdi32 -lws2_32 -luuid -lcomctl32 -lole32  \
+	-lcomdlg32

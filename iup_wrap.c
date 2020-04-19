@@ -4902,6 +4902,6 @@ cfuns[] = {
   }
 };
 
-JANET_MODULE_ENTRY (JanetTable *env) {
-  janet_cfuns (env, "iup", cfuns);
-}
+/* JANET_MODULE_ENTRY (JanetTable *env) { */
+/*   janet_cfuns (env, "iup", cfuns); */
+/* } */

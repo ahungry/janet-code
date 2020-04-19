@@ -1,0 +1,21 @@
+# -*- mode: makefile -*-
+
+# Smallest possible clean sample to build curl (Windows)
+
+CC=x86_64-w64-mingw32-gcc
+
+CFLAGS=-Wall -std=c99 -fPIC
+CURL_CFLAGS=
+CURL_LFLAGS=-lcurl
+
+LFLAGS=-lm -lwinmm -pthread
+
+all: dlls curl.exe
+
+curl.exe: curl.c
+	$(CC) $(CFLAGS) $(CURL_CFLAGS) $< -o $@ $(LFLAGS) $(CURL_LFLAGS)
+
+dlls:
+	./get-curl-dlls.sh
+
+.PHONY: dlls
