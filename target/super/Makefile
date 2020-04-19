@@ -16,9 +16,20 @@ CURL_LFLAGS=-lcurl
 IUP_CFLAGS=-I/usr/include/iup
 IUP_LFLAGS=-liup -liupimglib
 
-all: super.bin
+all: app.bin super-repl.bin
 
-super.bin: super.c
+app.bin: app.c
+	$(CC) $(CFLAGS) \
+	$(JANET_CFLAGS) \
+	$(CURL_CFLAGS) \
+	$(IUP_CFLAGS) \
+	amalg/janet.c $< -o $@  \
+	$(JANET_LFLAGS) \
+	$(CURL_LFLAGS) \
+	$(IUP_LFLAGS) \
+	$(LFLAGS)
+
+super-repl.bin: super.c
 	$(CC) $(CFLAGS) \
 	$(JANET_CFLAGS) \
 	$(CURL_CFLAGS) \

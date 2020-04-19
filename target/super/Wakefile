@@ -33,9 +33,20 @@ IUP_LFLAGS=-L/home/mcarter/software/iup/win64-static \
 	-l:libiup.a \
 	-l:libiupimglib.a \
 
-all: super.exe
+all: app.exe super-repl.exe
 
-super.exe: super.c
+app.exe: app.c
+	$(CC) $(CFLAGS) \
+	$(JANET_CFLAGS) \
+	$(CURL_CFLAGS) \
+	$(IUP_CFLAGS) \
+	amalg/janet.c $< -o $@  \
+	$(JANET_LFLAGS) \
+	$(CURL_LFLAGS) \
+	$(IUP_LFLAGS) \
+	$(LFLAGS)
+
+super-repl.exe: super.c
 	$(CC) $(CFLAGS) \
 	$(JANET_CFLAGS) \
 	$(CURL_CFLAGS) \
