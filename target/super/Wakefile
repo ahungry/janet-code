@@ -33,6 +33,9 @@ IUP_LFLAGS=-L/home/mcarter/software/iup/win64-static \
 	-l:libiup.a \
 	-l:libiupimglib.a \
 
+CIRCLET_CFLAGS=-I./circlet circlet/mongoose.c
+CIRCLET_LFLAGS=
+
 all: app.exe super-repl.exe
 
 app.exe: app.c
@@ -40,10 +43,12 @@ app.exe: app.c
 	$(JANET_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(IUP_CFLAGS) \
+	$(CIRCLET_CFLAGS) \
 	amalg/janet.c $< -o $@  \
 	$(JANET_LFLAGS) \
 	$(CURL_LFLAGS) \
 	$(IUP_LFLAGS) \
+	$(CIRCLET_LFLAGS) \
 	$(LFLAGS)
 
 super-repl.exe: super.c
@@ -51,10 +56,12 @@ super-repl.exe: super.c
 	$(JANET_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(IUP_CFLAGS) \
+	$(CIRCLET_CFLAGS) \
 	amalg/janet.c $< -o $@  \
 	$(JANET_LFLAGS) \
 	$(CURL_LFLAGS) \
 	$(IUP_LFLAGS) \
+	$(CIRCLET_LFLAGS) \
 	$(LFLAGS)
 
 .PHONY:
