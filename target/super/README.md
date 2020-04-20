@@ -5,8 +5,10 @@ So far the following builds in both/works in one or the other:
 - IUP (GUI) - GNU/Linux (.so) / Windows (static)
 - cURL - GNU/Linux (.so) / Windows (dll)
 - circlet (HTTP server) - GNU/Linux (static) / Windows (segfault)
-- future (shm fork) - GNU/Linux (static) / Windows (no forking, will
+- FAIL - future (shm fork) - GNU/Linux (static) / Windows (no forking, will
   not work)
+- sqlite3 - GNU/Linux (shared) / Windows (dll)
+- json - GNU/Linux (static) / Windows (static)
 
 The process had to be updated from modifying/including in app level to
 recompiling the amalg janet source, otherwise non BIF will not work in
