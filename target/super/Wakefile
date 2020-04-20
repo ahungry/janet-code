@@ -33,19 +33,24 @@ IUP_LFLAGS=-L/home/mcarter/software/iup/win64-static \
 	-l:libiup.a \
 	-l:libiupimglib.a \
 
-CIRCLET_CFLAGS=-I./circlet circlet/mongoose.c
+CIRCLET_CFLAGS=-I./circlet
 CIRCLET_LFLAGS=
+
+SQLITE3_CFLAGS=-I./sqlite3
+SQLITE3_LFLAGS=-lsqlite3
 
 all: app.exe super-repl.exe
 
 app.exe: app.c
 	$(CC) $(CFLAGS) \
 	$(JANET_CFLAGS) \
+	$(SQLITE3_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(IUP_CFLAGS) \
 	$(CIRCLET_CFLAGS) \
 	amalg/janet.c $< -o $@  \
 	$(JANET_LFLAGS) \
+	$(SQLITE3_LFLAGS) \
 	$(CURL_LFLAGS) \
 	$(IUP_LFLAGS) \
 	$(CIRCLET_LFLAGS) \
@@ -54,11 +59,13 @@ app.exe: app.c
 super-repl.exe: super.c
 	$(CC) $(CFLAGS) \
 	$(JANET_CFLAGS) \
+	$(SQLITE3_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(IUP_CFLAGS) \
 	$(CIRCLET_CFLAGS) \
 	amalg/janet.c $< -o $@  \
 	$(JANET_LFLAGS) \
+	$(SQLITE3_LFLAGS) \
 	$(CURL_LFLAGS) \
 	$(IUP_LFLAGS) \
 	$(CIRCLET_LFLAGS) \

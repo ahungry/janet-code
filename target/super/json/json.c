@@ -577,13 +577,13 @@ static Janet json_encode(int32_t argc, Janet *argv) {
 /****************/
 
 static const JanetReg json_cfuns[] = {
-    {"encode", json_encode,
+    {"json/encode", json_encode,
         "(json/encode x &opt tab newline buf)\n\n"
         "Encodes a janet value in JSON (utf-8). tab and newline are optional byte sequence which are used "
         "to format the output JSON. if buf is provided, the formated JSON is append to buf instead of a new buffer. "
         "Returns the modifed buffer."
     },
-    {"decode", json_decode,
+    {"json/decode", json_decode,
         "(json/decode json-source &opt keywords nils)\n\n"
         "Returns a janet object after parsing JSON. If keywords is truthy, string "
         "keys will be converted to keywords. If nils is truthy, null will become nil instead "
