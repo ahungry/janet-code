@@ -4,7 +4,7 @@ So far the following builds in both/works in one or the other:
 
 - IUP (GUI) - GNU/Linux (.so) / Windows (static)
 - cURL - GNU/Linux (.so) / Windows (dll)
-- circlet (HTTP server) - GNU/Linux (static) / Windows (segfault)
+- circlet (HTTP server) - GNU/Linux (static) / Windows (static)
 - sqlite3 - GNU/Linux (shared) / Windows (dll)
 - json - GNU/Linux (static) / Windows (static)
 
