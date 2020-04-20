@@ -5,8 +5,6 @@ So far the following builds in both/works in one or the other:
 - IUP (GUI) - GNU/Linux (.so) / Windows (static)
 - cURL - GNU/Linux (.so) / Windows (dll)
 - circlet (HTTP server) - GNU/Linux (static) / Windows (segfault)
-- FAIL - future (shm fork) - GNU/Linux (static) / Windows (no forking, will
-  not work)
 - sqlite3 - GNU/Linux (shared) / Windows (dll)
 - json - GNU/Linux (static) / Windows (static)
 
@@ -27,3 +25,9 @@ Try out these:
     "https://github.com/andrewchambers/janet-process.git"
     "https://github.com/andrewchambers/janet-sh.git"
     "https://github.com/andrewchambers/janet-base16.git"
+
+# TODO Cleanup
+
+Perhaps remove mongoose/circlet - it segfaults on Windows (probably
+requires windows special flags to be set in source, which are not
+being set)...

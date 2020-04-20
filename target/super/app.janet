@@ -16,15 +16,15 @@
   "Run the webserver in the background?"
   [parent]
   (pp "yay")
-   #(s/get-ip)
+  (s/get-ip)
   # (web/server handler 8000)
   )
 
 (defn main [_]
-  #(thread/new worker)
+  (thread/new worker)
   # (thread/new (fn [p] (s/get-ip)))
   (pp (a/exec-db))
-  (s/get-ip)
+  #(s/get-ip)
   (pp (json/encode {:a 1 :b 2}))
   (gui/main)
   #(web/server handler 8000)
