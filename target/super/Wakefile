@@ -34,7 +34,8 @@ IUP_LFLAGS=-L/home/mcarter/software/iup/win64-static \
 	-l:libiupimglib.a \
 
 CIRCLET_CFLAGS=-I./circlet
-CIRCLET_LFLAGS=-ladvapi32
+CIRCLET_LFLAGS=-ladvapi32 -L/usr/x86_64-w64-mingw32/lib \
+	-l:libws2_32.a -l:libwsock32.a -l:libwinpthread.a
 
 SQLITE3_CFLAGS=-I./sqlite3
 SQLITE3_LFLAGS=-lsqlite3
