@@ -16,7 +16,8 @@ CURL_LFLAGS=-lcurl
 IUP_CFLAGS=-I/usr/include/iup
 IUP_LFLAGS=-liup -liupimglib
 
-CIRCLET_CFLAGS=-I./circlet circlet/mongoose.c
+#CIRCLET_CFLAGS=-I./circlet circlet/mongoose.c
+CIRCLET_CFLAGS=
 CIRCLET_LFLAGS=
 
 all: app.bin super-repl.bin

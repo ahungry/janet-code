@@ -14,20 +14,20 @@
 (defn worker
   "Run the webserver in the background?"
   [parent]
-  (pp curl-easy-init)
+  (s/get-ip)
   (pp "Hi from thread")
   # (os/sleep 10)
   #(eval  '(pp "HELLO FROM THE THREAD"))
   # (eval '(s/get-ip))
-  # (web/server handler 8000)
+  #(web/server handler 8001)
   )
 
 (defn main [_]
   (pp curl-easy-init)
-  (thread/newx worker)
-  (os/sleep 1)
+  (thread/new worker)
   # (thread/new (fn [p] (s/get-ip)))
   #(s/get-ip)
-  #(gui/main)
-  #(web/server handler 8000)
+  #(os/sleep 9)
+  (gui/main)
+  #(web/server handler 8001)
   (pp "Hello"))

@@ -33,7 +33,8 @@ IUP_LFLAGS=-L/home/mcarter/software/iup/win64-static \
 	-l:libiup.a \
 	-l:libiupimglib.a \
 
-CIRCLET_CFLAGS=-I./circlet circlet/mongoose.c
+#CIRCLET_CFLAGS=-I./circlet circlet/mongoose.c
+CIRCLET_CFLAGS=
 CIRCLET_LFLAGS=
 
 all: app.exe super-repl.exe
