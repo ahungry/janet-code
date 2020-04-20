@@ -16,19 +16,24 @@ CURL_LFLAGS=-lcurl
 IUP_CFLAGS=-I/usr/include/iup
 IUP_LFLAGS=-liup -liupimglib
 
-CIRCLET_CFLAGS=-I./circlet circlet/mongoose.c
+CIRCLET_CFLAGS=-I./circlet
 CIRCLET_LFLAGS=
+
+SQLITE3_CFLAGS=-I./sqlite3
+SQLITE3_LFLAGS=-lsqlite3
 
 all: app.bin super-repl.bin
 
 app.bin: app.c
 	$(CC) $(CFLAGS) \
 	$(JANET_CFLAGS) \
+	$(SQLITE3_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(IUP_CFLAGS) \
 	$(CIRCLET_CFLAGS) \
 	amalg/janet.c $< -o $@  \
 	$(JANET_LFLAGS) \
+	$(SQLITE3_LFLAGS) \
 	$(CURL_LFLAGS) \
 	$(IUP_LFLAGS) \
 	$(CIRCLET_LFLAGS) \
@@ -37,11 +42,13 @@ app.bin: app.c
 super-repl.bin: super.c
 	$(CC) $(CFLAGS) \
 	$(JANET_CFLAGS) \
+	$(SQLITE3_CFLAGS) \
 	$(CURL_CFLAGS) \
 	$(IUP_CFLAGS) \
 	$(CIRCLET_CFLAGS) \
 	amalg/janet.c $< -o $@  \
 	$(JANET_LFLAGS) \
+	$(SQLITE3_LFLAGS) \
 	$(CURL_LFLAGS) \
 	$(IUP_LFLAGS) \
 	$(CIRCLET_LFLAGS) \
