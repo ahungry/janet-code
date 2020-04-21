@@ -1,0 +1,22 @@
+# -*- mode: dockerfile; -*-
+FROM ubuntu:20.04
+#FROM nvidia/cudagl:9.2-runtime-ubuntu18.04
+
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+  apt-get install -y --no-install-recommends \
+  xserver-xorg-video-dummy \
+  xserver-xorg \
+  xdm \
+  wget \
+  curl \
+  libgtk-3-0
+
+WORKDIR /app
+
+COPY app.bin /app/
+COPY *.janet /app/
+COPY libim.so /usr/lib/
+
+COPY dummy.conf /etc/X11/xorg.conf
+
+CMD /app/app.bin

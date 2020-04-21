@@ -60,4 +60,12 @@ super-repl.bin: super.c
 	$(CIRCLET_LFLAGS) \
 	$(LFLAGS)
 
-.PHONY:
+docker-ubuntu:
+	docker build -t super:test . -f Dockerfile_ubuntu
+	docker run --name super_test --rm \
+	-e DISPLAY=$DISPLAY \
+	-e NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics \
+	-v /tmp/.X11-unix:/tmp/.X11-unix \
+	-it super:test
+
+.PHONY: docker-ubuntu
