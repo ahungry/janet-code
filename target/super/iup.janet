@@ -35,6 +35,7 @@
 
   # this works
   (def logo-image (IupLoadImage "logo.png"))
+  (def logo-image2 (IupLoadImage "logo2.png"))
 
   #(def logo-image (IupImageRGBA 100 100 (string-to-pixels "ffffff")))
 
@@ -49,8 +50,8 @@
   #(def logo-image (load-image-logo-png))
   #(def logo-image (IupLoadImage "logo.png"))
   (IupSetHandle "logo-image" logo-image)
-  (IupSetAttribute button2 "IMAGE" "logo-image")
-  ##(IupSetAttributeHandle button2 "IMAGE" logo-image )
+  #(IupSetAttribute button2 "IMAGE" "logo-image")
+  (IupSetAttributeHandle button2 "IMAGE" logo-image2)
 
   (def vbox (IupVbox button (int-ptr)))
 
