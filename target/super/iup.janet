@@ -1,5 +1,6 @@
 # Hmm..why did it think this one was a string ?
 (var x 0)
+(var y 0)
 
 (defn kw->upper [k] (string/ascii-upper (string k)))
 
@@ -15,8 +16,10 @@
   (def iup (IupOpen (int-ptr) (char-ptr)))
   (def label (IupLabel "Hello world from IUP."))
 
-  (def button (IupButton (string/format "Button clicked %d times" x) "NULL"))
+  (def button (IupButton (string/format "Button clicked %d times" y) "NULL"))
   (def button2 (IupButton "Close" "NULL"))
+
+  (IupSetAttribute button2 "IMAGE" "logo.bmp")
 
   (def vbox (IupVbox button (int-ptr)))
 
@@ -31,7 +34,7 @@
      (IupSetAttribute canvas "DRAWCOLOR" "255 255 255")
      (IupSetAttribute canvas "DRAWSTYLE" "FILL")
      (IupDrawRectangle canvas 0 0 x x)
-     (IupDrawImage canvas "logo.png" 0 0 -1 -1)
+     (IupDrawImage canvas "logo.bmp" 0 0 100 100)
      (IupDrawEnd canvas)
      (const-IUP-DEFAULT)
        ))
@@ -81,15 +84,15 @@
   (def thunk-recursive-popups
     # (iup-make-janet-thunk)
        (fn []
-           (++ x)
-           (spit "iup-thunk.log" (string/format "%d\n" x) :a)
+           (++ y)
+           #(spit "iup-thunk.log" (string/format "%d\n" x) :a)
          # Essentially keeps opening windows, sort of neat...
          # (show-popup)
          # (IupRedraw button 0)
          # (IupAppend vbox button)
          # (IupRedraw vbox 0)
          # (show-popup)
-           (IupSetAttribute button "TITLE" (string/format "Button clicked %d times" x))
+           (IupSetAttribute button "TITLE" (string/format "Button clicked %d times" y))
          # (IupSetAttribute button "VISIBLE" "NO")
          # (IupRedraw button 1)
            ))
@@ -99,7 +102,9 @@
   (iup-set-thunk-callback
    timer "ACTION_CB"
    (fn [] (++ x)
-     (IupSetAttribute button "TITLE" (string/format "Button clicked %d times" x))
+     (IupSetAttribute
+      label "TITLE"
+      (string/format "%d loop counter" x))
      (IupRedraw canvas 0)
        ))
   (IupSetAttribute timer "RUN" "yes")
