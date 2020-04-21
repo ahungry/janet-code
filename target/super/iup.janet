@@ -43,7 +43,7 @@
   (def canvas (IupCanvas "NULL"))
   (iup-set-thunk-callback
    canvas "ACTION"
-   (fn []
+   (fn [_ _]
        (IupDrawBegin canvas)
        (IupSetAttribute canvas "DRAWCOLOR" "255 255 255")
        (IupSetAttribute canvas "DRAWSTYLE" "FILL")
@@ -73,7 +73,7 @@
   (def dialog (IupDialog vbox))
 
   (def file-selector
-       (fn []
+       (fn [_ _]
          # Show the selection
            (IupPopup file-dialog
                      (const-IUP-CURRENT)
@@ -90,30 +90,41 @@
    item-open "ACTION"
    file-selector)
 
-  (def show-help (fn [] (IupMessage "Help" "More help to come \r
+  (def show-help (fn [_ _] (IupMessage "Help" "More help to come \r
 Ctrl + h: Show this help\r
 Ctrl + o: Open a file\r
 \r\r
 Message m@ahungry.com for suggestions")))
-
-  (iup-set-thunk-callback vbox "K_cO" file-selector)
-  (iup-set-thunk-callback vbox "K_cH" show-help)
 
   #(IupSetCallback (dlg, "K_cO", (Icallback)item_open_action_cb));
 
   (def item-save (IupItem "Save" "NULL"))
   (iup-set-thunk-callback
    item-save "ACTION"
-   (fn []
+   (fn [_ _]
        (spit "gui-test-save.txt" (IupGetAttributeAsString multitext "VALUE"))
        (int-ptr)))
   (def item-exit (IupItem "Exit" "NULL"))
-  (iup-set-thunk-callback item-exit "ACTION" (fn [] (const-IUP-CLOSE)))
+  (iup-set-thunk-callback item-exit "ACTION" (fn [_ _] (const-IUP-CLOSE)))
   (def file-menu (IupMenu item-open (int-ptr)))
   (IupAppend file-menu item-save)
   (IupAppend file-menu item-exit)
   (def sub-menu (IupSubmenu "File" file-menu))
   (def menu (IupMenu sub-menu (int-ptr)))
+
+  (def show-helpy (fn [_ _] (pp "Lol...")))
+  (def show-helpx (fn [ih c]
+                    (pp ih)
+                    (pp "Key was")
+                    (pp c)
+                      (pp "Yes...")))
+
+  # Do additional mapping work in iupkey.h
+  (iup-set-thunk-callback vbox "K_ANY" show-helpx)
+
+  # (iup-set-thunk-callback vbox "K_cO" show-helpy)
+  # (iup-set-thunk-callback vbox "K_cH"
+  #                         show-helpx)
 
   (IupSetAttributeHandle dialog "MENU" menu)
 
@@ -126,7 +137,7 @@ Message m@ahungry.com for suggestions")))
 
   (def thunk-recursive-popups
     # (iup-make-janet-thunk)
-       (fn []
+       (fn [_ _]
            (++ y)
          #(spit "iup-thunk.log" (string/format "%d\n" x) :a)
          # Essentially keeps opening windows, sort of neat...
@@ -144,7 +155,7 @@ Message m@ahungry.com for suggestions")))
   (IupSetAttribute timer "TIME" "100")
   (iup-set-thunk-callback
    timer "ACTION_CB"
-   (fn [] (++ x)
+   (fn [_ _] (++ x)
        (IupSetAttribute
         label "TITLE"
         (string/format "%d loop counter" x))
@@ -158,7 +169,7 @@ Message m@ahungry.com for suggestions")))
 
   (iup-set-thunk-callback
    button2 "ACTION"
-   (fn [] (const-IUP-CLOSE)))
+   (fn [_ _] (const-IUP-CLOSE)))
 
   # (pp (iup-call-janet-thunk thunk2))
   # (iup-make button "ACTION" button-exit-cb)
