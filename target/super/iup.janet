@@ -129,13 +129,16 @@ Message m@ahungry.com for suggestions"))
       (do (print (string/format "Unhandled key value %d\n" k)))))
 
   # Do additional mapping work in iupkey.h
-  (iup-set-thunk-callback
-   vbox "K_ANY"
-   (fn [ih k]
-     (pp "Working on K_ANY")
-       (key-handler k)
-       (const-IUP-DEFAULT)
-       ))
+  (defn bind-keys [el]
+    (iup-set-thunk-callback
+     el "K_ANY"
+     (fn [ih k]
+         (pp "Working on K_ANY")
+         (key-handler k)
+         (const-IUP-DEFAULT)
+         )))
+
+  (bind-keys vbox)
 
   # (iup-set-thunk-callback vbox "K_cO" show-helpy)
   # (iup-set-thunk-callback vbox "K_cH"
