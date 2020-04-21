@@ -22,6 +22,7 @@
 
   (def multitext (IupText "NULL"))
 
+  # https://webserver2.tecgraf.puc-rio.br/iup/en/func/iupdraw.html
   (def canvas (IupCanvas "NULL"))
   (iup-set-thunk-callback
    canvas "ACTION"
