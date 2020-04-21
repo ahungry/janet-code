@@ -88,15 +88,17 @@
   (def item-open (IupItem "Open" "NULL"))
   (iup-set-thunk-callback
    item-open "ACTION"
-   file-selector )
+   file-selector)
 
   (def show-help (fn [] (IupMessage "Help" "More help to come \r
 Ctrl + h: Show this help\r
 Ctrl + o: Open a file\r
 \r\r
 Message m@ahungry.com for suggestions")))
+
   (iup-set-thunk-callback vbox "K_cO" file-selector)
   (iup-set-thunk-callback vbox "K_cH" show-help)
+
   #(IupSetCallback (dlg, "K_cO", (Icallback)item_open_action_cb));
 
   (def item-save (IupItem "Save" "NULL"))
