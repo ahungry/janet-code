@@ -5,7 +5,7 @@
 CC=gcc
 
 CFLAGS=-Wall -std=gnu99 -fPIC
-LFLAGS=-lm -pthread
+LFLAGS=-lm -pthread -lz
 
 JANET_CFLAGS=-I./amalg
 JANET_LFLAGS=-ldl
@@ -14,7 +14,13 @@ CURL_CFLAGS=
 CURL_LFLAGS=-lcurl
 
 IUP_CFLAGS=-I/usr/include/iup
-IUP_LFLAGS=-liup -liupimglib -liupim
+IUP_LFLAGS=-L/home/mcarter/software/iup/nix64-static \
+	-l:libiup.a \
+	-l:libiupimglib.a \
+	-l:libiupim.a \
+	-L. \
+	-lim \
+	`pkg-config --libs gtk+-3.0` -lX11
 
 CIRCLET_CFLAGS=-I./circlet
 CIRCLET_LFLAGS=
