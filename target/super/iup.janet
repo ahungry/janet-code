@@ -52,7 +52,7 @@
        (IupSetAttribute canvas "DRAWCOLOR" "255 255 255")
        (IupSetAttribute canvas "DRAWSTYLE" "FILL")
        (IupDrawRectangle canvas 0 0 x x)
-       (IupDrawImage canvas "logo.bmp" 0 0 100 100)
+       (IupDrawImage canvas "logo-image" 0 0 100 100)
        (IupDrawEnd canvas)
        (const-IUP-DEFAULT)
        ))
