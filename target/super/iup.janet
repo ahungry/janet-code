@@ -22,9 +22,22 @@
 
   (def multitext (IupText "NULL"))
 
+  (def canvas (IupCanvas "NULL"))
+  (iup-set-thunk-callback
+   canvas "ACTION"
+   (fn []
+     (IupDrawBegin canvas)
+     (IupSetAttribute canvas "DRAWCOLOR" "255 255 255")
+     (IupSetAttribute canvas "DRAWSTYLE" "FILL")
+     (IupDrawRectangle canvas 0 0 x x)
+     (IupDrawEnd canvas)
+     (const-IUP-DEFAULT)
+       ))
+
   (IupAppend vbox label)
   (IupAppend vbox button2)
   (IupAppend vbox multitext)
+  (IupAppend vbox canvas)
 
   (iup-attributes
    multitext
@@ -80,10 +93,13 @@
            ))
 
   (def timer (IupTimer))
-  (IupSetAttribute timer "TIME" "1000")
-  (iup-set-thunk-callback timer "ACTION_CB" (fn [] (++ x)
-                                                (IupSetAttribute button "TITLE" (string/format "Button clicked %d times" x))
-                                                ))
+  (IupSetAttribute timer "TIME" "100")
+  (iup-set-thunk-callback
+   timer "ACTION_CB"
+   (fn [] (++ x)
+     (IupSetAttribute button "TITLE" (string/format "Button clicked %d times" x))
+     (IupRedraw canvas 0)
+       ))
   (IupSetAttribute timer "RUN" "yes")
 
   (iup-set-thunk-callback
