@@ -12,13 +12,19 @@
    :body "42"
    })
 
+(defn make-json-response [status body]
+  {:status status :headers {"Content-Type" "application/json"} :body body})
+(def response-stub (make-json-response 200 "42"))
+(def response-404 (make-json-response 404 "NOT FOUND"))
+
 (defn worker
   "Run the webserver in the background?"
   [parent]
   (pp "yay")
   (s/get-ip)
   #(pp "Running webserver on port 12005, feel free to make a request..")
-  (web/server handler 8000)
+  (web/server (web/logger (web/router {"/" response-stub
+                                       :default response-404 })) 8000)
   )
 
 (defn main [_]
