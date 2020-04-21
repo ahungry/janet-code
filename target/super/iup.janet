@@ -137,7 +137,10 @@ Message m@ahungry.com for suggestions")))
 
   (def thunk-recursive-popups
     # (iup-make-janet-thunk)
-       (fn [_ _]
+       (fn [ih c]
+         (pp "Button click called")
+         (pp ih)
+         (pp c)
            (++ y)
          #(spit "iup-thunk.log" (string/format "%d\n" x) :a)
          # Essentially keeps opening windows, sort of neat...
