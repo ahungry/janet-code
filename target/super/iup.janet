@@ -85,7 +85,7 @@
                (pp "Opening")
                (print (string/format "%s" name))))))
 
-  (def item-open (IupItem "Open" "NULL"))
+  (def item-open (IupItem "&Open\tCtrl + O" "NULL"))
   (iup-set-thunk-callback
    item-open "ACTION"
    file-selector)
@@ -195,7 +195,9 @@ Message m@ahungry.com for suggestions"))
   # (pp (iup-call-janet-thunk thunk2))
   # (iup-make button "ACTION" button-exit-cb)
 
+  (IupSetAttribute dialog "SIZE" "600x300")
   (IupShowXY dialog (const-IUP-CENTER) (const-IUP-CENTER))
+
 
   # (IupMainLoop)
 
