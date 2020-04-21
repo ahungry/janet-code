@@ -72,22 +72,32 @@
 
   (def dialog (IupDialog vbox))
 
+  (def file-selector
+       (fn []
+         # Show the selection
+           (IupPopup file-dialog
+                     (const-IUP-CURRENT)
+                     (const-IUP-CURRENT))
+         # See what thing we got back...
+           (if (= -1 (IupGetInt file-dialog "STATUS"))
+               (pp "Cancelled file dialog")
+             (let [name (IupGetAttributeAsString file-dialog "VALUE")]
+               (pp "Opening")
+               (print (string/format "%s" name))))))
+
   (def item-open (IupItem "Open" "NULL"))
   (iup-set-thunk-callback
    item-open "ACTION"
-   (fn []
-     # Show the selection
-     (IupPopup file-dialog
-               (const-IUP-CURRENT)
-               (const-IUP-CURRENT))
-     # See what thing we got back...
-     (if (= -1 (IupGetInt file-dialog "STATUS"))
-       (pp "Cancelled file dialog")
-       (let [name (IupGetAttributeAsString file-dialog "VALUE")]
-         (pp "Opening")
-         (print (string/format "%s" name)))
-       )
-       ))
+   file-selector )
+
+  (def show-help (fn [] (IupMessage "Help" "More help to come \r
+Ctrl + h: Show this help\r
+Ctrl + o: Open a file\r
+\r\r
+Message m@ahungry.com for suggestions")))
+  (iup-set-thunk-callback vbox "K_cO" file-selector)
+  (iup-set-thunk-callback vbox "K_cH" show-help)
+  #(IupSetCallback (dlg, "K_cO", (Icallback)item_open_action_cb));
 
   (def item-save (IupItem "Save" "NULL"))
   (iup-set-thunk-callback
