@@ -18,7 +18,7 @@
   (pp "yay")
   (s/get-ip)
   #(pp "Running webserver on port 12005, feel free to make a request..")
-  #(web/server handler 12005)
+  (web/server handler 8000)
   )
 
 (defn main [_]
