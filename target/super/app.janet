@@ -17,7 +17,7 @@
   [parent]
   (pp "yay")
   (s/get-ip)
-  (pp "Running webserver on port 12005, feel free to make a request..")
+  #(pp "Running webserver on port 12005, feel free to make a request..")
   #(web/server handler 12005)
   )
 

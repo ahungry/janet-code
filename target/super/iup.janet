@@ -2,7 +2,10 @@
 (var x 0)
 (var y 0)
 
-(defn kw->upper [k] (string/ascii-upper (string k)))
+(defn kw->upper [k]
+  (if (keyword? k)
+      (string/ascii-upper (string k))
+    k))
 
 (defn iup-attributes [ih m]
   (map (fn [k]
@@ -15,9 +18,20 @@
 (defn show-popup []
   (def iup (IupOpen (int-ptr) (char-ptr)))
   (def label (IupLabel "Hello world from IUP."))
+  (def label2 (IupLabel "Windows 7 doesn't show images atm..."))
 
   (def button (IupButton (string/format "Button clicked %d times" y) "NULL"))
   (def button2 (IupButton "Close" "NULL"))
+  (def file-dialog (IupFileDlg))
+
+  (iup-attributes
+   file-dialog
+   {
+    :dialogtype :open
+    :title "Test open files"
+    #:filter ""
+    #:filter "FILTER = \"*.janet\", FILTERINFO = \"Janet Files\""
+    })
 
   (IupSetAttribute button2 "IMAGE" "logo.bmp")
 
@@ -30,16 +44,17 @@
   (iup-set-thunk-callback
    canvas "ACTION"
    (fn []
-     (IupDrawBegin canvas)
-     (IupSetAttribute canvas "DRAWCOLOR" "255 255 255")
-     (IupSetAttribute canvas "DRAWSTYLE" "FILL")
-     (IupDrawRectangle canvas 0 0 x x)
-     (IupDrawImage canvas "logo.bmp" 0 0 100 100)
-     (IupDrawEnd canvas)
-     (const-IUP-DEFAULT)
+       (IupDrawBegin canvas)
+       (IupSetAttribute canvas "DRAWCOLOR" "255 255 255")
+       (IupSetAttribute canvas "DRAWSTYLE" "FILL")
+       (IupDrawRectangle canvas 0 0 x x)
+       (IupDrawImage canvas "logo.bmp" 0 0 100 100)
+       (IupDrawEnd canvas)
+       (const-IUP-DEFAULT)
        ))
 
   (IupAppend vbox label)
+  (IupAppend vbox label2)
   (IupAppend vbox button2)
   (IupAppend vbox multitext)
   (IupAppend vbox canvas)
@@ -58,6 +73,22 @@
   (def dialog (IupDialog vbox))
 
   (def item-open (IupItem "Open" "NULL"))
+  (iup-set-thunk-callback
+   item-open "ACTION"
+   (fn []
+     # Show the selection
+     (IupPopup file-dialog
+               (const-IUP-CURRENT)
+               (const-IUP-CURRENT))
+     # See what thing we got back...
+     (if (= -1 (IupGetInt file-dialog "STATUS"))
+       (pp "Cancelled file dialog")
+       (let [name (IupGetAttributeAsString file-dialog "VALUE")]
+         (pp "Opening")
+         (print (string/format "%s" name)))
+       )
+       ))
+
   (def item-save (IupItem "Save" "NULL"))
   (iup-set-thunk-callback
    item-save "ACTION"
@@ -85,7 +116,7 @@
     # (iup-make-janet-thunk)
        (fn []
            (++ y)
-           #(spit "iup-thunk.log" (string/format "%d\n" x) :a)
+         #(spit "iup-thunk.log" (string/format "%d\n" x) :a)
          # Essentially keeps opening windows, sort of neat...
          # (show-popup)
          # (IupRedraw button 0)
@@ -102,10 +133,10 @@
   (iup-set-thunk-callback
    timer "ACTION_CB"
    (fn [] (++ x)
-     (IupSetAttribute
-      label "TITLE"
-      (string/format "%d loop counter" x))
-     (IupRedraw canvas 0)
+       (IupSetAttribute
+        label "TITLE"
+        (string/format "%d loop counter" x))
+       (IupRedraw canvas 0)
        ))
   (IupSetAttribute timer "RUN" "yes")
 
