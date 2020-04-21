@@ -34,7 +34,20 @@
     })
 
   # this works
-  (def logo-image (load-image-logo-png))
+  (def logo-image (IupLoadImage "logo.png"))
+
+  #(def logo-image (IupImageRGBA 100 100 (string-to-pixels "ffffff")))
+
+  #(def logo-image (IupImageRGBA 100 100 (string-to-pixels (string/join (map (fn [s] (string/format "%c" s)) (slurp "logo.png")) ""))))
+
+  #(def logo-image (string-to-pixels (string/format "%s" (slurp "logo.png"))))
+  #(def foo (IupLoadImage "./logo.bmp"))
+  #(pp foo)
+  #(pp (IupImage 100 100 foo))
+  #(IupSetHandle "hohum" foo)
+  #(def logo-imagex (IupImage 180 165 foo))
+  #(def logo-image (load-image-logo-png))
+  #(def logo-image (IupLoadImage "logo.png"))
   (IupSetHandle "logo-image" logo-image)
   (IupSetAttribute button2 "IMAGE" "logo-image")
   ##(IupSetAttributeHandle button2 "IMAGE" logo-image )

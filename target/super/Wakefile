@@ -17,6 +17,7 @@ CURL_LFLAGS=-lcurl
 
 IUP_CFLAGS=-I/usr/include/iup
 IUP_LFLAGS=-L/home/mcarter/software/iup/win64-static \
+	-l:libiupim.a \
 	-l:libiup_scintilla.a \
 	-l:libfreetype6.a \
 	-l:libftgl.a \
@@ -24,14 +25,17 @@ IUP_LFLAGS=-L/home/mcarter/software/iup/win64-static \
 	-l:libiupcontrols.a \
 	-l:libiupgl.a \
 	-l:libiupglcontrols.a \
-	-l:libiupim.a \
 	-l:libiup_mglplot.a \
 	-l:libiupole.a \
 	-l:libiup_plot.a \
 	-l:libiuptuio.a \
 	-l:libz.a \
 	-l:libiup.a \
-	-l:libiupimglib.a
+	-l:libiupimglib.a \
+	-l:libiupim.a \
+	-L/home/mcarter/software/im/win64-dynamic \
+	-l:libim.a \
+	-l:libz.a
 
 CIRCLET_CFLAGS=-I./circlet
 CIRCLET_LFLAGS=-ladvapi32 -L/usr/x86_64-w64-mingw32/lib \

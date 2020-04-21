@@ -14,10 +14,13 @@
   ##
 
   # Use this url, as it does send a 302 from http to https
-  (curl-easy-setopt-string c (const-CURLOPT-URL) "https://httpbin.org/post")
+  #(curl-easy-setopt-string c (const-CURLOPT-URL) "https://httpbin.org/post")
+  (curl-easy-setopt-string c (const-CURLOPT-URL) "http://127.0.0.1:8000")
   (curl-easy-setopt c (const-CURLOPT-FOLLOWLOCATION) 1)
   #(curl-easy-setopt c (const-CURLOPT-POST) 1)
-  (curl-easy-setopt c (const-CURLOPT-VERBOSE) 1)
+
+  # Enable to see lots of output
+  #(curl-easy-setopt c (const-CURLOPT-VERBOSE) 1)
 
   (pp "About to set data")
 

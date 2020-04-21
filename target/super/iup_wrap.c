@@ -136,6 +136,8 @@
 
   /* Put header files here or function declarations like below */
   #include <iup.h>
+  #include <iupdraw.h>
+  #include <iupim.h>
 
   int * int_ptr ()
   {
@@ -152,14 +154,14 @@
   }
 
 // BEGIN Non-Swig hand generation stuff
-/*
+  /*
   {
     "iup-set-thunk-callback", IupSetThunkCallback_wrapped, ""
   },
   {
     "IupGetAttributeAsString", IupGetAttributeAsString_wrapped, ""
   },
-*/
+  */
 
 typedef struct thunks {
   Ihandle *ih;
@@ -299,7 +301,6 @@ IupGetAttributeAsString_wrapped (int32_t argc, Janet *argv)
 
   return janet_wrap_string (s);
 }
-
 // END Non-Swig hand generation stuff
 
 
@@ -4510,6 +4511,68 @@ IupDrawGetImageInfo_wrapped (int32_t argc, Janet *argv)
 }
 
 static Janet
+IupImOpen_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 0);
+
+
+  IupImOpen ();
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupLoadImage_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 1);
+
+  char const * arg_0 = (char const *) janet_getstring (argv, 0);
+
+  Ihandle * result = IupLoadImage ((char const *) arg_0);
+
+  return janet_wrap_pointer (result);
+}
+
+static Janet
+IupSaveImage_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 3);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  char const * arg_1 = (char const *) janet_getstring (argv, 1);
+  char const * arg_2 = (char const *) janet_getstring (argv, 2);
+
+  int result = IupSaveImage ((Ihandle *) arg_0, (char const *) arg_1, (char const *) arg_2);
+
+  return janet_wrap_integer (result);
+}
+
+static Janet
+IupLoadAnimation_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 1);
+
+  char const * arg_0 = (char const *) janet_getstring (argv, 0);
+
+  Ihandle * result = IupLoadAnimation ((char const *) arg_0);
+
+  return janet_wrap_pointer (result);
+}
+
+static Janet
+IupLoadAnimationFrames_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 2);
+
+  char const ** arg_0 = (char const **) janet_getpointer (argv, 0);
+  int arg_1 = janet_getinteger (argv, 1);
+
+  Ihandle * result = IupLoadAnimationFrames ((char const **) arg_0, (int) arg_1);
+
+  return janet_wrap_pointer (result);
+}
+
+static Janet
 int_ptr_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
@@ -5201,6 +5264,16 @@ cfuns[] = {
     "IupDrawGetTextSize", IupDrawGetTextSize_wrapped, "SWIG generated"
   },{
     "IupDrawGetImageInfo", IupDrawGetImageInfo_wrapped, "SWIG generated"
+  },{
+    "IupImOpen", IupImOpen_wrapped, "SWIG generated"
+  },{
+    "IupLoadImage", IupLoadImage_wrapped, "SWIG generated"
+  },{
+    "IupSaveImage", IupSaveImage_wrapped, "SWIG generated"
+  },{
+    "IupLoadAnimation", IupLoadAnimation_wrapped, "SWIG generated"
+  },{
+    "IupLoadAnimationFrames", IupLoadAnimationFrames_wrapped, "SWIG generated"
   },{
     "int-ptr", int_ptr_wrapped, "SWIG generated"
   },{

@@ -17,18 +17,21 @@
 (def response-stub (make-json-response 200 "42"))
 (def response-404 (make-json-response 404 "NOT FOUND"))
 
-(defn worker
+(defn worker-server
   "Run the webserver in the background?"
   [parent]
-  (pp "yay")
-  (s/get-ip)
-  #(pp "Running webserver on port 12005, feel free to make a request..")
   (web/server (web/logger (web/router {"/" response-stub
                                        :default response-404 })) 8000)
   )
+(defn worker-client
+  "Run the webserver in the background?"
+  [parent]
+  (os/sleep 1)
+  (s/get-ip))
 
 (defn main [_]
-  (thread/new worker)
+  (thread/new worker-server)
+  (thread/new worker-client)
   # (thread/new (fn [p] (s/get-ip)))
   (pp (a/exec-db))
   #(s/get-ip)
