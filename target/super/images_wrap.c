@@ -17,5 +17,6 @@ static const JanetReg
 image_cfuns[] = {
   {
     "load-image-logo-png", load_image_logo_png_wrapped, ""
-  }
+  },
+  {NULL,NULL,NULL}
 };

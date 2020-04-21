@@ -838,6 +838,7 @@ void janet_line_get(const char *p, JanetBuffer *buffer) {
 /* #include "iup_wrap.c" */
 /* #include "curl_wrap_app.c" */
 /* #include "circlet/circlet.c" */
+#include "images_wrap.c"
 
 int main(int argc, char **argv) {
     int i, status;
@@ -865,6 +866,7 @@ int main(int argc, char **argv) {
     /* Get core env */
     env = janet_core_env(replacements);
 
+    janet_cfuns (env, "images", image_cfuns);
     /* janet_cfuns (env, "iup", cfuns); */
     /* janet_cfuns (env, "curl", curl_cfuns); */
     /* janet_cfuns (env, "circlet", circlet_cfuns); */
