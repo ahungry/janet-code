@@ -4257,7 +4257,7 @@ IupGetAttributeAsString_wrapped (int32_t argc, Janet *argv)
 // END Non-Swig hand generation stuff
 
 static const JanetReg
-iup_cfuns[] = {
+cfuns[] = {
   {
     "iup-set-thunk-callback", IupSetThunkCallback_wrapped, ""
   },

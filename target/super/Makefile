@@ -14,8 +14,7 @@ CURL_CFLAGS=
 CURL_LFLAGS=-lcurl
 
 IUP_CFLAGS=-I/usr/include/iup
-IUP_LFLAGS=-liup -liupimglib \
-	-liupcd -lcd -lcdcontextplus
+IUP_LFLAGS=-liup -liupimglib
 
 CIRCLET_CFLAGS=-I./circlet
 CIRCLET_LFLAGS=
