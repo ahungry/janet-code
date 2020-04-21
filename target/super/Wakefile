@@ -31,7 +31,7 @@ IUP_LFLAGS=-L/home/mcarter/software/iup/win64-static \
 	-l:libiuptuio.a \
 	-l:libz.a \
 	-l:libiup.a \
-	-l:libiupimglib.a \
+	-l:libiupimglib.a
 
 CIRCLET_CFLAGS=-I./circlet
 CIRCLET_LFLAGS=-ladvapi32 -L/usr/x86_64-w64-mingw32/lib \

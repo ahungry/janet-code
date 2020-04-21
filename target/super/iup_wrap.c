@@ -152,12 +152,14 @@
   }
 
 // BEGIN Non-Swig hand generation stuff
-  /* { */
-  /*   "iup-set-thunk-callback", IupSetThunkCallback_wrapped, "" */
-  /* }, */
-  /* { */
-  /*   "IupGetAttributeAsString", IupGetAttributeAsString_wrapped, "" */
-  /* }, */
+/*
+  {
+    "iup-set-thunk-callback", IupSetThunkCallback_wrapped, ""
+  },
+  {
+    "IupGetAttributeAsString", IupGetAttributeAsString_wrapped, ""
+  },
+*/
 
 typedef struct thunks {
   Ihandle *ih;
@@ -297,6 +299,7 @@ IupGetAttributeAsString_wrapped (int32_t argc, Janet *argv)
 
   return janet_wrap_string (s);
 }
+
 // END Non-Swig hand generation stuff
 
 

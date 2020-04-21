@@ -33,7 +33,11 @@
     #:filter "FILTER = \"*.janet\", FILTERINFO = \"Janet Files\""
     })
 
-  (IupSetAttribute button2 "IMAGE" "logo.bmp")
+  # this works
+  (def logo-image (load-image-logo-png))
+  (IupSetHandle "logo-image" logo-image)
+  (IupSetAttribute button2 "IMAGE" "logo-image")
+  ##(IupSetAttributeHandle button2 "IMAGE" logo-image )
 
   (def vbox (IupVbox button (int-ptr)))
 
