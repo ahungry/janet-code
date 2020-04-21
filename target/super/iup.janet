@@ -112,15 +112,30 @@ Message m@ahungry.com for suggestions")))
   (def sub-menu (IupSubmenu "File" file-menu))
   (def menu (IupMenu sub-menu (int-ptr)))
 
-  (def show-helpy (fn [_ _] (pp "Lol...")))
-  (def show-helpx (fn [ih c]
-                    (pp ih)
-                    (pp "Key was")
-                    (pp c)
-                      (pp "Yes...")))
+  (defn show-help []
+    (pp "Showing help")
+    (def msg (IupMessage "Help" "More help to come \r
+Ctrl + h: Show this help\r
+Ctrl + o: Open a file\r
+\r\r
+Message m@ahungry.com for suggestions"))
+    (pp msg)
+    )
+
+  (defn key-handler [k]
+    (case k
+      536870984 (show-help)
+      536870991 (file-selector nil nil)
+      (do (print (string/format "Unhandled key value %d\n" k)))))
 
   # Do additional mapping work in iupkey.h
-  (iup-set-thunk-callback vbox "K_ANY" show-helpx)
+  (iup-set-thunk-callback
+   vbox "K_ANY"
+   (fn [ih k]
+     (pp "Working on K_ANY")
+       (key-handler k)
+       (const-IUP-DEFAULT)
+       ))
 
   # (iup-set-thunk-callback vbox "K_cO" show-helpy)
   # (iup-set-thunk-callback vbox "K_cH"
