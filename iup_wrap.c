@@ -151,6 +151,142 @@
     return x;
   }
 
+// BEGIN Non-Swig hand generation stuff
+typedef struct thunks {
+  Ihandle *ih;
+  JanetFunction *thunk;
+  struct thunks *next;
+} thunks_t;
+
+thunks_t * root_thunks = NULL;
+
+void
+push_thunk (JanetFunction *f, Ihandle *ih)
+{
+  fprintf(stderr, "push_thunk was called...addy: %d\n", (int)ih);
+
+  if (NULL == root_thunks)
+    {
+      root_thunks = malloc (sizeof (thunks_t));
+      thunks_t t = { ih, f, NULL };
+      memcpy (root_thunks, &t, sizeof (thunks_t));
+
+      return 0;
+    }
+
+  thunks_t * node = root_thunks;
+
+  while (NULL != node->next)
+    {
+      node = node->next;
+    }
+
+  thunks_t next = { ih, f, NULL };
+
+  node->next = malloc (sizeof (thunks_t));
+  memcpy (node->next, &next, sizeof (thunks_t));
+}
+
+JanetFunction *
+get_thunk_by_id (Ihandle *ih)
+{
+  fprintf(stderr, "get_thunk_by_id was called on addy: %d\n", (int)ih);
+
+  thunks_t * node = root_thunks;
+
+  while (NULL != node->next)
+    {
+      printf ("Looking at a node, ih is %d\n", (int)node->ih);
+
+      if ((int)node->ih == (int)ih)
+        {
+          break;
+        }
+
+      node = node->next;
+    }
+
+  if (NULL == node || NULL == node->thunk)
+    {
+      fprintf(stderr, "CRAP");
+
+      return root_thunks->thunk;
+    }
+
+  return node->thunk;
+}
+
+static int
+call_thunk_N (Ihandle* ih)
+{
+  int *ptr = &ih;
+
+  printf ("Received Ihandle based call back, handler is: %d \n",
+          *ptr);
+
+  janet_call (get_thunk_by_id (ih), 0, NULL);
+
+  return 0;
+}
+
+JanetTable * janet_iup_cbs = NULL;
+
+// TODO: Re-implement the thunk storage and calling with something like this.
+static int
+janet_iup_universal_cb (Ihandle *ih)
+{
+  JanetFunction *f = janet_unwrap_function (janet_table_get (janet_iup_cbs,
+                                                             janet_wrap_pointer (ih)));
+
+  Janet res = janet_call (f, 0, NULL);
+
+  return (int) janet_unwrap_integer (res);
+}
+
+
+static Janet
+IupSetThunkCallback_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 3);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  char const * arg_1 = (char const *) janet_getstring (argv, 1);
+  Icallback arg_2;
+
+  JanetFunction *f = janet_getfunction (argv, 2);
+  // push_thunk (f, arg_0);
+
+  if (NULL == janet_iup_cbs)
+    {
+      janet_iup_cbs = janet_table (0);
+    }
+
+  janet_table_put(janet_iup_cbs, janet_wrap_pointer (arg_0), janet_wrap_function (f));
+
+  // arg_2 = (Icallback) call_thunk_N;
+  arg_2 = (Icallback) janet_iup_universal_cb;
+
+  Icallback result = IupSetCallback ((Ihandle *) arg_0, (char const *) arg_1, (Icallback) arg_2);
+
+  return janet_wrap_integer (result);
+}
+
+static Janet
+IupGetAttributeAsString_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 2);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  char const * arg_1 = (char const *) janet_getstring (argv, 1);
+
+  char * result = IupGetAttribute ((Ihandle *) arg_0, (char const *) arg_1);
+
+  return janet_wrap_string (result);
+}
+// END Non-Swig hand generation stuff
+
+
+  
 static Janet
 const_IUP_NAME_wrapped (int32_t argc, Janet *argv)
 {
@@ -4101,6 +4237,262 @@ const_IUP_RECTEXT_wrapped (int32_t argc, Janet *argv)
 }
 
 static Janet
+IupDrawBegin_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 1);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+
+  IupDrawBegin ((Ihandle *) arg_0);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawEnd_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 1);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+
+  IupDrawEnd ((Ihandle *) arg_0);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawSetClipRect_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 5);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  int arg_1 = janet_getinteger (argv, 1);
+  int arg_2 = janet_getinteger (argv, 2);
+  int arg_3 = janet_getinteger (argv, 3);
+  int arg_4 = janet_getinteger (argv, 4);
+
+  IupDrawSetClipRect ((Ihandle *) arg_0, (int) arg_1, (int) arg_2, (int) arg_3, (int) arg_4);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawGetClipRect_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 5);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  int * arg_1 = (int *) janet_getpointer (argv, 1);
+  int * arg_2 = (int *) janet_getpointer (argv, 2);
+  int * arg_3 = (int *) janet_getpointer (argv, 3);
+  int * arg_4 = (int *) janet_getpointer (argv, 4);
+
+  IupDrawGetClipRect ((Ihandle *) arg_0, (int *) arg_1, (int *) arg_2, (int *) arg_3, (int *) arg_4);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawResetClip_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 1);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+
+  IupDrawResetClip ((Ihandle *) arg_0);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawParentBackground_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 1);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+
+  IupDrawParentBackground ((Ihandle *) arg_0);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawLine_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 5);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  int arg_1 = janet_getinteger (argv, 1);
+  int arg_2 = janet_getinteger (argv, 2);
+  int arg_3 = janet_getinteger (argv, 3);
+  int arg_4 = janet_getinteger (argv, 4);
+
+  IupDrawLine ((Ihandle *) arg_0, (int) arg_1, (int) arg_2, (int) arg_3, (int) arg_4);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawRectangle_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 5);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  int arg_1 = janet_getinteger (argv, 1);
+  int arg_2 = janet_getinteger (argv, 2);
+  int arg_3 = janet_getinteger (argv, 3);
+  int arg_4 = janet_getinteger (argv, 4);
+
+  IupDrawRectangle ((Ihandle *) arg_0, (int) arg_1, (int) arg_2, (int) arg_3, (int) arg_4);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawArc_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 7);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  int arg_1 = janet_getinteger (argv, 1);
+  int arg_2 = janet_getinteger (argv, 2);
+  int arg_3 = janet_getinteger (argv, 3);
+  int arg_4 = janet_getinteger (argv, 4);
+  double arg_5 = janet_getnumber (argv, 5);
+  double arg_6 = janet_getnumber (argv, 6);
+
+  IupDrawArc ((Ihandle *) arg_0, (int) arg_1, (int) arg_2, (int) arg_3, (int) arg_4, (double) arg_5, (double) arg_6);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawPolygon_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 3);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  int * arg_1 = (int *) janet_getpointer (argv, 1);
+  int arg_2 = janet_getinteger (argv, 2);
+
+  IupDrawPolygon ((Ihandle *) arg_0, (int *) arg_1, (int) arg_2);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawText_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 7);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  char const * arg_1 = (char const *) janet_getstring (argv, 1);
+  int arg_2 = janet_getinteger (argv, 2);
+  int arg_3 = janet_getinteger (argv, 3);
+  int arg_4 = janet_getinteger (argv, 4);
+  int arg_5 = janet_getinteger (argv, 5);
+  int arg_6 = janet_getinteger (argv, 6);
+
+  IupDrawText ((Ihandle *) arg_0, (char const *) arg_1, (int) arg_2, (int) arg_3, (int) arg_4, (int) arg_5, (int) arg_6);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawImage_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 6);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  char const * arg_1 = (char const *) janet_getstring (argv, 1);
+  int arg_2 = janet_getinteger (argv, 2);
+  int arg_3 = janet_getinteger (argv, 3);
+  int arg_4 = janet_getinteger (argv, 4);
+  int arg_5 = janet_getinteger (argv, 5);
+
+  IupDrawImage ((Ihandle *) arg_0, (char const *) arg_1, (int) arg_2, (int) arg_3, (int) arg_4, (int) arg_5);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawSelectRect_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 5);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  int arg_1 = janet_getinteger (argv, 1);
+  int arg_2 = janet_getinteger (argv, 2);
+  int arg_3 = janet_getinteger (argv, 3);
+  int arg_4 = janet_getinteger (argv, 4);
+
+  IupDrawSelectRect ((Ihandle *) arg_0, (int) arg_1, (int) arg_2, (int) arg_3, (int) arg_4);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawFocusRect_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 5);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  int arg_1 = janet_getinteger (argv, 1);
+  int arg_2 = janet_getinteger (argv, 2);
+  int arg_3 = janet_getinteger (argv, 3);
+  int arg_4 = janet_getinteger (argv, 4);
+
+  IupDrawFocusRect ((Ihandle *) arg_0, (int) arg_1, (int) arg_2, (int) arg_3, (int) arg_4);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawGetSize_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 3);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  int * arg_1 = (int *) janet_getpointer (argv, 1);
+  int * arg_2 = (int *) janet_getpointer (argv, 2);
+
+  IupDrawGetSize ((Ihandle *) arg_0, (int *) arg_1, (int *) arg_2);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawGetTextSize_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 5);
+
+  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
+  char const * arg_1 = (char const *) janet_getstring (argv, 1);
+  int arg_2 = janet_getinteger (argv, 2);
+  int * arg_3 = (int *) janet_getpointer (argv, 3);
+  int * arg_4 = (int *) janet_getpointer (argv, 4);
+
+  IupDrawGetTextSize ((Ihandle *) arg_0, (char const *) arg_1, (int) arg_2, (int *) arg_3, (int *) arg_4);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
+IupDrawGetImageInfo_wrapped (int32_t argc, Janet *argv)
+{
+  janet_fixarity (argc, 4);
+
+  char const * arg_0 = (char const *) janet_getstring (argv, 0);
+  int * arg_1 = (int *) janet_getpointer (argv, 1);
+  int * arg_2 = (int *) janet_getpointer (argv, 2);
+  int * arg_3 = (int *) janet_getpointer (argv, 3);
+
+  IupDrawGetImageInfo ((char const *) arg_0, (int *) arg_1, (int *) arg_2, (int *) arg_3);
+
+  return janet_wrap_nil ();
+}
+
+static Janet
 int_ptr_wrapped (int32_t argc, Janet *argv)
 {
   janet_fixarity (argc, 0);
@@ -4122,149 +4514,8 @@ char_ptr_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_pointer (result);
 }
 
-// BEGIN Non-Swig hand generation stuff
-typedef struct thunks {
-  Ihandle *ih;
-  JanetFunction *thunk;
-  struct thunks *next;
-} thunks_t;
-
-thunks_t * root_thunks = NULL;
-
-void
-push_thunk (JanetFunction *f, Ihandle *ih)
-{
-  fprintf(stderr, "push_thunk was called...addy: %d\n", (int)ih);
-
-  if (NULL == root_thunks)
-    {
-      root_thunks = malloc (sizeof (thunks_t));
-      thunks_t t = { ih, f, NULL };
-      memcpy (root_thunks, &t, sizeof (thunks_t));
-
-      return 0;
-    }
-
-  thunks_t * node = root_thunks;
-
-  while (NULL != node->next)
-    {
-      node = node->next;
-    }
-
-  thunks_t next = { ih, f, NULL };
-
-  node->next = malloc (sizeof (thunks_t));
-  memcpy (node->next, &next, sizeof (thunks_t));
-}
-
-JanetFunction *
-get_thunk_by_id (Ihandle *ih)
-{
-  fprintf(stderr, "get_thunk_by_id was called on addy: %d\n", (int)ih);
-
-  thunks_t * node = root_thunks;
-
-  while (NULL != node->next)
-    {
-      printf ("Looking at a node, ih is %d\n", (int)node->ih);
-
-      if ((int)node->ih == (int)ih)
-        {
-          break;
-        }
-
-      node = node->next;
-    }
-
-  if (NULL == node || NULL == node->thunk)
-    {
-      fprintf(stderr, "CRAP");
-
-      return root_thunks->thunk;
-    }
-
-  return node->thunk;
-}
-
-static int
-call_thunk_N (Ihandle* ih)
-{
-  int *ptr = &ih;
-
-  printf ("Received Ihandle based call back, handler is: %d \n",
-          *ptr);
-
-  janet_call (get_thunk_by_id (ih), 0, NULL);
-
-  return 0;
-}
-
-JanetTable * janet_iup_cbs = NULL;
-
-// TODO: Re-implement the thunk storage and calling with something like this.
-static int
-janet_iup_universal_cb (Ihandle *ih)
-{
-  JanetFunction *f = janet_unwrap_function (janet_table_get (janet_iup_cbs,
-                                                             janet_wrap_pointer (ih)));
-
-  Janet res = janet_call (f, 0, NULL);
-
-  return (int) janet_unwrap_integer (res);
-}
-
-
-static Janet
-IupSetThunkCallback_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 3);
-
-  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
-  char const * arg_1 = (char const *) janet_getstring (argv, 1);
-  Icallback arg_2;
-
-  JanetFunction *f = janet_getfunction (argv, 2);
-  // push_thunk (f, arg_0);
-
-  if (NULL == janet_iup_cbs)
-    {
-      janet_iup_cbs = janet_table (0);
-    }
-
-  janet_table_put(janet_iup_cbs, janet_wrap_pointer (arg_0), janet_wrap_function (f));
-
-  // arg_2 = (Icallback) call_thunk_N;
-  arg_2 = (Icallback) janet_iup_universal_cb;
-
-  Icallback result = IupSetCallback ((Ihandle *) arg_0, (char const *) arg_1, (Icallback) arg_2);
-
-  return janet_wrap_integer (result);
-}
-
-static Janet
-IupGetAttributeAsString_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 2);
-
-  Ihandle * arg_0 = (Ihandle *) janet_getpointer (argv, 0);
-  char const * arg_1 = (char const *) janet_getstring (argv, 1);
-
-  char * result = IupGetAttribute ((Ihandle *) arg_0, (char const *) arg_1);
-
-  return janet_wrap_string (result);
-}
-// END Non-Swig hand generation stuff
-
 static const JanetReg
 cfuns[] = {
-  {
-    "iup-set-thunk-callback", IupSetThunkCallback_wrapped, ""
-  },
-  {
-    "IupGetAttributeAsString", IupGetAttributeAsString_wrapped, ""
-  },
-
   {
     "const-IUP-NAME", const_IUP_NAME_wrapped, "Return the constant value."
   },{
@@ -4894,6 +5145,40 @@ cfuns[] = {
   },{
     "const-IUP-RECTEXT", const_IUP_RECTEXT_wrapped, "Return the constant value."
   },{
+    "IupDrawBegin", IupDrawBegin_wrapped, "SWIG generated"
+  },{
+    "IupDrawEnd", IupDrawEnd_wrapped, "SWIG generated"
+  },{
+    "IupDrawSetClipRect", IupDrawSetClipRect_wrapped, "SWIG generated"
+  },{
+    "IupDrawGetClipRect", IupDrawGetClipRect_wrapped, "SWIG generated"
+  },{
+    "IupDrawResetClip", IupDrawResetClip_wrapped, "SWIG generated"
+  },{
+    "IupDrawParentBackground", IupDrawParentBackground_wrapped, "SWIG generated"
+  },{
+    "IupDrawLine", IupDrawLine_wrapped, "SWIG generated"
+  },{
+    "IupDrawRectangle", IupDrawRectangle_wrapped, "SWIG generated"
+  },{
+    "IupDrawArc", IupDrawArc_wrapped, "SWIG generated"
+  },{
+    "IupDrawPolygon", IupDrawPolygon_wrapped, "SWIG generated"
+  },{
+    "IupDrawText", IupDrawText_wrapped, "SWIG generated"
+  },{
+    "IupDrawImage", IupDrawImage_wrapped, "SWIG generated"
+  },{
+    "IupDrawSelectRect", IupDrawSelectRect_wrapped, "SWIG generated"
+  },{
+    "IupDrawFocusRect", IupDrawFocusRect_wrapped, "SWIG generated"
+  },{
+    "IupDrawGetSize", IupDrawGetSize_wrapped, "SWIG generated"
+  },{
+    "IupDrawGetTextSize", IupDrawGetTextSize_wrapped, "SWIG generated"
+  },{
+    "IupDrawGetImageInfo", IupDrawGetImageInfo_wrapped, "SWIG generated"
+  },{
     "int-ptr", int_ptr_wrapped, "SWIG generated"
   },{
     "char-ptr", char_ptr_wrapped, "SWIG generated"
@@ -4902,6 +5187,7 @@ cfuns[] = {
   }
 };
 
-/* JANET_MODULE_ENTRY (JanetTable *env) { */
-/*   janet_cfuns (env, "iup", cfuns); */
-/* } */
+JANET_MODULE_ENTRY (JanetTable *env) {
+  janet_cfuns (env, "iup", cfuns);
+}
+
