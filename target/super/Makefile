@@ -18,8 +18,10 @@ IUP_LFLAGS=-L./build/linux/iup \
 	-l:libiup.a \
 	-l:libiupimglib.a \
 	-l:libiupim.a \
-	-L. \
-	-lim \
+	-L./build/linux/im \
+	-l:libim.a \
+	-lpng16 \
+	-lstdc++ \
 	`pkg-config --libs gtk+-3.0` -lX11
 
 CIRCLET_CFLAGS=-I./circlet
