@@ -4,3 +4,5 @@ build/
 amalg/
 build.tar.gz
 *.zip
+*.tar.gz
+super-janet-app-linux64/

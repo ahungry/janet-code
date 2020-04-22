@@ -66,6 +66,7 @@ docker-build:
 	docker build -t super:test . -f Dockerfile_ubuntu
 
 docker-run:
+	$(info docker cp super_test:/app/target/super/super-janet-app-linux64.tar.gz ./)
 	docker run --name super_test --rm \
 	-e DISPLAY=$DISPLAY \
 	-e NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics \
