@@ -62,8 +62,10 @@ super-repl.bin: super.c
 	$(CIRCLET_LFLAGS) \
 	$(LFLAGS)
 
-docker-ubuntu:
+docker-build:
 	docker build -t super:test . -f Dockerfile_ubuntu
+
+docker-run:
 	docker run --name super_test --rm \
 	-e DISPLAY=$DISPLAY \
 	-e NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics \

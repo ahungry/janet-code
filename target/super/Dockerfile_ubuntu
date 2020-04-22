@@ -1,24 +1,30 @@
 # -*- mode: dockerfile; -*-
-#FROM ubuntu:20.04
-FROM nvidia/cudagl:9.2-runtime-ubuntu18.04
+
+# This should fully encapsulate building a widely compatible GNU/Linux binary
+
+FROM ubuntu:18.04
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
   apt-get install -y --no-install-recommends \
-  xserver-xorg-video-dummy \
-  xserver-xorg \
-  xdm \
+  build-essential \
+  pkg-config \
+  libgtk+-3-dev \
+  libcurl4-openssl-dev \
+  libsqlite3-dev \
   wget \
-  curl \
-  libgtk-3-0
+  git
 
-WORKDIR /app
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+  apt-get install -y --no-install-recommends \
+  ca-certificates
 
-COPY app.bin /app/
-COPY *.janet /app/
-COPY libim.so /usr/lib/
+RUN mkdir /app
+RUN git clone --depth=1 https://github.com/ahungry/janet-code /app
 
-COPY dummy.conf /etc/X11/xorg.conf
+WORKDIR /app/target/super
 
-#CMD /app/app.bin
-#CMD /usr/bin/xcalc
+RUN ./get-iup-linux-files.sh
+RUN ./get-janet.sh
+RUN make -Bj app.bin
+
 CMD bash
