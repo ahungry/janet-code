@@ -7728,16 +7728,16 @@ const_CURL_HTTP_VERSION_2_PRIOR_KNOWLEDGE_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURL_HTTP_VERSION_3_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURL_HTTP_VERSION_3_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURL_HTTP_VERSION_3;
+/*   int result = CURL_HTTP_VERSION_3; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURL_HTTP_VERSION_LAST_wrapped (int32_t argc, Janet *argv)
@@ -9813,16 +9813,16 @@ const_CURLINFO_FILETIME_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLINFO_FILETIME_T_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLINFO_FILETIME_T_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLINFO_FILETIME_T;
+/*   int result = CURLINFO_FILETIME_T; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLINFO_CONTENT_LENGTH_DOWNLOAD_wrapped (int32_t argc, Janet *argv)
@@ -10231,82 +10231,82 @@ const_CURLINFO_SCHEME_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLINFO_TOTAL_TIME_T_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLINFO_TOTAL_TIME_T_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLINFO_TOTAL_TIME_T;
+/*   int result = CURLINFO_TOTAL_TIME_T; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURLINFO_NAMELOOKUP_TIME_T_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
-
-
-  int result = CURLINFO_NAMELOOKUP_TIME_T;
-
-  return janet_wrap_integer (result);
-}
-
-static Janet
-const_CURLINFO_CONNECT_TIME_T_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLINFO_NAMELOOKUP_TIME_T_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLINFO_CONNECT_TIME_T;
+/*   int result = CURLINFO_NAMELOOKUP_TIME_T; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURLINFO_PRETRANSFER_TIME_T_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
-
-
-  int result = CURLINFO_PRETRANSFER_TIME_T;
-
-  return janet_wrap_integer (result);
-}
-
-static Janet
-const_CURLINFO_STARTTRANSFER_TIME_T_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLINFO_CONNECT_TIME_T_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLINFO_STARTTRANSFER_TIME_T;
+/*   int result = CURLINFO_CONNECT_TIME_T; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURLINFO_REDIRECT_TIME_T_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
-
-
-  int result = CURLINFO_REDIRECT_TIME_T;
-
-  return janet_wrap_integer (result);
-}
-
-static Janet
-const_CURLINFO_APPCONNECT_TIME_T_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLINFO_PRETRANSFER_TIME_T_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLINFO_APPCONNECT_TIME_T;
+/*   int result = CURLINFO_PRETRANSFER_TIME_T; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
+
+/* static Janet */
+/* const_CURLINFO_STARTTRANSFER_TIME_T_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
+
+
+/*   int result = CURLINFO_STARTTRANSFER_TIME_T; */
+
+/*   return janet_wrap_integer (result); */
+/* } */
+
+/* static Janet */
+/* const_CURLINFO_REDIRECT_TIME_T_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
+
+
+/*   int result = CURLINFO_REDIRECT_TIME_T; */
+
+/*   return janet_wrap_integer (result); */
+/* } */
+
+/* static Janet */
+/* const_CURLINFO_APPCONNECT_TIME_T_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
+
+
+/*   int result = CURLINFO_APPCONNECT_TIME_T; */
+
+/*   return janet_wrap_integer (result); */
+/* } */
 
 /* static Janet */
 /* const_CURLINFO_RETRY_AFTER_wrapped (int32_t argc, Janet *argv) */
@@ -13371,9 +13371,11 @@ curl_cfuns[] = {
     "const-CURL-HTTP-VERSION-2TLS", const_CURL_HTTP_VERSION_2TLS_wrapped, "Return the constant value."
   },{
     "const-CURL-HTTP-VERSION-2-PRIOR-KNOWLEDGE", const_CURL_HTTP_VERSION_2_PRIOR_KNOWLEDGE_wrapped, "Return the constant value."
-  },{
-    "const-CURL-HTTP-VERSION-3", const_CURL_HTTP_VERSION_3_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURL-HTTP-VERSION-3", const_CURL_HTTP_VERSION_3_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURL-HTTP-VERSION-LAST", const_CURL_HTTP_VERSION_LAST_wrapped, "Return the constant value."
   },{
     "const-CURL-RTSPREQ-NONE", const_CURL_RTSPREQ_NONE_wrapped, "Return the constant value."
@@ -13715,9 +13717,11 @@ curl_cfuns[] = {
     "const-CURLINFO-SSL-VERIFYRESULT", const_CURLINFO_SSL_VERIFYRESULT_wrapped, "Return the constant value."
   },{
     "const-CURLINFO-FILETIME", const_CURLINFO_FILETIME_wrapped, "Return the constant value."
-  },{
-    "const-CURLINFO-FILETIME-T", const_CURLINFO_FILETIME_T_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLINFO-FILETIME-T", const_CURLINFO_FILETIME_T_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLINFO-CONTENT-LENGTH-DOWNLOAD", const_CURLINFO_CONTENT_LENGTH_DOWNLOAD_wrapped, "Return the constant value."
   },{
     "const-CURLINFO-CONTENT-LENGTH-DOWNLOAD-T", const_CURLINFO_CONTENT_LENGTH_DOWNLOAD_T_wrapped, "Return the constant value."
@@ -13791,21 +13795,23 @@ curl_cfuns[] = {
     "const-CURLINFO-PROTOCOL", const_CURLINFO_PROTOCOL_wrapped, "Return the constant value."
   },{
     "const-CURLINFO-SCHEME", const_CURLINFO_SCHEME_wrapped, "Return the constant value."
-  },{
-    "const-CURLINFO-TOTAL-TIME-T", const_CURLINFO_TOTAL_TIME_T_wrapped, "Return the constant value."
-  },{
-    "const-CURLINFO-NAMELOOKUP-TIME-T", const_CURLINFO_NAMELOOKUP_TIME_T_wrapped, "Return the constant value."
-  },{
-    "const-CURLINFO-CONNECT-TIME-T", const_CURLINFO_CONNECT_TIME_T_wrapped, "Return the constant value."
-  },{
-    "const-CURLINFO-PRETRANSFER-TIME-T", const_CURLINFO_PRETRANSFER_TIME_T_wrapped, "Return the constant value."
-  },{
-    "const-CURLINFO-STARTTRANSFER-TIME-T", const_CURLINFO_STARTTRANSFER_TIME_T_wrapped, "Return the constant value."
-  },{
-    "const-CURLINFO-REDIRECT-TIME-T", const_CURLINFO_REDIRECT_TIME_T_wrapped, "Return the constant value."
-  },{
-    "const-CURLINFO-APPCONNECT-TIME-T", const_CURLINFO_APPCONNECT_TIME_T_wrapped, "Return the constant value."
   },
+  /* { */
+  /*   "const-CURLINFO-TOTAL-TIME-T", const_CURLINFO_TOTAL_TIME_T_wrapped, "Return the constant value." */
+  /* }, */
+  /* { */
+  /*   "const-CURLINFO-NAMELOOKUP-TIME-T", const_CURLINFO_NAMELOOKUP_TIME_T_wrapped, "Return the constant value." */
+  /* },{ */
+  /*   "const-CURLINFO-CONNECT-TIME-T", const_CURLINFO_CONNECT_TIME_T_wrapped, "Return the constant value." */
+  /* },{ */
+  /*   "const-CURLINFO-PRETRANSFER-TIME-T", const_CURLINFO_PRETRANSFER_TIME_T_wrapped, "Return the constant value." */
+  /* },{ */
+  /*   "const-CURLINFO-STARTTRANSFER-TIME-T", const_CURLINFO_STARTTRANSFER_TIME_T_wrapped, "Return the constant value." */
+  /* },{ */
+  /*   "const-CURLINFO-REDIRECT-TIME-T", const_CURLINFO_REDIRECT_TIME_T_wrapped, "Return the constant value." */
+  /* },{ */
+  /*   "const-CURLINFO-APPCONNECT-TIME-T", const_CURLINFO_APPCONNECT_TIME_T_wrapped, "Return the constant value." */
+  /* }, */
   /* { */
   /*   "const-CURLINFO-RETRY-AFTER", const_CURLINFO_RETRY_AFTER_wrapped, "Return the constant value." */
   /* }, */
