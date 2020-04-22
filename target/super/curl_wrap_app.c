@@ -3955,16 +3955,16 @@ const_CURLSSLOPT_NO_REVOKE_wrapped (int32_t argc, Janet *argv)
 /*   return janet_wrap_integer (result); */
 /* } */
 
-static Janet
-const_CURL_HET_DEFAULT_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURL_HET_DEFAULT_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  long result = CURL_HET_DEFAULT;
+/*   long result = CURL_HET_DEFAULT; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 /* static Janet */
 /* const_CURL_UPKEEP_INTERVAL_DEFAULT_wrapped (int32_t argc, Janet *argv) */
@@ -7409,49 +7409,49 @@ const_CURLOPT_MIMEPOST_wrapped (int32_t argc, Janet *argv)
 /*   return janet_wrap_integer (result); */
 /* } */
 
-static Janet
-const_CURLOPT_RESOLVER_START_FUNCTION_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLOPT_RESOLVER_START_FUNCTION_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLOPT_RESOLVER_START_FUNCTION;
+/*   int result = CURLOPT_RESOLVER_START_FUNCTION; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURLOPT_RESOLVER_START_DATA_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
-
-
-  int result = CURLOPT_RESOLVER_START_DATA;
-
-  return janet_wrap_integer (result);
-}
-
-static Janet
-const_CURLOPT_HAPROXYPROTOCOL_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLOPT_RESOLVER_START_DATA_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLOPT_HAPROXYPROTOCOL;
+/*   int result = CURLOPT_RESOLVER_START_DATA; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURLOPT_DNS_SHUFFLE_ADDRESSES_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLOPT_HAPROXYPROTOCOL_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLOPT_DNS_SHUFFLE_ADDRESSES;
+/*   int result = CURLOPT_HAPROXYPROTOCOL; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
+
+/* static Janet */
+/* const_CURLOPT_DNS_SHUFFLE_ADDRESSES_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
+
+
+/*   int result = CURLOPT_DNS_SHUFFLE_ADDRESSES; */
+
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLOPT_TLS13_CIPHERS_wrapped (int32_t argc, Janet *argv)
@@ -12661,9 +12661,9 @@ curl_cfuns[] = {
   /* { */
   /*   "const-CURLSSLOPT-NO-PARTIALCHAIN", const_CURLSSLOPT_NO_PARTIALCHAIN_wrapped, "Return the constant value." */
   /* }, */
-  {
-    "const-CURL-HET-DEFAULT", const_CURL_HET_DEFAULT_wrapped, "Return the constant value."
-  },
+  /* { */
+  /*   "const-CURL-HET-DEFAULT", const_CURL_HET_DEFAULT_wrapped, "Return the constant value." */
+  /* }, */
   /* { */
   /*   "const-CURL-UPKEEP-INTERVAL-DEFAULT", const_CURL_UPKEEP_INTERVAL_DEFAULT_wrapped, "Return the constant value." */
   /* }, */
@@ -13300,15 +13300,19 @@ curl_cfuns[] = {
   /* { */
   /*   "const-CURLOPT-HAPPY-EYEBALLS-TIMEOUT-MS", const_CURLOPT_HAPPY_EYEBALLS_TIMEOUT_MS_wrapped, "Return the constant value." */
   /* }, */
+  /* { */
+  /*   "const-CURLOPT-RESOLVER-START-FUNCTION", const_CURLOPT_RESOLVER_START_FUNCTION_wrapped, "Return the constant value." */
+  /* }, */
+  /* { */
+  /*   "const-CURLOPT-RESOLVER-START-DATA", const_CURLOPT_RESOLVER_START_DATA_wrapped, "Return the constant value." */
+  /* }, */
+  /* { */
+  /*   "const-CURLOPT-HAPROXYPROTOCOL", const_CURLOPT_HAPROXYPROTOCOL_wrapped, "Return the constant value." */
+  /* }, */
+  /* { */
+  /*   "const-CURLOPT-DNS-SHUFFLE-ADDRESSES", const_CURLOPT_DNS_SHUFFLE_ADDRESSES_wrapped, "Return the constant value." */
+  /* }, */
   {
-    "const-CURLOPT-RESOLVER-START-FUNCTION", const_CURLOPT_RESOLVER_START_FUNCTION_wrapped, "Return the constant value."
-  },{
-    "const-CURLOPT-RESOLVER-START-DATA", const_CURLOPT_RESOLVER_START_DATA_wrapped, "Return the constant value."
-  },{
-    "const-CURLOPT-HAPROXYPROTOCOL", const_CURLOPT_HAPROXYPROTOCOL_wrapped, "Return the constant value."
-  },{
-    "const-CURLOPT-DNS-SHUFFLE-ADDRESSES", const_CURLOPT_DNS_SHUFFLE_ADDRESSES_wrapped, "Return the constant value."
-  },{
     "const-CURLOPT-TLS13-CIPHERS", const_CURLOPT_TLS13_CIPHERS_wrapped, "Return the constant value."
   },{
     "const-CURLOPT-PROXY-TLS13-CIPHERS", const_CURLOPT_PROXY_TLS13_CIPHERS_wrapped, "Return the constant value."
