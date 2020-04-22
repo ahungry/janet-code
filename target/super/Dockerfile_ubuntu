@@ -20,7 +20,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 
 RUN mkdir /app
 
-RUN echo Build time
+RUN echo Building off 1.9.0 Janet
 RUN git clone --depth=1 https://github.com/ahungry/janet-code /app
 
 WORKDIR /app/target/super

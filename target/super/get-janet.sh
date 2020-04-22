@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#branch=feature/Add-more-builtins
+branch=feature/Add-more-builtins-20200422
 top=$(pwd)
 
 rm -fr build/janet
@@ -7,7 +9,7 @@ mkdir -p build
 
 git clone \
     --depth=1 \
-    --branch=feature/Add-more-builtins \
+    --branch=$branch \
     https://github.com/ahungry/janet.git build/janet
 
 # Copy down the custom wrap files
