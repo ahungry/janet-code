@@ -63,14 +63,14 @@ super-repl.bin: super.c
 	$(LFLAGS)
 
 docker-build:
-	docker build -t super:test . -f Dockerfile_ubuntu
+	docker build -t super_test_build . -f Dockerfile_ubuntu
+
+docker-get:
+	docker cp super_test_run:/app/target/super/super-janet-app-linux64.tar.gz ./
 
 docker-run:
 	$(info docker cp super_test:/app/target/super/super-janet-app-linux64.tar.gz ./)
-	docker run --name super_test --rm \
-	-e DISPLAY=$DISPLAY \
-	-e NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics \
-	-v /tmp/.X11-unix:/tmp/.X11-unix \
-	-it super:test
+	docker run --name super_test_run \
+	-it super_test_build
 
 .PHONY: docker-ubuntu

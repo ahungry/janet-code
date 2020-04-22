@@ -30,4 +30,4 @@ RUN ./get-janet.sh
 RUN make -Bj
 RUN ./package-linux.sh
 
-CMD bash
+CMD echo
