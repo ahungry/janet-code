@@ -4,5 +4,5 @@
 apt-get install build-essential \
         pkg-config \
         libgtk+-3-dev \
-        libcurl4-gnutls-dev \
+        libcurl4-openssl-dev \
         sqlite3

@@ -3316,16 +3316,16 @@ const_CURLE_AUTH_ERROR_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLE_HTTP3_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLE_HTTP3_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLE_HTTP3;
+/*   int result = CURLE_HTTP3; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLE_QUIC_CONNECT_ERROR_wrapped (int32_t argc, Janet *argv)
@@ -4186,60 +4186,60 @@ const_CURLHEADER_SEPARATE_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLALTSVC_IMMEDIATELY_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLALTSVC_IMMEDIATELY_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLALTSVC_IMMEDIATELY;
+/*   int result = CURLALTSVC_IMMEDIATELY; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURLALTSVC_READONLYFILE_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
-
-
-  int result = CURLALTSVC_READONLYFILE;
-
-  return janet_wrap_integer (result);
-}
-
-static Janet
-const_CURLALTSVC_H1_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLALTSVC_READONLYFILE_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLALTSVC_H1;
+/*   int result = CURLALTSVC_READONLYFILE; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURLALTSVC_H2_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
-
-
-  int result = CURLALTSVC_H2;
-
-  return janet_wrap_integer (result);
-}
-
-static Janet
-const_CURLALTSVC_H3_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLALTSVC_H1_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLALTSVC_H3;
+/*   int result = CURLALTSVC_H1; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
+
+/* static Janet */
+/* const_CURLALTSVC_H2_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
+
+
+/*   int result = CURLALTSVC_H2; */
+
+/*   return janet_wrap_integer (result); */
+/* } */
+
+/* static Janet */
+/* const_CURLALTSVC_H3_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
+
+
+/*   int result = CURLALTSVC_H3; */
+
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLPROTO_HTTP_wrapped (int32_t argc, Janet *argv)
@@ -7563,27 +7563,27 @@ const_CURLOPT_HTTP09_ALLOWED_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLOPT_ALTSVC_CTRL_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLOPT_ALTSVC_CTRL_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLOPT_ALTSVC_CTRL;
+/*   int result = CURLOPT_ALTSVC_CTRL; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURLOPT_ALTSVC_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLOPT_ALTSVC_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLOPT_ALTSVC;
+/*   int result = CURLOPT_ALTSVC; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLOPT_MAXAGE_CONN_wrapped (int32_t argc, Janet *argv)
@@ -11321,61 +11321,61 @@ curl_version_info_data_brotli_version_get_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_pointer (result);
 }
 
-static Janet
-curl_version_info_data_nghttp2_ver_num_set_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 2);
+/* static Janet */
+/* curl_version_info_data_nghttp2_ver_num_set_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 2); */
 
-  curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0);
-  unsigned int arg_1 = janet_getinteger (argv, 1);
+/*   curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0); */
+/*   unsigned int arg_1 = janet_getinteger (argv, 1); */
 
- // nghttp2_ver_num
+/*  // nghttp2_ver_num */
 
-  arg_0->nghttp2_ver_num = arg_1;
+/*   arg_0->nghttp2_ver_num = arg_1; */
 
-  return janet_wrap_nil ();
-}
+/*   return janet_wrap_nil (); */
+/* } */
 
-static Janet
-curl_version_info_data_nghttp2_ver_num_get_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 1);
+/* static Janet */
+/* curl_version_info_data_nghttp2_ver_num_get_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 1); */
 
-  curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0);
+/*   curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0); */
 
-  unsigned int result;
-  result = arg_0->nghttp2_ver_num;
+/*   unsigned int result; */
+/*   result = arg_0->nghttp2_ver_num; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-curl_version_info_data_nghttp2_version_set_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 2);
+/* static Janet */
+/* curl_version_info_data_nghttp2_version_set_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 2); */
 
-  curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0);
-  char const * arg_1 = (char const *) janet_getstring (argv, 1);
+/*   curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0); */
+/*   char const * arg_1 = (char const *) janet_getstring (argv, 1); */
 
- // nghttp2_version
+/*  // nghttp2_version */
 
-  arg_0->nghttp2_version = arg_1;
+/*   arg_0->nghttp2_version = arg_1; */
 
-  return janet_wrap_nil ();
-}
+/*   return janet_wrap_nil (); */
+/* } */
 
-static Janet
-curl_version_info_data_nghttp2_version_get_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 1);
+/* static Janet */
+/* curl_version_info_data_nghttp2_version_get_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 1); */
 
-  curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0);
+/*   curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0); */
 
-  char const * result;
-  result = arg_0->nghttp2_version;
+/*   char const * result; */
+/*   result = arg_0->nghttp2_version; */
 
-  return janet_wrap_pointer (result);
-}
+/*   return janet_wrap_pointer (result); */
+/* } */
 
 static Janet
 curl_version_info_data_quic_version_set_wrapped (int32_t argc, Janet *argv)
@@ -11701,27 +11701,27 @@ const_CURL_VERSION_BROTLI_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURL_VERSION_ALTSVC_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURL_VERSION_ALTSVC_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURL_VERSION_ALTSVC;
+/*   int result = CURL_VERSION_ALTSVC; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURL_VERSION_HTTP3_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURL_VERSION_HTTP3_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURL_VERSION_HTTP3;
+/*   int result = CURL_VERSION_HTTP3; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURL_VERSION_ESNI_wrapped (int32_t argc, Janet *argv)
@@ -12533,9 +12533,11 @@ curl_cfuns[] = {
     "const-CURLE-RECURSIVE-API-CALL", const_CURLE_RECURSIVE_API_CALL_wrapped, "Return the constant value."
   },{
     "const-CURLE-AUTH-ERROR", const_CURLE_AUTH_ERROR_wrapped, "Return the constant value."
-  },{
-    "const-CURLE-HTTP3", const_CURLE_HTTP3_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLE-HTTP3", const_CURLE_HTTP3_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLE-QUIC-CONNECT-ERROR", const_CURLE_QUIC_CONNECT_ERROR_wrapped, "Return the constant value."
   },{
     "const-CURL-LAST", const_CURL_LAST_wrapped, "Return the constant value."
@@ -12685,17 +12687,19 @@ curl_cfuns[] = {
     "const-CURLHEADER-UNIFIED", const_CURLHEADER_UNIFIED_wrapped, "Return the constant value."
   },{
     "const-CURLHEADER-SEPARATE", const_CURLHEADER_SEPARATE_wrapped, "Return the constant value."
-  },{
-    "const-CURLALTSVC-IMMEDIATELY", const_CURLALTSVC_IMMEDIATELY_wrapped, "Return the constant value."
-  },{
-    "const-CURLALTSVC-READONLYFILE", const_CURLALTSVC_READONLYFILE_wrapped, "Return the constant value."
-  },{
-    "const-CURLALTSVC-H1", const_CURLALTSVC_H1_wrapped, "Return the constant value."
-  },{
-    "const-CURLALTSVC-H2", const_CURLALTSVC_H2_wrapped, "Return the constant value."
-  },{
-    "const-CURLALTSVC-H3", const_CURLALTSVC_H3_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLALTSVC-IMMEDIATELY", const_CURLALTSVC_IMMEDIATELY_wrapped, "Return the constant value." */
+  /* },{ */
+  /*   "const-CURLALTSVC-READONLYFILE", const_CURLALTSVC_READONLYFILE_wrapped, "Return the constant value." */
+  /* },{ */
+  /*   "const-CURLALTSVC-H1", const_CURLALTSVC_H1_wrapped, "Return the constant value." */
+  /* },{ */
+  /*   "const-CURLALTSVC-H2", const_CURLALTSVC_H2_wrapped, "Return the constant value." */
+  /* },{ */
+  /*   "const-CURLALTSVC-H3", const_CURLALTSVC_H3_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLPROTO-HTTP", const_CURLPROTO_HTTP_wrapped, "Return the constant value."
   },{
     "const-CURLPROTO-HTTPS", const_CURLPROTO_HTTPS_wrapped, "Return the constant value."
@@ -13299,11 +13303,14 @@ curl_cfuns[] = {
     "const-CURLOPT-TRAILERDATA", const_CURLOPT_TRAILERDATA_wrapped, "Return the constant value."
   },{
     "const-CURLOPT-HTTP09-ALLOWED", const_CURLOPT_HTTP09_ALLOWED_wrapped, "Return the constant value."
-  },{
-    "const-CURLOPT-ALTSVC-CTRL", const_CURLOPT_ALTSVC_CTRL_wrapped, "Return the constant value."
-  },{
-    "const-CURLOPT-ALTSVC", const_CURLOPT_ALTSVC_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLOPT-ALTSVC-CTRL", const_CURLOPT_ALTSVC_CTRL_wrapped, "Return the constant value." */
+  /* }, */
+  /* { */
+  /*   "const-CURLOPT-ALTSVC", const_CURLOPT_ALTSVC_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLOPT-MAXAGE-CONN", const_CURLOPT_MAXAGE_CONN_wrapped, "Return the constant value."
   },{
     "const-CURLOPT-SASL-AUTHZID", const_CURLOPT_SASL_AUTHZID_wrapped, "Return the constant value."
@@ -13929,15 +13936,17 @@ curl_cfuns[] = {
     "curl-version-info-data-brotli-version-set", curl_version_info_data_brotli_version_set_wrapped, "SWIG generated"
   },{
     "curl-version-info-data-brotli-version-get", curl_version_info_data_brotli_version_get_wrapped, "SWIG generated"
-  },{
-    "curl-version-info-data-nghttp2-ver-num-set", curl_version_info_data_nghttp2_ver_num_set_wrapped, "SWIG generated"
-  },{
-    "curl-version-info-data-nghttp2-ver-num-get", curl_version_info_data_nghttp2_ver_num_get_wrapped, "SWIG generated"
-  },{
-    "curl-version-info-data-nghttp2-version-set", curl_version_info_data_nghttp2_version_set_wrapped, "SWIG generated"
-  },{
-    "curl-version-info-data-nghttp2-version-get", curl_version_info_data_nghttp2_version_get_wrapped, "SWIG generated"
-  },{
+  },
+  /* { */
+  /*   "curl-version-info-data-nghttp2-ver-num-set", curl_version_info_data_nghttp2_ver_num_set_wrapped, "SWIG generated" */
+  /* },{ */
+  /*   "curl-version-info-data-nghttp2-ver-num-get", curl_version_info_data_nghttp2_ver_num_get_wrapped, "SWIG generated" */
+  /* },{ */
+  /*   "curl-version-info-data-nghttp2-version-set", curl_version_info_data_nghttp2_version_set_wrapped, "SWIG generated" */
+  /* },{ */
+  /*   "curl-version-info-data-nghttp2-version-get", curl_version_info_data_nghttp2_version_get_wrapped, "SWIG generated" */
+  /* }, */
+  {
     "curl-version-info-data-quic-version-set", curl_version_info_data_quic_version_set_wrapped, "SWIG generated"
   },{
     "curl-version-info-data-quic-version-get", curl_version_info_data_quic_version_get_wrapped, "SWIG generated"
@@ -13993,11 +14002,14 @@ curl_cfuns[] = {
     "const-CURL-VERSION-MULTI-SSL", const_CURL_VERSION_MULTI_SSL_wrapped, "Return the constant value."
   },{
     "const-CURL-VERSION-BROTLI", const_CURL_VERSION_BROTLI_wrapped, "Return the constant value."
-  },{
-    "const-CURL-VERSION-ALTSVC", const_CURL_VERSION_ALTSVC_wrapped, "Return the constant value."
-  },{
-    "const-CURL-VERSION-HTTP3", const_CURL_VERSION_HTTP3_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURL-VERSION-ALTSVC", const_CURL_VERSION_ALTSVC_wrapped, "Return the constant value." */
+  /* }, */
+  /* { */
+  /*   "const-CURL-VERSION-HTTP3", const_CURL_VERSION_HTTP3_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURL-VERSION-ESNI", const_CURL_VERSION_ESNI_wrapped, "Return the constant value."
   },{
     "curl-version-info", curl_version_info_wrapped, "SWIG generated"
