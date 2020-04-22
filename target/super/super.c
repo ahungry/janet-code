@@ -847,14 +847,12 @@ int main(int argc, char **argv) {
 
 #ifdef _WIN32
     /* Enable color console on windows 10 console and utf8 output. */
-    /*
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     DWORD dwMode = 0;
     GetConsoleMode(hOut, &dwMode);
     dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     SetConsoleMode(hOut, dwMode);
     SetConsoleOutputCP(65001);
-    */
 #endif
 
     /* Set up VM */
