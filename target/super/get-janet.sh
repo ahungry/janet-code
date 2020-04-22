@@ -8,7 +8,7 @@ mkdir -p build
 git clone \
     --depth=1 \
     --branch=feature/Add-more-builtins \
-    git@github.com:ahungry/janet.git build/janet
+    https://github.com/ahungry/janet.git build/janet
 
 # Copy down the custom wrap files
 # cp curl_wrap_app.c    build/janet/src/
