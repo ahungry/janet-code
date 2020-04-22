@@ -21,12 +21,12 @@ git clone \
 cd build/janet
 make -j8
 
-cd $top
+# cd $top
 
-# We need to ensure the amalg build is 4 levels deep
-amalg=amalg/a/b/c
+# # We need to ensure the amalg build is 4 levels deep
+# amalg=amalg/a/b/c
 
-mkdir -p $amalg
-cp build/janet/build/janet.c     ./$amalg/
-cp build/janet/build/janet.h     ./$amalg/
-cp build/janet/build/janetconf.h ./$amalg/
+# mkdir -p $amalg
+# cp build/janet/build/janet.c     ./$amalg/
+# cp build/janet/build/janet.h     ./$amalg/
+# cp build/janet/build/janetconf.h ./$amalg/

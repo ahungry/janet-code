@@ -9,7 +9,7 @@ LFLAGS=-lm -pthread -lwinmm \
 	-lmingw32 -lopengl32 -lpangowin32-1.0 -lgdi32 -lws2_32 -luuid -lcomctl32 -lole32  \
 	-lcomdlg32
 
-JANET_CFLAGS=-I./amalg
+JANET_CFLAGS=-I./ -I./build/janet/build
 JANET_LFLAGS=-lcurl
 
 CURL_CFLAGS=
@@ -53,7 +53,7 @@ app.exe: app.c
 	$(CURL_CFLAGS) \
 	$(IUP_CFLAGS) \
 	$(CIRCLET_CFLAGS) \
-	amalg/janet.c $< -o $@  \
+	build/janet/build/janet.c $< -o $@  \
 	$(JANET_LFLAGS) \
 	$(SQLITE3_LFLAGS) \
 	$(CURL_LFLAGS) \
@@ -68,7 +68,7 @@ super-repl.exe: super.c
 	$(CURL_CFLAGS) \
 	$(IUP_CFLAGS) \
 	$(CIRCLET_CFLAGS) \
-	amalg/janet.c $< -o $@  \
+	build/janet/build/janet.c $< -o $@  \
 	$(JANET_LFLAGS) \
 	$(SQLITE3_LFLAGS) \
 	$(CURL_LFLAGS) \
