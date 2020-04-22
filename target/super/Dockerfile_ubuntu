@@ -25,6 +25,7 @@ WORKDIR /app/target/super
 
 RUN ./get-iup-linux-files.sh
 RUN ./get-janet.sh
-RUN make -Bj app.bin
+RUN make -Bj
+RUN ./package-linux.sh
 
 CMD bash
