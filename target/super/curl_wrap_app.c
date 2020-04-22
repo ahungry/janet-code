@@ -10308,16 +10308,16 @@ const_CURLINFO_APPCONNECT_TIME_T_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLINFO_RETRY_AFTER_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLINFO_RETRY_AFTER_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLINFO_RETRY_AFTER;
+/*   int result = CURLINFO_RETRY_AFTER; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLINFO_LASTONE_wrapped (int32_t argc, Janet *argv)
@@ -10539,16 +10539,16 @@ const_CURL_LOCK_DATA_CONNECT_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURL_LOCK_DATA_PSL_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURL_LOCK_DATA_PSL_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURL_LOCK_DATA_PSL;
+/*   int result = CURL_LOCK_DATA_PSL; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURL_LOCK_DATA_LAST_wrapped (int32_t argc, Janet *argv)
@@ -10851,16 +10851,16 @@ const_CURLVERSION_FIFTH_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLVERSION_SIXTH_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLVERSION_SIXTH_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLVERSION_SIXTH;
+/*   int result = CURLVERSION_SIXTH; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLVERSION_LAST_wrapped (int32_t argc, Janet *argv)
@@ -11377,33 +11377,33 @@ curl_version_info_data_brotli_version_get_wrapped (int32_t argc, Janet *argv)
 /*   return janet_wrap_pointer (result); */
 /* } */
 
-static Janet
-curl_version_info_data_quic_version_set_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 2);
+/* static Janet */
+/* curl_version_info_data_quic_version_set_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 2); */
 
-  curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0);
-  char const * arg_1 = (char const *) janet_getstring (argv, 1);
+/*   curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0); */
+/*   char const * arg_1 = (char const *) janet_getstring (argv, 1); */
 
- // quic_version
+/*  // quic_version */
 
-  arg_0->quic_version = arg_1;
+/*   arg_0->quic_version = arg_1; */
 
-  return janet_wrap_nil ();
-}
+/*   return janet_wrap_nil (); */
+/* } */
 
-static Janet
-curl_version_info_data_quic_version_get_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 1);
+/* static Janet */
+/* curl_version_info_data_quic_version_get_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 1); */
 
-  curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0);
+/*   curl_version_info_data * arg_0 = (curl_version_info_data *) janet_getpointer (argv, 0); */
 
-  char const * result;
-  result = arg_0->quic_version;
+/*   char const * result; */
+/*   result = arg_0->quic_version; */
 
-  return janet_wrap_pointer (result);
-}
+/*   return janet_wrap_pointer (result); */
+/* } */
 
 static Janet
 new_curl_version_info_data_wrapped (int32_t argc, Janet *argv)
@@ -11657,16 +11657,16 @@ const_CURL_VERSION_UNIX_SOCKETS_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURL_VERSION_PSL_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURL_VERSION_PSL_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURL_VERSION_PSL;
+/*   int result = CURL_VERSION_PSL; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURL_VERSION_HTTPS_PROXY_wrapped (int32_t argc, Janet *argv)
@@ -13774,9 +13774,11 @@ curl_cfuns[] = {
     "const-CURLINFO-REDIRECT-TIME-T", const_CURLINFO_REDIRECT_TIME_T_wrapped, "Return the constant value."
   },{
     "const-CURLINFO-APPCONNECT-TIME-T", const_CURLINFO_APPCONNECT_TIME_T_wrapped, "Return the constant value."
-  },{
-    "const-CURLINFO-RETRY-AFTER", const_CURLINFO_RETRY_AFTER_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLINFO-RETRY-AFTER", const_CURLINFO_RETRY_AFTER_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLINFO-LASTONE", const_CURLINFO_LASTONE_wrapped, "Return the constant value."
   },{
     "const-CURLCLOSEPOLICY-NONE", const_CURLCLOSEPOLICY_NONE_wrapped, "Return the constant value."
@@ -13816,9 +13818,11 @@ curl_cfuns[] = {
     "const-CURL-LOCK-DATA-SSL-SESSION", const_CURL_LOCK_DATA_SSL_SESSION_wrapped, "Return the constant value."
   },{
     "const-CURL-LOCK-DATA-CONNECT", const_CURL_LOCK_DATA_CONNECT_wrapped, "Return the constant value."
-  },{
-    "const-CURL-LOCK-DATA-PSL", const_CURL_LOCK_DATA_PSL_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURL-LOCK-DATA-PSL", const_CURL_LOCK_DATA_PSL_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURL-LOCK-DATA-LAST", const_CURL_LOCK_DATA_LAST_wrapped, "Return the constant value."
   },{
     "const-CURL-LOCK-ACCESS-NONE", const_CURL_LOCK_ACCESS_NONE_wrapped, "Return the constant value."
@@ -13872,9 +13876,11 @@ curl_cfuns[] = {
     "const-CURLVERSION-FOURTH", const_CURLVERSION_FOURTH_wrapped, "Return the constant value."
   },{
     "const-CURLVERSION-FIFTH", const_CURLVERSION_FIFTH_wrapped, "Return the constant value."
-  },{
-    "const-CURLVERSION-SIXTH", const_CURLVERSION_SIXTH_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLVERSION-SIXTH", const_CURLVERSION_SIXTH_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLVERSION-LAST", const_CURLVERSION_LAST_wrapped, "Return the constant value."
   },{
     "curl-version-info-data-age-set", curl_version_info_data_age_set_wrapped, "SWIG generated"
@@ -13950,11 +13956,13 @@ curl_cfuns[] = {
   /* },{ */
   /*   "curl-version-info-data-nghttp2-version-get", curl_version_info_data_nghttp2_version_get_wrapped, "SWIG generated" */
   /* }, */
+  /* { */
+  /*   "curl-version-info-data-quic-version-set", curl_version_info_data_quic_version_set_wrapped, "SWIG generated" */
+  /* }, */
+  /* { */
+  /*   "curl-version-info-data-quic-version-get", curl_version_info_data_quic_version_get_wrapped, "SWIG generated" */
+  /* }, */
   {
-    "curl-version-info-data-quic-version-set", curl_version_info_data_quic_version_set_wrapped, "SWIG generated"
-  },{
-    "curl-version-info-data-quic-version-get", curl_version_info_data_quic_version_get_wrapped, "SWIG generated"
-  },{
     "new-curl-version-info-data", new_curl_version_info_data_wrapped, "SWIG generated"
   },{
     "delete-curl-version-info-data", delete_curl_version_info_data_wrapped, "SWIG generated"
@@ -13998,9 +14006,11 @@ curl_cfuns[] = {
     "const-CURL-VERSION-KERBEROS5", const_CURL_VERSION_KERBEROS5_wrapped, "Return the constant value."
   },{
     "const-CURL-VERSION-UNIX-SOCKETS", const_CURL_VERSION_UNIX_SOCKETS_wrapped, "Return the constant value."
-  },{
-    "const-CURL-VERSION-PSL", const_CURL_VERSION_PSL_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURL-VERSION-PSL", const_CURL_VERSION_PSL_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURL-VERSION-HTTPS-PROXY", const_CURL_VERSION_HTTPS_PROXY_wrapped, "Return the constant value."
   },{
     "const-CURL-VERSION-MULTI-SSL", const_CURL_VERSION_MULTI_SSL_wrapped, "Return the constant value."
