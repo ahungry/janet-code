@@ -70,6 +70,7 @@ docker-get:
 
 docker-run:
 	$(info docker cp super_test:/app/target/super/super-janet-app-linux64.tar.gz ./)
+	-docker rm super_test_run
 	docker run --name super_test_run \
 	-it super_test_build
 
