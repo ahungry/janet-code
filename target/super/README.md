@@ -26,6 +26,12 @@ Try out these:
     "https://github.com/andrewchambers/janet-sh.git"
     "https://github.com/andrewchambers/janet-base16.git"
 
+# Getting IUP Files (iup, im, cd)
+
+On GNU/Linux and/or Windows, iup works with static or dynamic linking,
+im only works with dynamic because it has cpp only stuff in the
+archive file, and cd was not required.
+
 # TODO Cleanup
 
 Perhaps remove mongoose/circlet - it segfaults on Windows (probably
