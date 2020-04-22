@@ -11966,17 +11966,17 @@ curl_easy_send_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-curl_easy_upkeep_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 1);
+/* static Janet */
+/* curl_easy_upkeep_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 1); */
 
-  CURL * arg_0 = (CURL *) janet_getpointer (argv, 0);
+/*   CURL * arg_0 = (CURL *) janet_getpointer (argv, 0); */
 
-  CURLcode result = curl_easy_upkeep ((CURL *) arg_0);
+/*   CURLcode result = curl_easy_upkeep ((CURL *) arg_0); */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 curl_easy_setopt_string_wrapped (int32_t argc, Janet *argv)
@@ -14101,9 +14101,11 @@ curl_cfuns[] = {
     "curl-easy-recv", curl_easy_recv_wrapped, "SWIG generated"
   },{
     "curl-easy-send", curl_easy_send_wrapped, "SWIG generated"
-  },{
-    "curl-easy-upkeep", curl_easy_upkeep_wrapped, "SWIG generated"
-  },{
+  },
+  /* { */
+  /*   "curl-easy-upkeep", curl_easy_upkeep_wrapped, "SWIG generated" */
+  /* }, */
+  {
     "curl-easy-setopt-string", curl_easy_setopt_string_wrapped, "SWIG generated"
   },{
     "curl-easy-setopt-pointer", curl_easy_setopt_pointer_wrapped, "SWIG generated"
