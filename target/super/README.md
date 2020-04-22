@@ -12,6 +12,19 @@ The process had to be updated from modifying/including in app level to
 recompiling the amalg janet source, otherwise non BIF will not work in
 the thread callbacks due to symbol missing in global resolution stuff.
 
+# License
+
+Copyright Matthew Carter <m@ahungry.com>
+
+Some works are under MIT license, some are GPLv2.
+
+All source is available at this repository you fetched the file from.
+
+If you make a derivative work, you need to ahdere to the license here
+(as well as those in the dependencies, which may be GPLv2 in the case
+of the mongoose/circlet stuff).
+
+
 # TODO
 
 Try out these:

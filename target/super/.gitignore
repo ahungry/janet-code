@@ -3,3 +3,4 @@ Thumbs.db*
 build/
 amalg/
 build.tar.gz
+*.zip
