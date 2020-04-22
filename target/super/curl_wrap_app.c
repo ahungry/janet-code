@@ -2832,16 +2832,16 @@ const_CURLE_OBSOLETE50_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLE_OBSOLETE51_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLE_OBSOLETE51_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLE_OBSOLETE51;
+/*   int result = CURLE_OBSOLETE51; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLE_GOT_NOTHING_wrapped (int32_t argc, Janet *argv)
@@ -3294,27 +3294,27 @@ const_CURLE_HTTP2_STREAM_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLE_RECURSIVE_API_CALL_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLE_RECURSIVE_API_CALL_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLE_RECURSIVE_API_CALL;
+/*   int result = CURLE_RECURSIVE_API_CALL; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURLE_AUTH_ERROR_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLE_AUTH_ERROR_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLE_AUTH_ERROR;
+/*   int result = CURLE_AUTH_ERROR; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 /* static Janet */
 /* const_CURLE_HTTP3_wrapped (int32_t argc, Janet *argv) */
@@ -3327,16 +3327,16 @@ const_CURLE_AUTH_ERROR_wrapped (int32_t argc, Janet *argv)
 /*   return janet_wrap_integer (result); */
 /* } */
 
-static Janet
-const_CURLE_QUIC_CONNECT_ERROR_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLE_QUIC_CONNECT_ERROR_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLE_QUIC_CONNECT_ERROR;
+/*   int result = CURLE_QUIC_CONNECT_ERROR; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURL_LAST_wrapped (int32_t argc, Janet *argv)
@@ -3944,16 +3944,16 @@ const_CURLSSLOPT_NO_REVOKE_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLSSLOPT_NO_PARTIALCHAIN_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLSSLOPT_NO_PARTIALCHAIN_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLSSLOPT_NO_PARTIALCHAIN;
+/*   int result = CURLSSLOPT_NO_PARTIALCHAIN; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURL_HET_DEFAULT_wrapped (int32_t argc, Janet *argv)
@@ -3966,16 +3966,16 @@ const_CURL_HET_DEFAULT_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURL_UPKEEP_INTERVAL_DEFAULT_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURL_UPKEEP_INTERVAL_DEFAULT_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  long result = CURL_UPKEEP_INTERVAL_DEFAULT;
+/*   long result = CURL_UPKEEP_INTERVAL_DEFAULT; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLFTPSSL_CCC_NONE_wrapped (int32_t argc, Janet *argv)
@@ -4615,16 +4615,16 @@ const_CURLOPTTYPE_STRINGPOINT_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLOPTTYPE_SLISTPOINT_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLOPTTYPE_SLISTPOINT_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLOPTTYPE_SLISTPOINT;
+/*   int result = CURLOPTTYPE_SLISTPOINT; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLOPT_WRITEDATA_wrapped (int32_t argc, Janet *argv)
@@ -7387,27 +7387,27 @@ const_CURLOPT_MIMEPOST_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLOPT_TIMEVALUE_LARGE_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLOPT_TIMEVALUE_LARGE_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLOPT_TIMEVALUE_LARGE;
+/*   int result = CURLOPT_TIMEVALUE_LARGE; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURLOPT_HAPPY_EYEBALLS_TIMEOUT_MS_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLOPT_HAPPY_EYEBALLS_TIMEOUT_MS_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLOPT_HAPPY_EYEBALLS_TIMEOUT_MS;
+/*   int result = CURLOPT_HAPPY_EYEBALLS_TIMEOUT_MS; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLOPT_RESOLVER_START_FUNCTION_wrapped (int32_t argc, Janet *argv)
@@ -12454,9 +12454,11 @@ curl_cfuns[] = {
     "const-CURLE-TELNET-OPTION-SYNTAX", const_CURLE_TELNET_OPTION_SYNTAX_wrapped, "Return the constant value."
   },{
     "const-CURLE-OBSOLETE50", const_CURLE_OBSOLETE50_wrapped, "Return the constant value."
-  },{
-    "const-CURLE-OBSOLETE51", const_CURLE_OBSOLETE51_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLE-OBSOLETE51", const_CURLE_OBSOLETE51_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLE-GOT-NOTHING", const_CURLE_GOT_NOTHING_wrapped, "Return the constant value."
   },{
     "const-CURLE-SSL-ENGINE-NOTFOUND", const_CURLE_SSL_ENGINE_NOTFOUND_wrapped, "Return the constant value."
@@ -12538,17 +12540,20 @@ curl_cfuns[] = {
     "const-CURLE-SSL-INVALIDCERTSTATUS", const_CURLE_SSL_INVALIDCERTSTATUS_wrapped, "Return the constant value."
   },{
     "const-CURLE-HTTP2-STREAM", const_CURLE_HTTP2_STREAM_wrapped, "Return the constant value."
-  },{
-    "const-CURLE-RECURSIVE-API-CALL", const_CURLE_RECURSIVE_API_CALL_wrapped, "Return the constant value."
-  },{
-    "const-CURLE-AUTH-ERROR", const_CURLE_AUTH_ERROR_wrapped, "Return the constant value."
   },
+  /* { */
+  /*   "const-CURLE-RECURSIVE-API-CALL", const_CURLE_RECURSIVE_API_CALL_wrapped, "Return the constant value." */
+  /* }, */
+  /* { */
+  /*   "const-CURLE-AUTH-ERROR", const_CURLE_AUTH_ERROR_wrapped, "Return the constant value." */
+  /* }, */
   /* { */
   /*   "const-CURLE-HTTP3", const_CURLE_HTTP3_wrapped, "Return the constant value." */
   /* }, */
+  /* { */
+  /*   "const-CURLE-QUIC-CONNECT-ERROR", const_CURLE_QUIC_CONNECT_ERROR_wrapped, "Return the constant value." */
+  /* }, */
   {
-    "const-CURLE-QUIC-CONNECT-ERROR", const_CURLE_QUIC_CONNECT_ERROR_wrapped, "Return the constant value."
-  },{
     "const-CURL-LAST", const_CURL_LAST_wrapped, "Return the constant value."
   },{
     "const-CURLE-ALREADY-COMPLETE", const_CURLE_ALREADY_COMPLETE_wrapped, "Return the constant value."
@@ -12652,13 +12657,17 @@ curl_cfuns[] = {
     "const-CURLSSLOPT-ALLOW-BEAST", const_CURLSSLOPT_ALLOW_BEAST_wrapped, "Return the constant value."
   },{
     "const-CURLSSLOPT-NO-REVOKE", const_CURLSSLOPT_NO_REVOKE_wrapped, "Return the constant value."
-  },{
-    "const-CURLSSLOPT-NO-PARTIALCHAIN", const_CURLSSLOPT_NO_PARTIALCHAIN_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLSSLOPT-NO-PARTIALCHAIN", const_CURLSSLOPT_NO_PARTIALCHAIN_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURL-HET-DEFAULT", const_CURL_HET_DEFAULT_wrapped, "Return the constant value."
-  },{
-    "const-CURL-UPKEEP-INTERVAL-DEFAULT", const_CURL_UPKEEP_INTERVAL_DEFAULT_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURL-UPKEEP-INTERVAL-DEFAULT", const_CURL_UPKEEP_INTERVAL_DEFAULT_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLFTPSSL-CCC-NONE", const_CURLFTPSSL_CCC_NONE_wrapped, "Return the constant value."
   },{
     "const-CURLFTPSSL-CCC-PASSIVE", const_CURLFTPSSL_CCC_PASSIVE_wrapped, "Return the constant value."
@@ -12776,9 +12785,11 @@ curl_cfuns[] = {
     "const-CURLOPTTYPE-OFF-T", const_CURLOPTTYPE_OFF_T_wrapped, "Return the constant value."
   },{
     "const-CURLOPTTYPE-STRINGPOINT", const_CURLOPTTYPE_STRINGPOINT_wrapped, "Return the constant value."
-  },{
-    "const-CURLOPTTYPE-SLISTPOINT", const_CURLOPTTYPE_SLISTPOINT_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLOPTTYPE-SLISTPOINT", const_CURLOPTTYPE_SLISTPOINT_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLOPT-WRITEDATA", const_CURLOPT_WRITEDATA_wrapped, "Return the constant value."
   },{
     "const-CURLOPT-URL", const_CURLOPT_URL_wrapped, "Return the constant value."
@@ -13282,11 +13293,14 @@ curl_cfuns[] = {
     "const-CURLOPT-SSH-COMPRESSION", const_CURLOPT_SSH_COMPRESSION_wrapped, "Return the constant value."
   },{
     "const-CURLOPT-MIMEPOST", const_CURLOPT_MIMEPOST_wrapped, "Return the constant value."
-  },{
-    "const-CURLOPT-TIMEVALUE-LARGE", const_CURLOPT_TIMEVALUE_LARGE_wrapped, "Return the constant value."
-  },{
-    "const-CURLOPT-HAPPY-EYEBALLS-TIMEOUT-MS", const_CURLOPT_HAPPY_EYEBALLS_TIMEOUT_MS_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLOPT-TIMEVALUE-LARGE", const_CURLOPT_TIMEVALUE_LARGE_wrapped, "Return the constant value." */
+  /* }, */
+  /* { */
+  /*   "const-CURLOPT-HAPPY-EYEBALLS-TIMEOUT-MS", const_CURLOPT_HAPPY_EYEBALLS_TIMEOUT_MS_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLOPT-RESOLVER-START-FUNCTION", const_CURLOPT_RESOLVER_START_FUNCTION_wrapped, "Return the constant value."
   },{
     "const-CURLOPT-RESOLVER-START-DATA", const_CURLOPT_RESOLVER_START_DATA_wrapped, "Return the constant value."
