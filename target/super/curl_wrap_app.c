@@ -279,16 +279,16 @@ const_CURLSSLBACKEND_SCHANNEL_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLSSLBACKEND_SECURETRANSPORT_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLSSLBACKEND_SECURETRANSPORT_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLSSLBACKEND_SECURETRANSPORT;
+/*   int result = CURLSSLBACKEND_SECURETRANSPORT; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLSSLBACKEND_AXTLS_wrapped (int32_t argc, Janet *argv)
@@ -312,27 +312,27 @@ const_CURLSSLBACKEND_MBEDTLS_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLSSLBACKEND_MESALINK_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLSSLBACKEND_MESALINK_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLSSLBACKEND_MESALINK;
+/*   int result = CURLSSLBACKEND_MESALINK; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURLSSLBACKEND_BEARSSL_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLSSLBACKEND_BEARSSL_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLSSLBACKEND_BEARSSL;
+/*   int result = CURLSSLBACKEND_BEARSSL; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 curl_httppost_next_set_wrapped (int32_t argc, Janet *argv)
@@ -874,16 +874,16 @@ delete_curl_httppost_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_nil ();
 }
 
-static Janet
-const_CURL_PROGRESSFUNC_CONTINUE_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURL_PROGRESSFUNC_CONTINUE_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURL_PROGRESSFUNC_CONTINUE;
+/*   int result = CURL_PROGRESSFUNC_CONTINUE; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURL_MAX_READ_SIZE_wrapped (int32_t argc, Janet *argv)
@@ -1836,27 +1836,27 @@ const_CURL_READFUNC_PAUSE_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURL_TRAILERFUNC_OK_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURL_TRAILERFUNC_OK_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURL_TRAILERFUNC_OK;
+/*   int result = CURL_TRAILERFUNC_OK; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
-static Janet
-const_CURL_TRAILERFUNC_ABORT_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURL_TRAILERFUNC_ABORT_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURL_TRAILERFUNC_ABORT;
+/*   int result = CURL_TRAILERFUNC_ABORT; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLSOCKTYPE_IPCXN_wrapped (int32_t argc, Janet *argv)
@@ -7530,16 +7530,16 @@ const_CURLOPT_CURLU_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLOPT_TRAILERFUNCTION_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLOPT_TRAILERFUNCTION_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLOPT_TRAILERFUNCTION;
+/*   int result = CURLOPT_TRAILERFUNCTION; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLOPT_TRAILERDATA_wrapped (int32_t argc, Janet *argv)
@@ -12039,17 +12039,22 @@ curl_cfuns[] = {
     "const-CURLSSLBACKEND-WOLFSSL", const_CURLSSLBACKEND_WOLFSSL_wrapped, "Return the constant value."
   },{
     "const-CURLSSLBACKEND-SCHANNEL", const_CURLSSLBACKEND_SCHANNEL_wrapped, "Return the constant value."
-  },{
-    "const-CURLSSLBACKEND-SECURETRANSPORT", const_CURLSSLBACKEND_SECURETRANSPORT_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLSSLBACKEND-SECURETRANSPORT", const_CURLSSLBACKEND_SECURETRANSPORT_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLSSLBACKEND-AXTLS", const_CURLSSLBACKEND_AXTLS_wrapped, "Return the constant value."
   },{
     "const-CURLSSLBACKEND-MBEDTLS", const_CURLSSLBACKEND_MBEDTLS_wrapped, "Return the constant value."
-  },{
-    "const-CURLSSLBACKEND-MESALINK", const_CURLSSLBACKEND_MESALINK_wrapped, "Return the constant value."
-  },{
-    "const-CURLSSLBACKEND-BEARSSL", const_CURLSSLBACKEND_BEARSSL_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLSSLBACKEND-MESALINK", const_CURLSSLBACKEND_MESALINK_wrapped, "Return the constant value." */
+  /* }, */
+  /* { */
+  /*   "const-CURLSSLBACKEND-BEARSSL", const_CURLSSLBACKEND_BEARSSL_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "curl-httppost-next-set", curl_httppost_next_set_wrapped, "SWIG generated"
   },{
     "curl-httppost-next-get", curl_httppost_next_get_wrapped, "SWIG generated"
@@ -12125,9 +12130,11 @@ curl_cfuns[] = {
     "new-curl-httppost", new_curl_httppost_wrapped, "SWIG generated"
   },{
     "delete-curl-httppost", delete_curl_httppost_wrapped, "SWIG generated"
-  },{
-    "const-CURL-PROGRESSFUNC-CONTINUE", const_CURL_PROGRESSFUNC_CONTINUE_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURL-PROGRESSFUNC-CONTINUE", const_CURL_PROGRESSFUNC_CONTINUE_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURL-MAX-READ-SIZE", const_CURL_MAX_READ_SIZE_wrapped, "Return the constant value."
   },{
     "const-CURL-MAX-WRITE-SIZE", const_CURL_MAX_WRITE_SIZE_wrapped, "Return the constant value."
@@ -12273,11 +12280,13 @@ curl_cfuns[] = {
     "const-CURL-READFUNC-ABORT", const_CURL_READFUNC_ABORT_wrapped, "Return the constant value."
   },{
     "const-CURL-READFUNC-PAUSE", const_CURL_READFUNC_PAUSE_wrapped, "Return the constant value."
-  },{
-    "const-CURL-TRAILERFUNC-OK", const_CURL_TRAILERFUNC_OK_wrapped, "Return the constant value."
-  },{
-    "const-CURL-TRAILERFUNC-ABORT", const_CURL_TRAILERFUNC_ABORT_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURL-TRAILERFUNC-OK", const_CURL_TRAILERFUNC_OK_wrapped, "Return the constant value." */
+  /* },{ */
+  /*   "const-CURL-TRAILERFUNC-ABORT", const_CURL_TRAILERFUNC_ABORT_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLSOCKTYPE-IPCXN", const_CURLSOCKTYPE_IPCXN_wrapped, "Return the constant value."
   },{
     "const-CURLSOCKTYPE-ACCEPT", const_CURLSOCKTYPE_ACCEPT_wrapped, "Return the constant value."
@@ -13299,9 +13308,11 @@ curl_cfuns[] = {
     "const-CURLOPT-UPKEEP-INTERVAL-MS", const_CURLOPT_UPKEEP_INTERVAL_MS_wrapped, "Return the constant value."
   },{
     "const-CURLOPT-CURLU", const_CURLOPT_CURLU_wrapped, "Return the constant value."
-  },{
-    "const-CURLOPT-TRAILERFUNCTION", const_CURLOPT_TRAILERFUNCTION_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLOPT-TRAILERFUNCTION", const_CURLOPT_TRAILERFUNCTION_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLOPT-TRAILERDATA", const_CURLOPT_TRAILERDATA_wrapped, "Return the constant value."
   },{
     "const-CURLOPT-HTTP09-ALLOWED", const_CURLOPT_HTTP09_ALLOWED_wrapped, "Return the constant value."
