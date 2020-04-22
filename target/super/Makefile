@@ -4,7 +4,7 @@
 
 CC=gcc
 
-CFLAGS=-Wall -std=gnu99 -fPIC
+CFLAGS=-Wall -Wno-unused-variable -Wno-unused-function -Wno-unused-parameter -Wno-format-truncation -std=gnu99 -fPIC
 LFLAGS=-lm -pthread -lz
 
 JANET_CFLAGS=-I./ -I./build/janet/build
