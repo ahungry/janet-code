@@ -13,8 +13,8 @@ JANET_LFLAGS=-ldl
 CURL_CFLAGS=
 CURL_LFLAGS=-lcurl
 
-IUP_CFLAGS=-I/usr/include/iup
-IUP_LFLAGS=-L/home/mcarter/software/iup/nix64-static \
+IUP_CFLAGS=-I./build/linux/iup/include
+IUP_LFLAGS=-L./build/linux/iup \
 	-l:libiup.a \
 	-l:libiupimglib.a \
 	-l:libiupim.a \

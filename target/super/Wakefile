@@ -15,8 +15,8 @@ JANET_LFLAGS=-lcurl
 CURL_CFLAGS=
 CURL_LFLAGS=-lcurl
 
-IUP_CFLAGS=-I/usr/include/iup
-IUP_LFLAGS=-L/home/mcarter/software/iup/win64-static \
+IUP_CFLAGS=-I./build/win/iup/include
+IUP_LFLAGS=-L./build/win/iup \
 	-l:libiupim.a \
 	-l:libiup_scintilla.a \
 	-l:libfreetype6.a \
@@ -33,7 +33,7 @@ IUP_LFLAGS=-L/home/mcarter/software/iup/win64-static \
 	-l:libiup.a \
 	-l:libiupimglib.a \
 	-l:libiupim.a \
-	-L/home/mcarter/software/im/win64-dynamic \
+	-L./build/win/im \
 	-l:libim.a \
 	-l:libz.a
 
