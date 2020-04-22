@@ -11723,16 +11723,16 @@ const_CURL_VERSION_BROTLI_wrapped (int32_t argc, Janet *argv)
 /*   return janet_wrap_integer (result); */
 /* } */
 
-static Janet
-const_CURL_VERSION_ESNI_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURL_VERSION_ESNI_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURL_VERSION_ESNI;
+/*   int result = CURL_VERSION_ESNI; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 curl_version_info_wrapped (int32_t argc, Janet *argv)
@@ -14009,9 +14009,10 @@ curl_cfuns[] = {
   /* { */
   /*   "const-CURL-VERSION-HTTP3", const_CURL_VERSION_HTTP3_wrapped, "Return the constant value." */
   /* }, */
+  /* { */
+  /*   "const-CURL-VERSION-ESNI", const_CURL_VERSION_ESNI_wrapped, "Return the constant value." */
+  /* }, */
   {
-    "const-CURL-VERSION-ESNI", const_CURL_VERSION_ESNI_wrapped, "Return the constant value."
-  },{
     "curl-version-info", curl_version_info_wrapped, "SWIG generated"
   },{
     "curl-easy-strerror", curl_easy_strerror_wrapped, "SWIG generated"
