@@ -7,7 +7,7 @@ CC=gcc
 CFLAGS=-Wall -std=gnu99 -fPIC
 LFLAGS=-lm -pthread -lz
 
-JANET_CFLAGS=-I./amalg
+JANET_CFLAGS=-I./amalg/a/b/c
 JANET_LFLAGS=-ldl
 
 CURL_CFLAGS=
@@ -37,7 +37,7 @@ app.bin: app.c
 	$(CURL_CFLAGS) \
 	$(IUP_CFLAGS) \
 	$(CIRCLET_CFLAGS) \
-	amalg/janet.c $< -o $@  \
+	amalg/a/b/c/janet.c $< -o $@  \
 	$(JANET_LFLAGS) \
 	$(SQLITE3_LFLAGS) \
 	$(CURL_LFLAGS) \
@@ -52,7 +52,7 @@ super-repl.bin: super.c
 	$(CURL_CFLAGS) \
 	$(IUP_CFLAGS) \
 	$(CIRCLET_CFLAGS) \
-	amalg/janet.c $< -o $@  \
+	amalg/a/b/c/janet.c $< -o $@  \
 	$(JANET_LFLAGS) \
 	$(SQLITE3_LFLAGS) \
 	$(CURL_LFLAGS) \
