@@ -6474,16 +6474,16 @@ const_CURLOPT_MAIL_FROM_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLOPT_MAIL_RCPT_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLOPT_MAIL_RCPT_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLOPT_MAIL_RCPT;
+/*   int result = CURLOPT_MAIL_RCPT; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLOPT_FTP_USE_PRET_wrapped (int32_t argc, Janet *argv)
@@ -7607,16 +7607,16 @@ const_CURLOPT_SASL_AUTHZID_wrapped (int32_t argc, Janet *argv)
   return janet_wrap_integer (result);
 }
 
-static Janet
-const_CURLOPT_MAIL_RCPT_ALLLOWFAILS_wrapped (int32_t argc, Janet *argv)
-{
-  janet_fixarity (argc, 0);
+/* static Janet */
+/* const_CURLOPT_MAIL_RCPT_ALLLOWFAILS_wrapped (int32_t argc, Janet *argv) */
+/* { */
+/*   janet_fixarity (argc, 0); */
 
 
-  int result = CURLOPT_MAIL_RCPT_ALLLOWFAILS;
+/*   int result = CURLOPT_MAIL_RCPT_ALLLOWFAILS; */
 
-  return janet_wrap_integer (result);
-}
+/*   return janet_wrap_integer (result); */
+/* } */
 
 static Janet
 const_CURLOPT_LASTENTRY_wrapped (int32_t argc, Janet *argv)
@@ -13105,9 +13105,11 @@ curl_cfuns[] = {
     "const-CURLOPT-SSH-KEYDATA", const_CURLOPT_SSH_KEYDATA_wrapped, "Return the constant value."
   },{
     "const-CURLOPT-MAIL-FROM", const_CURLOPT_MAIL_FROM_wrapped, "Return the constant value."
-  },{
-    "const-CURLOPT-MAIL-RCPT", const_CURLOPT_MAIL_RCPT_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLOPT-MAIL-RCPT", const_CURLOPT_MAIL_RCPT_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLOPT-FTP-USE-PRET", const_CURLOPT_FTP_USE_PRET_wrapped, "Return the constant value."
   },{
     "const-CURLOPT-RTSP-REQUEST", const_CURLOPT_RTSP_REQUEST_wrapped, "Return the constant value."
@@ -13314,9 +13316,11 @@ curl_cfuns[] = {
     "const-CURLOPT-MAXAGE-CONN", const_CURLOPT_MAXAGE_CONN_wrapped, "Return the constant value."
   },{
     "const-CURLOPT-SASL-AUTHZID", const_CURLOPT_SASL_AUTHZID_wrapped, "Return the constant value."
-  },{
-    "const-CURLOPT-MAIL-RCPT-ALLLOWFAILS", const_CURLOPT_MAIL_RCPT_ALLLOWFAILS_wrapped, "Return the constant value."
-  },{
+  },
+  /* { */
+  /*   "const-CURLOPT-MAIL-RCPT-ALLLOWFAILS", const_CURLOPT_MAIL_RCPT_ALLLOWFAILS_wrapped, "Return the constant value." */
+  /* }, */
+  {
     "const-CURLOPT-LASTENTRY", const_CURLOPT_LASTENTRY_wrapped, "Return the constant value."
   },{
     "const-CURL-IPRESOLVE-WHATEVER", const_CURL_IPRESOLVE_WHATEVER_wrapped, "Return the constant value."
