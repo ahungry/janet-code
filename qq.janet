@@ -12,21 +12,55 @@
   (let [f-list (get queue event)]
     (array/push f-list f)))
 
+(defn print-1 [parent]
+  (let [{
+         :queue queue
+         :event event
+         :payload payload
+         } (thread/receive math/inf)]
+    (os/sleep 1)
+    (pp "I am the print-1 call")
+    (pp payload)))
+
+(defn print-2 [parent]
+  (let [{
+         :queue queue
+         :event event
+         :payload payload
+         } (thread/receive math/inf)]
+    (os/sleep 1)
+    (pp "I am the print-2 call")
+    (pp payload)))
+
+(defn inc-1 [p]
+  (let [{
+         :queue queue
+         :event event
+         :payload payload
+         } (thread/receive math/inf)]
+    (os/sleep 1)
+    (pp "In inc-1")
+    (pp payload)
+    (unless (>= payload 3)
+      (publish queue ::counter (+ 1 payload)))))
+
 (defn publish
   "Publish an EVENT with PAYLOAD to QUEUE."
   [queue event payload]
   (let [f-list (or (get queue event) @[])]
-    (map |($0 payload) f-list)))
-
-(defn print-1 [x]
-  (pp "I am the print-1 call")
-  (pp x))
-
-(defn print-2 [x]
-  (pp "I am the print-2 call")
-  (pp x))
+    (map (fn [f] (:send (thread/new f)
+                        {
+                         :queue queue
+                         :event event
+                         :payload payload
+                         }))
+         f-list)))
 
 (subscribe queue ::hello print-1)
 (subscribe queue ::hello print-2)
 
+(subscribe queue ::counter inc-1)
+
 (publish queue ::hello "World")
+(publish queue ::counter 0)
+(publish queue ::counter 0)
