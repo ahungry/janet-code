@@ -62,18 +62,26 @@
   (cond (number? x) (string x)
         :else (string/format "'%s'" (string (symbol-replacements x)))))
 
+(defn arg-replacements [f args]
+  (cond (= 'fn f)
+        (string/format "() => janet.wrap(%s)" args)
+        :else args))
+
 (defn ast->js [ast]
   (cond (struct? ast)
         (string/format "janet.call(%s, %s)"
                        (call-replacements (get ast :call))
-                       (string/join (map ast->js (get ast :args)) ","))
+                       (arg-replacements
+                        (get ast :call)
+                        (string/join (map ast->js (get ast :args)) ",")))
         (string? ast) (string/format "'%s'" ast)
         (number? ast) (string ast)
         :else (string/format "'%s'" (string ast))))
 
 # (ast->js (walk-form '(pp "Hello")))
 #(ast->js (walk-form '(def x "Hello")))
-# (ast->js (walk-form '(defn hello [] "Hello")))
+#(ast->js (walk-form '(defn hello [] "Hello")))
+(ast->js (walk-form '(defn ping [] (pp "pong"))))
 
 (defn make-js []
   (def prelude (slurp "janet.js"))
@@ -81,8 +89,9 @@
     (string
      prelude
      (->>
+      (ast->js (walk-form '(defn ping [] (pp "pong"))))
       #(ast->js (walk-form '(do (def x 3) (pp (+ x 2)))))
-      (ast->js (walk-form '(do (defn three [] (+ 1 2)) (pp (three)))))
+      #(ast->js (walk-form '(do (defn three [] (+ 1 2)) (pp (three)))))
       (string/replace-all "\n" "__nl__"))))
   (pp generated)
   (spit "generated.js" generated))

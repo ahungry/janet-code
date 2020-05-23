@@ -77,7 +77,7 @@ Remove file /tmp/janet.listen to break out of the listen loop."
     (let [port 12346
           f (partial udp/send-string "127.0.0.1" 12345)]
       (while (keep-listening?)
-        (-> (udp/listen 12346) handler string f)))))
+        (-> (udp/listen 12347) handler string f)))))
 
 (defn listen-on-udp-bg []
   (future (fn [] (listen-on-udp))))
@@ -98,3 +98,6 @@ Remove file /tmp/janet.listen to break out of the listen loop."
     (udp/send-string "127.0.0.1" 12345 (string b))))
 
 (test-send "Color test sent from udp-listener.janet")
+
+(defn main [& ]
+  (listen-on-udp))

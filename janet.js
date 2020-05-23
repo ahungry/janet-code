@@ -26,12 +26,21 @@ const janet = {
 
   nil: () => [],
 
-  fn: function (...args) {
-    // TODO: How to avoid evaluation of body? Hmm...
-    const [_name, _arglist, ...body] = args
+  wrap: function (inner) {
+    console.log('use args')
 
+    console.log(inner)
+    // Last thing in body is the return value
+    // return [body.reverse()[0]]
+    return inner
+  },
+
+  fn: function (f) {
     return function (..._args) {
-      return body
+      const result = f()
+      //console.log(result)
+
+      return result
     }
   },
 
@@ -48,6 +57,11 @@ const janet = {
 }
 
 // Test stuff
-janet.call('do', janet.call('def', 'x', 3), janet.call('pp', janet.call('plus', 'x', 2)))
+// janet.call('do', janet.call('def', 'x', 3), janet.call('pp', janet.call('plus', 'x', 2)))
 
-janet.call('do', janet.call('def', 'three', '(three)__nl____nl__', janet.call('fn', 'three', janet.call('nil'), janet.call('plus', 1, 2))), janet.call('pp', janet.call('three')))
+// janet.call('do', janet.call('def', 'three', '(three)__nl____nl__', janet.call('fn', 'three', janet.call('nil'), janet.call('plus', 1, 2))), janet.call('pp', janet.call('three')))
+
+janet.call('def', 'ping', '(ping)__nl____nl__', janet.call('fn', () => janet.wrap('ping', janet.call('nil'), janet.call('pp', 'pong'))))
+
+janet.call('ping')
+janet.call('ping')
