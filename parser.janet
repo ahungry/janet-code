@@ -52,36 +52,72 @@
   (walk-form '(defn foo [] (pp 5))))
 
 (defn symbol-replacements [x]
-  (cond (= '+ x) :plus
-        (= '- x) :minus
-        (= '/ x) :slash
-        (= '* x) :start
-        :else x))
+  (->
+   (cond (= '+ x) :plus
+         (= '- x) :minus
+         (= '/ x) :slash
+         (= '* x) :start
+         :else x)
+   string))
 
 (defn call-replacements [x]
   (cond (number? x) (string x)
         :else (string/format "'%s'" (string (symbol-replacements x)))))
 
 (defn arg-replacements [f args]
-  (cond (= 'fn f)
-        (string/format "() => janet.wrap(%s)" args)
-        :else args))
+  (cond
+    # Functions should delay evaluation of args
+    (= 'fn f)
+    (string/format "() => janet.wrap(%s)" args)
+
+    :else args))
+
+(defn invoke-replacements [f args]
+  (cond
+    (= 'def f) "const %s = %s"
+    :else "janet.call(%s, %s)"))
+
+(defn make-fn-body [args]
+  (def len (length args))
+  (def last (array/slice args (- len 1) len))
+  (string/format "%s return %s"
+                 (string/join (array/slice args 1 (- len 1)))
+                 (string/join last)))
+
+(defn def->js [f args]
+  (if (= 2 (length args))
+    (string/format "const %s = %s;" (get args 0) (get args 1))
+    (do
+      (string/format "const %s = %s;" (get args 0) (last args)))))
+
+(defn def->fn [f args] (string/format "() => { %s };"
+                                      (make-fn-body args)))
+
+(defn make-js-expression [f args]
+  (cond
+    (= 'def f) (def->js f args)
+    (= 'fn f) (def->fn f args)
+    :else (string/format "%s(%s);\n" (symbol-replacements f) (string/join args ","))))
 
 (defn ast->js [ast]
-  (cond (struct? ast)
-        (string/format "janet.call(%s, %s)"
-                       (call-replacements (get ast :call))
-                       (arg-replacements
-                        (get ast :call)
-                        (string/join (map ast->js (get ast :args)) ",")))
-        (string? ast) (string/format "'%s'" ast)
-        (number? ast) (string ast)
-        :else (string/format "'%s'" (string ast))))
+  (cond
+    (struct? ast)
+    (let [expanded-args (map ast->js (get ast :args))]
+      (make-js-expression (get ast :call) expanded-args))
+
+    (string? ast) (string/format "'%s'" ast)
+
+    (number? ast) (string ast)
+
+    :else (string/format "%s" (string ast))))
+
+(ast->js (walk-form '(fn [] "Hello")))
 
 # (ast->js (walk-form '(pp "Hello")))
 #(ast->js (walk-form '(def x "Hello")))
-#(ast->js (walk-form '(defn hello [] "Hello")))
-(ast->js (walk-form '(defn ping [] (pp "pong"))))
+#(ast->js (walk-form '(def fx (fn [] (pp "Hi") (pp "Hello") "Hello"))))
+(ast->js (walk-form '(defn hello [] (pp "Hello") (pp "World"))))
+#(ast->js (walk-form '(defn ping [] (pp "pong"))))
 
 (defn make-js []
   (def prelude (slurp "janet.js"))
@@ -92,7 +128,7 @@
       (ast->js (walk-form '(defn ping [] (pp "pong"))))
       #(ast->js (walk-form '(do (def x 3) (pp (+ x 2)))))
       #(ast->js (walk-form '(do (defn three [] (+ 1 2)) (pp (three)))))
-      (string/replace-all "\n" "__nl__"))))
+      )))
   (pp generated)
   (spit "generated.js" generated))
 
