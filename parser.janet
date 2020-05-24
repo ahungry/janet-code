@@ -94,7 +94,7 @@
                                       (make-fn-body args)))
 
 (defn do->js [f args] (string/format "do {\n%s\n} while (false)"
-                                     (string/join args "")))
+                                     (string/join args "\n")))
 
 (defn make-js-expression [f args]
   (cond
@@ -132,10 +132,14 @@
      prelude
      (->>
       #(ast->js (walk-form '(defn ping [] (pp "pong"))))
-      (ast->js (walk-form '(do (def x 3) (def y 4)
+      (ast->js (walk-form '(do
+                            (def x 3)
+                            (def y 4)
                             (defn sum []
                               (def y 10)
-                              (+ x y)) (pp 5 (sum)))))
+                              (+ x y))
+                            (pp (map (fn [] 5) (tuple 1 2 3)))
+                            (pp (sum)))))
       #(ast->js (walk-form '(do (def x 3) (pp (+ x 2)))))
       #(ast->js (walk-form '(do (defn three [] (+ 1 2)) (pp (three)))))
       )))
