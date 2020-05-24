@@ -80,8 +80,8 @@
 (defn make-fn-body [args]
   (def len (length args))
   (def last (array/slice args (- len 1) len))
-  (string/format "%s return %s"
-                 (string/join (array/slice args 1 (- len 1)))
+  (string/format "%s; return %s"
+                 (string/join (array/slice args 1 (- len 1)) ";")
                  (string/join last)))
 
 (defn def->js [f args]
@@ -90,14 +90,18 @@
     (do
       (string/format "const %s = %s;" (get args 0) (last args)))))
 
-(defn def->fn [f args] (string/format "() => { %s };"
+(defn fn->js [f args] (string/format "() => { %s }"
                                       (make-fn-body args)))
+
+(defn do->js [f args] (string/format "do {\n%s\n} while (false)"
+                                     (string/join args "")))
 
 (defn make-js-expression [f args]
   (cond
     (= 'def f) (def->js f args)
-    (= 'fn f) (def->fn f args)
-    :else (string/format "%s(%s);\n" (symbol-replacements f) (string/join args ","))))
+    (= 'fn f) (fn->js f args)
+    (= 'do f) (do->js f args)
+    :else (string/format "%s(%s)" (symbol-replacements f) (string/join args ","))))
 
 (defn ast->js [ast]
   (cond
@@ -116,8 +120,10 @@
 # (ast->js (walk-form '(pp "Hello")))
 #(ast->js (walk-form '(def x "Hello")))
 #(ast->js (walk-form '(def fx (fn [] (pp "Hi") (pp "Hello") "Hello"))))
-(ast->js (walk-form '(defn hello [] (pp "Hello") (pp "World"))))
+#(ast->js (walk-form '(defn hello [] (pp "Hello") (pp "World"))))
 #(ast->js (walk-form '(defn ping [] (pp "pong"))))
+
+(ast->js (walk-form '(do (def x 3) (def y 4) (defn sum [] (+ x y)) (pp 5 (sum)))))
 
 (defn make-js []
   (def prelude (slurp "janet.js"))
@@ -125,7 +131,11 @@
     (string
      prelude
      (->>
-      (ast->js (walk-form '(defn ping [] (pp "pong"))))
+      #(ast->js (walk-form '(defn ping [] (pp "pong"))))
+      (ast->js (walk-form '(do (def x 3) (def y 4)
+                            (defn sum []
+                              (def y 10)
+                              (+ x y)) (pp 5 (sum)))))
       #(ast->js (walk-form '(do (def x 3) (pp (+ x 2)))))
       #(ast->js (walk-form '(do (defn three [] (+ 1 2)) (pp (three)))))
       )))
