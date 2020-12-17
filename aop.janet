@@ -20,3 +20,7 @@
                           result))
 
 (+ 1 2 3 4)
+# prints: {:result 10 :values (1 2 3 4) :types @[:number :number :number :number] :arity 4 :ret-type :number}
+# evals to: 10
+
+(+ 1 2 (+ 3 4))
